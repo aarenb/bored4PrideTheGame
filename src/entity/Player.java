@@ -2,6 +2,10 @@ package entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
@@ -15,12 +19,21 @@ public class Player extends Entity{
     this.keyHand = keyHand;
 
     setDefaultValues();
+    getPlayerImage();
   }
 
   public void setDefaultValues() {
     x = 100;
     y = 100;
     speed = 4;
+  }
+
+  public void getPlayerImage() {
+    try {
+      def = ImageIO.read(getClass().getResourceAsStream("/player/playerdef.png"));
+    } catch(IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public void update() {
@@ -36,7 +49,9 @@ public class Player extends Entity{
   }
 
   public void draw(Graphics2D g2d) {
-    g2d.setColor(Color.white);
-    g2d.fillRect(x, y, gamePan.tileSize, gamePan.tileSize);
+
+    BufferedImage image = def;
+    g2d.drawImage(image, x, y, gamePan.tileSize, gamePan.tileSize, null);
+
   }
 }
