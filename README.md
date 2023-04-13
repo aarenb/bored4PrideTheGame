@@ -1,4 +1,8 @@
-# Ditt projekt
+# Bored4Pride: The Game
+
+The best (and only) Bored4Pride game on the market!
+
+---
 
 Detta är ditt projekts GitLab-projekt och här hittar du bland annat Wikin i vilken du ska dokumentera ditt projekt. Du hittar länk till din Wiki i menyn till vänster.
 
