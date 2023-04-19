@@ -41,9 +41,9 @@ public class TileManager {
 
     tile = new Tile[fileNames.size()];
     getTileImage();
-    loadMap("/maps/mainmap.txt");
 
     mapTileNum = new int[gamePan.maxWorldColumn][gamePan.maxWorldRow];
+    loadMap("/maps/mainmap.txt");
   }
 
   /**
