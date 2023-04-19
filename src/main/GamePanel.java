@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable{
   TileManager tileManager = new TileManager(this);
   KeyHandler keyHand = new KeyHandler();
   Thread gameThread;// keeps the game running
-  Player player = new Player(this, keyHand);
+  public Player player = new Player(this, keyHand);
 
   public GamePanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));

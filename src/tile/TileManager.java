@@ -113,23 +113,23 @@ public class TileManager {
   }
 
   public void draw(Graphics2D g2d) {
-    int col = 0;
-    int row = 0;
-    int x = 0;
-    int y = 0;
+    int worldCol = 0;
+    int worldRow = 0;
 
-    while (col < gamePan.maxWorldColumn && row < gamePan.maxWorldRow) {
-      int tileNum = mapTileNum[col][row];
+    while (worldCol < gamePan.maxWorldColumn && worldRow < gamePan.maxWorldRow) {
+      int tileNum = mapTileNum[worldCol][worldRow];
 
-      g2d.drawImage(tile[tileNum].image, x, y, null);
-      col++;
-      x += gamePan.tileSize;
+      int worldX = worldCol * gamePan.tileSize;
+      int worldY = worldRow * gamePan.tileSize;
+      int screenX = worldX - gamePan.player.worldX + gamePan.player.screenX;
+      int screenY = worldY - gamePan.player.worldY + gamePan.player.screenY;
 
-      if (col == gamePan.maxWorldColumn) {
-        col = 0;
-        x = 0;
-        row++;
-        y += gamePan.tileSize;
+      g2d.drawImage(tile[tileNum].image, screenX, screenY, null);
+      worldCol++;  
+
+      if (worldCol == gamePan.maxWorldColumn) {
+        worldCol = 0;
+        worldRow++;
       }
     }
   }
