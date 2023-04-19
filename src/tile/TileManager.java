@@ -42,6 +42,10 @@ public class TileManager {
    * Load tile images.
    */
   public void getTileImage() {
+    
+  }
 
+  public void setup(int index, String imagePath, boolean collision) {
+    
   }
 }
