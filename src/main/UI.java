@@ -42,11 +42,21 @@ public class UI {
 
   public void drawPauseMenu() {
     String text = "PAUSED";
-    int length = (int)g2d.getFontMetrics().getStringBounds(text, g2d).getWidth(); // get length of text
-
-    int x = gamePan.screenWidth / 2 - length / 2; // Display text in center
+  
+    int x = getXforCenterTxt(text);
     int y = gamePan.screenHeight / 2;
 
     g2d.drawString(text, x, y);
+  }
+
+  /**
+   * Gets the x coord to display text at center.
+   * @param text The text to display
+   * @return The x coordinate
+   */
+  public int getXforCenterTxt(String text) {
+    int length = (int)g2d.getFontMetrics().getStringBounds(text, g2d).getWidth(); // get length of text
+    int x = gamePan.screenWidth / 2 - length / 2;
+    return x;
   }
 }
