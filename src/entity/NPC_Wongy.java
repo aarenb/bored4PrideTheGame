@@ -29,7 +29,7 @@ public class NPC_Wongy extends Entity{
 
     antiSpinCounter++;
     
-    if(antiSpinCounter == 80) {
+    if(antiSpinCounter == 130) {
       switch (direction) {
       case "down":
         direction = "up";
