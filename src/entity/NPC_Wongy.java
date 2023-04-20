@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.Rectangle;
+import java.util.Random;
 
 import main.GamePanel;
 
@@ -26,7 +27,21 @@ public class NPC_Wongy extends Entity{
   }
 
   public void setAction() {
-    
+    Random random = new Random();
+    int i = random.nextInt(100)+1; // pick num 1-100
+
+    if (i <= 25) {
+      direction = "up";
+    }
+    if (i > 25 && i <= 50) {
+      direction = "down";
+    }
+    if (i > 50 && i <= 75) {
+      direction = "left";
+    }
+    if (i > 75) {
+      direction = "right";
+    }
   }
 
 }
