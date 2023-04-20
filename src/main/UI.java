@@ -7,14 +7,14 @@ import java.awt.Graphics2D;
 public class UI {
   GamePanel gamePan;
   Graphics2D g2d;
-  Font arial_40;
+  Font arial_80;
   public boolean messageOn = false;
   public String message = "";
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
 
-    arial_40 = new Font("Arial", Font.PLAIN, 40);
+    arial_80 = new Font("Arial", Font.PLAIN, 80);
   }
 
   /**
@@ -29,7 +29,7 @@ public class UI {
   public void draw(Graphics2D g2d) {
     this.g2d = g2d;
 
-    g2d.setFont(arial_40);
+    g2d.setFont(arial_80);
     g2d.setColor(Color.white);
 
     if (gamePan.gameState == gamePan.playState) {
