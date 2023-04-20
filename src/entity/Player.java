@@ -59,37 +59,7 @@ public class Player extends Entity{
         direction = "right";
       }
 
-      // Check collision
-      collisionOn = false;
-      gamePan.colChecker.checkTile(this);
-
-      // If no collision player can move
-      if (collisionOn == false) {
-        switch (direction) {
-        case "up":
-          worldY = worldY - speed;// move player up
-          break;
-        case "down":
-          worldY = worldY + speed; // move player down
-          break;
-        case "left":
-          worldX = worldX - speed;// move player left
-          break;
-        case "right":
-          worldX = worldX + speed; // move player right
-          break;
-        }
-      }
-  
-      spriteCount++;
-      if (spriteCount > 15) {
-        if (spriteNum == 1) {
-          spriteNum = 2;
-        } else if (spriteNum == 2) {
-          spriteNum = 1;
-        }
-        spriteCount = 0;
-      }
+      move();
     }
   }
 

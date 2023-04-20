@@ -28,6 +28,50 @@ public class Entity {
     this.gamePan = gamePan;
   }
 
+  public void setAction() {
+
+  }
+
+  public void update() {
+    setAction();
+    move();
+  }
+
+  public void move() {
+    // Check collision
+    collisionOn = false;
+    gamePan.colChecker.checkTile(this);
+
+    // If no collision entity can move
+    if (collisionOn == false) {
+      switch (direction) {
+      case "up":
+        worldY = worldY - speed;// move entity up
+        break;
+      case "down":
+        worldY = worldY + speed; // move entity down
+        break;
+      case "left":
+        worldX = worldX - speed;// move entity left
+        break;
+      case "right":
+        worldX = worldX + speed; // move entity right
+        break;
+      }
+    }
+
+    spriteCount++;
+    if (spriteCount > 15) {
+      if (spriteNum == 1) {
+        spriteNum = 2;
+      } else if (spriteNum == 2) {
+        spriteNum = 1;
+      }
+      spriteCount = 0;
+    }
+  }
+
+
   public void draw(Graphics2D g2d) {
     BufferedImage image = null;
     int screenX = worldX - gamePan.player.worldX + gamePan.player.screenX;

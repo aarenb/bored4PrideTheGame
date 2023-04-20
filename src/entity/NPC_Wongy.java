@@ -25,4 +25,8 @@ public class NPC_Wongy extends Entity{
     right1 = setup("/resources/wongy/wongy_right");
   }
 
+  public void setAction() {
+    
+  }
+
 }
