@@ -35,12 +35,18 @@ public class UI {
     if (gamePan.gameState == gamePan.playState) {
       // Game state stuff
     }
+
+    // Paused
     if (gamePan.gameState == gamePan.pauseState) {
       drawPauseMenu();
     }
   }
 
   public void drawPauseMenu() {
+    g2d.setColor(new Color(0, 0, 0, 120));
+    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+
+    g2d.setColor(Color.white);
     String text = "PAUSED";
   
     int x = getXforCenterTxt(text);
