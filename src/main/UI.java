@@ -2,23 +2,37 @@ package main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class UI {
   GamePanel gamePan;
   Graphics2D g2d;
-  Font arial_80;
+  Font VCR_OSD_Mono;
+  Font VCR_OSD_Mono_80;
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
 
-    arial_80 = new Font("Arial", Font.PLAIN, 80);
+    // Import font
+    InputStream input = getClass().getResourceAsStream("/resources/font/VCR_OSD_MONO_1.001.ttf");
+    try {
+      VCR_OSD_Mono = Font.createFont(Font.TRUETYPE_FONT, input);
+    } catch (FontFormatException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
   }
 
   public void draw(Graphics2D g2d) {
     this.g2d = g2d;
 
-    g2d.setFont(arial_80);
+    g2d.setFont(VCR_OSD_Mono_80);
     g2d.setColor(Color.white);
 
     if (gamePan.gameState == gamePan.playState) {
