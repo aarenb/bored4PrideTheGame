@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Entity;
 import entity.Player;
 import tile.TileManager;
 
@@ -35,6 +36,8 @@ public class GamePanel extends JPanel implements Runnable{
   public UI ui = new UI(this);
 
   Thread gameThread;// keeps the game running
+
+  public Entity npc[] = new Entity[10];
 
   // Game state
   public int gameState;

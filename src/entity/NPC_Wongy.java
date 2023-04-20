@@ -12,12 +12,13 @@ public class NPC_Wongy extends Entity{
     speed = 2;
 
     solidArea = new Rectangle(8, 16, 32, 32);
+    getImage();
   }
 
   /**
    * Load NPC images.
    */
-  public void getPlayerImage() {
+  public void getImage() {
     up1 = setup("/resources/wongy/wongy_up");
     down1 = setup("/resources/wongy/wongy_down");
     left1 = setup("/resources/wongy/wongy_left");
