@@ -4,8 +4,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
-
+  GamePanel gamePan;
   public boolean upPressed, downPressed, leftPressed, rightPressed;
+
+  public KeyHandler(GamePanel gamePan) {
+    this.gamePan = gamePan;
+  }
 
   @Override
   public void keyTyped(KeyEvent e) {
@@ -34,6 +38,15 @@ public class KeyHandler implements KeyListener{
     // if user press D key
     if (code == KeyEvent.VK_D) {
       rightPressed = true;
+    }
+
+    // if user press escape key [pause]
+    if (code == KeyEvent.VK_ESCAPE) {
+      if (gamePan.gameState == gamePan.playState) {
+        gamePan.gameState = gamePan.pauseState;
+      } else if (gamePan.gameState == gamePan.pauseState) {
+        gamePan.gameState = gamePan.playState;
+      }
     }
   }
 

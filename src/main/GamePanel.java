@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable{
   public final int worldHeight = tileSize * maxWorldRow;
 
   TileManager tileManager = new TileManager(this);
-  KeyHandler keyHand = new KeyHandler();
+  KeyHandler keyHand = new KeyHandler(this);
   Thread gameThread;// keeps the game running
   public CollisionChecker colChecker = new CollisionChecker(this);
   public Player player = new Player(this, keyHand);
@@ -83,7 +83,12 @@ public class GamePanel extends JPanel implements Runnable{
   }
 
   public void update () {
-    player.update();
+    if (gameState == playState) {
+      player.update();
+    }
+    if (gameState == pauseState) {
+
+    }
   }
 
   /**
