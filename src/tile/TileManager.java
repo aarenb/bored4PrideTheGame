@@ -14,8 +14,8 @@ import main.UtilityTool;
 
 public class TileManager {
   GamePanel gamePan;
-  Tile[] tile;
-  int mapTileNum[][];
+  public Tile[] tile;
+  public int mapTileNum[][];
   ArrayList<String> fileNames = new ArrayList<>();
   ArrayList<String> collisionStat = new ArrayList<>();
 
@@ -56,6 +56,7 @@ public class TileManager {
 
       fileName = fileNames.get(i);
       
+      // Checks if tile has collision, and if so sets it to true
       if (collisionStat.get(i).equals("true")) {
         collision = true;
       } else {
