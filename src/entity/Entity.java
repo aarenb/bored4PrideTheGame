@@ -23,6 +23,7 @@ public class Entity {
 
   public Rectangle solidArea;
   public boolean collisionOn = false;
+  public int antiSpinCounter = 0; // prevents spinny moving entity
 
   public Entity(GamePanel gamePan) {
     this.gamePan = gamePan;
