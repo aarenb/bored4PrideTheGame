@@ -34,12 +34,21 @@ public class GamePanel extends JPanel implements Runnable{
   public CollisionChecker colChecker = new CollisionChecker(this);
   public Player player = new Player(this, keyHand);
 
+  // Game state
+  public int gameState;
+  public final int playState = 1;
+  public final int pauseState = 2;
+
   public GamePanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
     this.setBackground(Color.black);
     this.setDoubleBuffered(true);// improves game's rendering performance
     this.addKeyListener(keyHand);
     this.setFocusable(true);// can be set "focused" to get key input
+  }
+
+  public void setupGame() {
+    gameState = playState;
   }
 
   /**
