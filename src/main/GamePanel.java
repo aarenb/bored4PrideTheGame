@@ -30,9 +30,11 @@ public class GamePanel extends JPanel implements Runnable{
 
   TileManager tileManager = new TileManager(this);
   KeyHandler keyHand = new KeyHandler(this);
-  Thread gameThread;// keeps the game running
   public CollisionChecker colChecker = new CollisionChecker(this);
   public Player player = new Player(this, keyHand);
+  public UI ui = new UI(this);
+
+  Thread gameThread;// keeps the game running
 
   // Game state
   public int gameState;
@@ -101,6 +103,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     tileManager.draw(g2d);
     player.draw(g2d);
+    ui.draw(g2d);
 
     g2d.dispose();// saves some memory
   }
