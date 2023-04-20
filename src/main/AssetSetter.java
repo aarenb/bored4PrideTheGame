@@ -11,7 +11,7 @@ public class AssetSetter {
 
   public void setNPC() {
     gamePan.npc[0] = new NPC_Wongy(gamePan);
-    gamePan.npc[0].worldX = gamePan.tileSize * 19;
+    gamePan.npc[0].worldX = gamePan.tileSize * 18;
     gamePan.npc[0].worldY = gamePan.tileSize * 32;
   }
 }

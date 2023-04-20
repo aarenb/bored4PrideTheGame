@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -25,6 +26,35 @@ public class Entity {
 
   public Entity(GamePanel gamePan) {
     this.gamePan = gamePan;
+  }
+
+  public void draw(Graphics2D g2d) {
+    BufferedImage image = null;
+    int screenX = worldX - gamePan.player.worldX + gamePan.player.screenX;
+    int screenY = worldY - gamePan.player.worldY + gamePan.player.screenY;
+
+    if (worldX + gamePan.tileSize > gamePan.player.worldX - gamePan.player.screenX &&
+    worldX - gamePan.tileSize < gamePan.player.worldX + gamePan.player.screenX && 
+    worldY + gamePan.tileSize > gamePan.player.worldY - gamePan.player.screenY && 
+    worldY - gamePan.tileSize < gamePan.player.worldY + gamePan.player.screenY) {
+  
+      switch (direction) {
+        case "up":
+          image = up1;
+          break;
+        case "down":
+          image = down1;
+          break;
+        case "left":
+          image = left1;
+          break;
+        case "right":
+          image = right1;
+          break;
+        }
+
+      g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
+    }
   }
 
   public BufferedImage setup(String imagePath) {

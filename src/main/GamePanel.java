@@ -32,6 +32,7 @@ public class GamePanel extends JPanel implements Runnable{
   TileManager tileManager = new TileManager(this);
   KeyHandler keyHand = new KeyHandler(this);
   public CollisionChecker colChecker = new CollisionChecker(this);
+  AssetSetter assSetter = new AssetSetter(this);
   public Player player = new Player(this, keyHand);
   public UI ui = new UI(this);
 
@@ -53,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable{
   }
 
   public void setupGame() {
+    assSetter.setNPC();
     gameState = playState;
   }
 
@@ -105,6 +107,13 @@ public class GamePanel extends JPanel implements Runnable{
     Graphics2D g2d = (Graphics2D)g;
 
     tileManager.draw(g2d);
+
+    for (int i = 0; i < npc.length; i++) {
+      if (npc[i] != null) {
+        npc[i].draw(g2d);
+      }
+    }
+
     player.draw(g2d);
     ui.draw(g2d);
 
