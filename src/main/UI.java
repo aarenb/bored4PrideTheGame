@@ -8,22 +8,11 @@ public class UI {
   GamePanel gamePan;
   Graphics2D g2d;
   Font arial_80;
-  public boolean messageOn = false;
-  public String message = "";
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
 
     arial_80 = new Font("Arial", Font.PLAIN, 80);
-  }
-
-  /**
-   * Display a message on screen.
-   * @param text Message to display.
-   */
-  public void showMessage(String text) {
-    message = text;
-    messageOn = true;
   }
 
   public void draw(Graphics2D g2d) {
