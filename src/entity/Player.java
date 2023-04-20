@@ -3,23 +3,18 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
 
 public class Player extends Entity{
-  GamePanel gamePan;
   KeyHandler keyHand;
 
   public final int screenX;
   public final int screenY;
 
   public Player(GamePanel gamePan, KeyHandler keyHand) {
-    this.gamePan = gamePan;
+    super(gamePan);
     this.keyHand = keyHand;
 
     screenX = gamePan.screenWidth/2;
@@ -42,27 +37,14 @@ public class Player extends Entity{
    * Load player images.
    */
   public void getPlayerImage() {
-    up1 = setup("player_up1");
-    up2 = setup("player_up2");
-    down1 = setup("player_down1");
-    down2 = setup("player_down2");
-    left1 = setup("player_left1");
-    left2 = setup("player_left2");
-    right1 = setup("player_right1");
-    right2 = setup("player_right2");
-  }
-
-  public BufferedImage setup(String imageName) {
-    UtilityTool uTool = new UtilityTool();
-    BufferedImage image = null;
-
-    try {
-      image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
-      image = uTool.scaleImage(image, gamePan.tileSize, gamePan.tileSize);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return image;
+    up1 = setup("/player/player_up1");
+    up2 = setup("/player/player_up2");
+    down1 = setup("/player/player_down1");
+    down2 = setup("/player/player_down2");
+    left1 = setup("/player/player_left1");
+    left2 = setup("/player/player_left2");
+    right1 = setup("/player/player_right1");
+    right2 = setup("/player/player_right2");
   }
 
   public void update() {
