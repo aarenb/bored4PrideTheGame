@@ -43,7 +43,7 @@ public class KeyHandler implements KeyListener{
 
       // if user press escape key [pause]
       if (code == KeyEvent.VK_ESCAPE) {
-          enterPressed = true;
+        gamePan.gameState = gamePan.pauseState;
       }
 
       // If user press enter
@@ -56,12 +56,12 @@ public class KeyHandler implements KeyListener{
       if (code == KeyEvent.VK_ESCAPE) {
         gamePan.gameState = gamePan.playState;
       }
-    } else if (gamePan.gameState == gamePan.dialogueState) { // Dialogue
+    } else if (gamePan.gameState == gamePan.dialogueState) { // Dialogue:
       // If user press enter
       if (code == KeyEvent.VK_ENTER) {
         gamePan.gameState = gamePan.playState;
       }
-    } else if (gamePan.gameState == gamePan.titleState) { // Title screen
+    } else if (gamePan.gameState == gamePan.titleState) { // Title screen:
       // If user presses W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
         gamePan.ui.commandNum--;
@@ -75,6 +75,17 @@ public class KeyHandler implements KeyListener{
         gamePan.ui.commandNum++;
         if (gamePan.ui.commandNum > 2) {
           gamePan.ui.commandNum = 0;
+        }
+      }
+
+      // If user press enter
+      if (code == KeyEvent.VK_ENTER) {
+        if (gamePan.ui.commandNum == 0) {
+          gamePan.gameState = gamePan.playState;
+        } else if (gamePan.ui.commandNum == 1) {
+          // load game, add later
+        } else if (gamePan.ui.commandNum == 2) {
+          System.exit(0);
         }
       }
     }
