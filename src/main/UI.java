@@ -76,7 +76,7 @@ public class UI {
     drawLilWindow(x, y, width, height);
 
     // Draw words
-    x += gamePan.tileSize;
+    x += 20;
     y += gamePan.tileSize;
     g2d.setFont(VCR_OSD_Mono_24 );
     g2d.setColor(Color.white);

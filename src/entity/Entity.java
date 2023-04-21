@@ -40,8 +40,6 @@ public class Entity {
     if (words[speakIndex] != null) {
       gamePan.ui.currentWords = words[speakIndex];
       speakIndex++;
-    } else {
-      speakIndex = 0;
     }
   }
 

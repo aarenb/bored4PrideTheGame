@@ -30,9 +30,11 @@ public class NPC_Wongy extends Entity{
   }
 
   public void setWords() {
-    words[0] = "Hello there, young gay";
-    words[1] = "These do be a lot of words,\ndon't ya think?";
-    words[2] = "Now hop away";
+    words[0] = "*oh no oh no...*\nOh hi there! Finally someone to help!\nI'm wongy, Grass sent you, right?";
+    words[1] = "Bored4Pride starts in a matter of \nhours, but everything is so messed \nup! Please say you can help!!";
+    words[2] = "Someone must have taken sery bot\nhostage, and now there's follow bots\neverywhere!";
+    words[3] = "I need you to find and ban\nall of them for me, and please\nhurry!!";
+    words[4] = "What are you waiting for? \nGet to banning!";
   }
 
   public void setAction() {
