@@ -37,13 +37,15 @@ public class Entity {
 
   public void update() {
     setAction();
+
+    // Check collision
+    collisionOn = false;
+    gamePan.colChecker.checkTile(this);
+  
     move();
   }
 
   public void move() {
-    // Check collision
-    collisionOn = false;
-    gamePan.colChecker.checkTile(this);
 
     // If no collision entity can move
     if (collisionOn == false) {

@@ -61,6 +61,12 @@ public class Player extends Entity{
         direction = "right";
       }
 
+      // Check collision
+      collisionOn = false;
+      gamePan.colChecker.checkTile(this); // check tile collision
+      int npcIndex = gamePan.colChecker.checkEntity(this, gamePan.npc); // check npc collision
+      interactNPC(npcIndex);
+
       move();
     }
   }
@@ -105,6 +111,12 @@ public class Player extends Entity{
 
     g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
 
+  }
+
+  public void interactNPC(int i) {
+    if (i != 999) {
+      collisionOn = true;
+    }
   }
 }
 
