@@ -43,6 +43,11 @@ public class UI {
     if (gamePan.gameState == gamePan.pauseState) {
       drawPauseMenu();
     }
+
+    // Dialogue
+    if (gamePan.gameState == gamePan.dialogueState) {
+      
+    }
   }
 
   public void drawPauseMenu() {
