@@ -126,4 +126,49 @@ public class CollisionChecker {
     }
     return index;
   }
+
+  /**
+   * Checks if entity is colliding with player
+   * @param entity NPC / monster to check
+   */
+  public void checkPlayer(Entity entity) {
+    // Get entity's solid area coords
+    entity.solidArea.x = entity.worldX + entity.solidArea.x;
+    entity.solidArea.y = entity.worldY + entity.solidArea.y;
+
+    // Get player's solid area coords
+    gamePan.player.solidArea.x = gamePan.player.worldX + gamePan.player.solidArea.x;
+    gamePan.player.solidArea.y = gamePan.player.worldY + gamePan.player.solidArea.y;
+
+    switch (entity.direction) {
+      case "up":
+        entity.solidArea.y -= entity.speed;
+        if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
+          entity.collisionOn = true;
+        }
+        break;
+      case "down":
+        entity.solidArea.y += entity.speed;
+        if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
+          entity.collisionOn = true;
+        }
+        break;
+      case "left":
+        entity.solidArea.x -= entity.speed;
+        if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
+          entity.collisionOn = true;
+        }
+        break;
+      case "right":
+        entity.solidArea.x += entity.speed;
+        if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
+          entity.collisionOn = true;
+        }
+        break;
+    }
+    entity.solidArea.x = entity.solidAreaDefaultX;
+    entity.solidArea.y = entity.solidAreaDefaultY;
+    gamePan.player.solidArea.x = gamePan.player.solidAreaDefaultX;
+    gamePan.player.solidArea.y = gamePan.player.solidAreaDefaultY;
+  }
 }
