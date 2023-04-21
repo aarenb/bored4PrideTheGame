@@ -15,7 +15,8 @@ public class UI {
   Graphics2D g2d;
   Font VCR_OSD_Mono;
   Font VCR_OSD_Mono_80;
-  Font VCR_OSD_Mono_52;
+  Font VCR_OSD_Mono_58;
+  Font VCR_OSD_Mono_40;
   Font VCR_OSD_Mono_24;
   public String currentWords = "";
 
@@ -35,7 +36,8 @@ public class UI {
     }
 
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
-    VCR_OSD_Mono_52 = VCR_OSD_Mono.deriveFont(52f);
+    VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
+    VCR_OSD_Mono_40 = VCR_OSD_Mono.deriveFont(40f);
     VCR_OSD_Mono_24 = VCR_OSD_Mono.deriveFont(24f);
 
     loadImage();
@@ -81,18 +83,54 @@ public class UI {
     g2d.drawImage(backgroundImg, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
 
     // Display title
-    g2d.setFont(VCR_OSD_Mono_52);
+    g2d.setFont(VCR_OSD_Mono_58);
     String text = "Bored4Pride: The Game";
     int x = getXforCenterTxt(text);
     int y = gamePan.tileSize * 3;
 
     // Shadow
     g2d.setColor(Color.black);
-    g2d.drawString(text, x + 3, y + 3);
+    g2d.drawString(text, x + 5, y + 5);
 
     // Main text
     g2d.setColor(Color.white);
     g2d.drawString(text, x, y);
+
+    // Menu
+    g2d.setFont(VCR_OSD_Mono_40);
+    g2d.setColor(Color.black);
+
+    text = "NEW GAME";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize * 3;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+
+    text = "LOAD GAME";
+    x = getXforCenterTxt(text);
+    y += 55;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+
+
+    text = "QUIT";
+    x = getXforCenterTxt(text);
+    y += 55;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+
 
   }
 
