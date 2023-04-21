@@ -19,6 +19,7 @@ public class UI {
   Font VCR_OSD_Mono_40;
   Font VCR_OSD_Mono_24;
   public String currentWords = "";
+  public int commandNum = 0; 
 
   BufferedImage backgroundImg;
 
@@ -109,6 +110,14 @@ public class UI {
     // Main text:
     g2d.setColor(Color.black);
     g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
 
     text = "LOAD GAME";
     x = getXforCenterTxt(text);
@@ -119,6 +128,14 @@ public class UI {
     // Main text:
     g2d.setColor(Color.black);
     g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
 
 
     text = "QUIT";
@@ -130,7 +147,14 @@ public class UI {
     // Main text:
     g2d.setColor(Color.black);
     g2d.drawString(text, x, y);
-
+    if (commandNum == 2) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
 
   }
 
