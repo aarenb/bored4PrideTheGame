@@ -115,9 +115,9 @@ public class GamePanel extends JPanel implements Runnable{
 
     // Title screen
     if (gameState == titleState) {
-
+      ui.draw(g2d);
     } else {
-      // Tiles
+    // Tiles
     tileManager.draw(g2d);
 
     // NPC

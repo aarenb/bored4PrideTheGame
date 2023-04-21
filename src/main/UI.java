@@ -12,6 +12,7 @@ public class UI {
   Graphics2D g2d;
   Font VCR_OSD_Mono;
   Font VCR_OSD_Mono_80;
+  Font VCR_OSD_Mono_52;
   Font VCR_OSD_Mono_24;
   public String currentWords = "";
 
@@ -29,6 +30,7 @@ public class UI {
     }
 
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
+    VCR_OSD_Mono_52 = VCR_OSD_Mono.deriveFont(52f);
     VCR_OSD_Mono_24 = VCR_OSD_Mono.deriveFont(24f);
   }
 
@@ -37,6 +39,11 @@ public class UI {
 
     g2d.setFont(VCR_OSD_Mono_80);
     g2d.setColor(Color.white);
+
+    // Title scrren
+    if (gamePan.gameState == gamePan.titleState) {
+      drawTitleScreen();
+    }
 
     // Game state
     if (gamePan.gameState == gamePan.playState) {
@@ -52,6 +59,16 @@ public class UI {
     if (gamePan.gameState == gamePan.dialogueState) {
       drawDialogueScreen();
     }
+  }
+
+  public void drawTitleScreen() {
+    // Display title
+    g2d.setFont(VCR_OSD_Mono_52);
+    String text = "Bored4Pride: The Game";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize * 3;
+    g2d.drawString(text, x, y);
+
   }
 
   public void drawPauseMenu() {
