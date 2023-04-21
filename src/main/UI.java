@@ -80,7 +80,11 @@ public class UI {
     y += gamePan.tileSize;
     g2d.setFont(VCR_OSD_Mono_24 );
     g2d.setColor(Color.white);
-    g2d.drawString(currentWords, x, y);
+
+    for (String line : currentWords.split("\n")) {
+      g2d.drawString(line, x, y);
+      y += 40;
+    }
   }
 
   /**

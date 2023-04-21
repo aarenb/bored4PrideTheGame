@@ -31,7 +31,7 @@ public class NPC_Wongy extends Entity{
 
   public void setWords() {
     words[0] = "Hello there, young gay";
-    words[1] = "I too do be gay";
+    words[1] = "These do be a lot of words,\ndon't ya think?";
     words[2] = "Now hop away";
   }
 
@@ -58,6 +58,8 @@ public class NPC_Wongy extends Entity{
     if (words[speakIndex] != null) {
       gamePan.ui.currentWords = words[speakIndex];
       speakIndex++;
+    } else {
+      speakIndex = 0;
     }
   }
 
