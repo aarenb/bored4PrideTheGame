@@ -37,6 +37,21 @@ public class Entity {
   
   public void speak() {
 
+    switch (gamePan.player.direction) {
+      case "up":
+        direction = "down";
+        break;
+      case "down":
+        direction = "up";
+        break;
+      case "left":
+        direction = "down";
+        break;
+      case "right": 
+        direction = "down";
+        break;
+      }
+
     if (words[speakIndex] != null) {
       gamePan.ui.currentWords = words[speakIndex];
       speakIndex++;
