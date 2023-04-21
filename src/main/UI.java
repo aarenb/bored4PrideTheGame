@@ -4,16 +4,24 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 
 public class UI {
   GamePanel gamePan;
   Graphics2D g2d;
   Font VCR_OSD_Mono;
   Font VCR_OSD_Mono_80;
+  Font VCR_OSD_Mono_58;
+  Font VCR_OSD_Mono_40;
   Font VCR_OSD_Mono_24;
   public String currentWords = "";
+  public int commandNum = 0; 
+
+  BufferedImage backgroundImg;
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -29,7 +37,19 @@ public class UI {
     }
 
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
+    VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
+    VCR_OSD_Mono_40 = VCR_OSD_Mono.deriveFont(40f);
     VCR_OSD_Mono_24 = VCR_OSD_Mono.deriveFont(24f);
+
+    loadImage();
+  }
+
+  public void loadImage() {
+    try {
+      backgroundImg = ImageIO.read(getClass().getResourceAsStream("/resources/titlescreen/prideflag.png"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public void draw(Graphics2D g2d) {
@@ -37,6 +57,11 @@ public class UI {
 
     g2d.setFont(VCR_OSD_Mono_80);
     g2d.setColor(Color.white);
+
+    // Title scrren
+    if (gamePan.gameState == gamePan.titleState) {
+      drawTitleScreen();
+    }
 
     // Game state
     if (gamePan.gameState == gamePan.playState) {
@@ -52,6 +77,103 @@ public class UI {
     if (gamePan.gameState == gamePan.dialogueState) {
       drawDialogueScreen();
     }
+  }
+
+  public void drawTitleScreen() {
+    // Background image
+    g2d.drawImage(backgroundImg, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
+
+    // Display title
+    g2d.setFont(VCR_OSD_Mono_58);
+    String text = "Bored4Pride: The Game";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize * 3;
+
+    // Shadow
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x + 5, y + 5);
+
+    // Main text
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x, y);
+
+    // Menu
+    g2d.setFont(VCR_OSD_Mono_40);
+    g2d.setColor(Color.black);
+
+    text = "NEW GAME";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize * 3;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
+    text = "LOAD GAME";
+    x = getXforCenterTxt(text);
+    y += 55;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
+    text = "CONTROLS";
+    x = getXforCenterTxt(text);
+    y += 55;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+    if (commandNum == 2) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
+
+    text = "QUIT";
+    x = getXforCenterTxt(text);
+    y += 55;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+    if (commandNum == 3) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
   }
 
   public void drawPauseMenu() {
