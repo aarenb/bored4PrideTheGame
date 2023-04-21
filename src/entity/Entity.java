@@ -34,7 +34,16 @@ public class Entity {
   }
 
   public void setAction() {}
-  public void speak() {}
+  
+  public void speak() {
+
+    if (words[speakIndex] != null) {
+      gamePan.ui.currentWords = words[speakIndex];
+      speakIndex++;
+    } else {
+      speakIndex = 0;
+    }
+  }
 
   public void update() {
     setAction();
