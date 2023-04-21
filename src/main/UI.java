@@ -12,6 +12,8 @@ public class UI {
   Graphics2D g2d;
   Font VCR_OSD_Mono;
   Font VCR_OSD_Mono_80;
+  Font VCR_OSD_Mono_40;
+  public String currentWords = "";
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -27,6 +29,7 @@ public class UI {
     }
 
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
+    VCR_OSD_Mono_40 = VCR_OSD_Mono.deriveFont(40f);
   }
 
   public void draw(Graphics2D g2d) {
@@ -69,8 +72,15 @@ public class UI {
     int x = gamePan.tileSize*2;
     int y = gamePan.tileSize/2;
     int width = gamePan.screenWidth - (gamePan.tileSize * 4);
-    int height = gamePan.tileSize * 5;
-    drawSubWindow(x, y, width, height);
+    int height = gamePan.tileSize * 4;
+    drawLilWindow(x, y, width, height);
+
+    // Draw words
+    x += gamePan.tileSize;
+    y += gamePan.tileSize;
+    g2d.setFont(VCR_OSD_Mono_40);
+    g2d.setColor(Color.white);
+    g2d.drawString(currentWords, x, y);
   }
 
   /**
@@ -80,7 +90,7 @@ public class UI {
    * @param width Window width
    * @param height Window height
    */
-  public void drawSubWindow(int x,int y, int width, int height) {
+  public void drawLilWindow(int x,int y, int width, int height) {
     Color c = new Color(0, 0, 0);
     g2d.setColor(c);
     g2d.fillRoundRect(x, y, width, height, 35, 35);

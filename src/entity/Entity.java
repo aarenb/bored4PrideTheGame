@@ -26,14 +26,14 @@ public class Entity {
   
   public boolean collisionOn = false;
   public int antiSpinCounter = 0; // prevents spinny moving entity
+  String words[] = new String[20];
 
   public Entity(GamePanel gamePan) {
     this.gamePan = gamePan;
   }
 
-  public void setAction() {
-
-  }
+  public void setAction() {}
+  public void speak() {}
 
   public void update() {
     setAction();

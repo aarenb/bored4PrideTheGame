@@ -14,8 +14,9 @@ public class NPC_Wongy extends Entity{
     solidArea = new Rectangle(8, 16, 32, 32);
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
-    
+
     getImage();
+    setWords();
   }
 
   /**
@@ -26,6 +27,10 @@ public class NPC_Wongy extends Entity{
     down1 = setup("/resources/wongy/wongy_down");
     left1 = setup("/resources/wongy/wongy_left"); // TODO: maybe remove left & right?? not currently used
     right1 = setup("/resources/wongy/wongy_right");
+  }
+
+  public void setWords() {
+    words[0] = "Hello there, young gay";
   }
 
   public void setAction() {
@@ -44,6 +49,10 @@ public class NPC_Wongy extends Entity{
 
       antiSpinCounter = 0;
     }
+  }
+
+  public void speak() {
+    gamePan.ui.currentWords = words[0];
   }
 
 }
