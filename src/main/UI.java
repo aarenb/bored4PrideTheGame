@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 
 public class UI {
   GamePanel gamePan;
@@ -15,6 +18,8 @@ public class UI {
   Font VCR_OSD_Mono_52;
   Font VCR_OSD_Mono_24;
   public String currentWords = "";
+
+  BufferedImage backgroundImg;
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -32,6 +37,14 @@ public class UI {
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
     VCR_OSD_Mono_52 = VCR_OSD_Mono.deriveFont(52f);
     VCR_OSD_Mono_24 = VCR_OSD_Mono.deriveFont(24f);
+  }
+
+  public void loadImage() {
+    try {
+      backgroundImg = ImageIO.read(getClass().getResourceAsStream("resources/titlescreen/prideflag.png"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public void draw(Graphics2D g2d) {
