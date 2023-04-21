@@ -37,11 +37,13 @@ public class UI {
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
     VCR_OSD_Mono_52 = VCR_OSD_Mono.deriveFont(52f);
     VCR_OSD_Mono_24 = VCR_OSD_Mono.deriveFont(24f);
+
+    loadImage();
   }
 
   public void loadImage() {
     try {
-      backgroundImg = ImageIO.read(getClass().getResourceAsStream("resources/titlescreen/prideflag.png"));
+      backgroundImg = ImageIO.read(getClass().getResourceAsStream("/resources/titlescreen/prideflag.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -75,6 +77,9 @@ public class UI {
   }
 
   public void drawTitleScreen() {
+    // Background image
+    g2d.drawImage(backgroundImg, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
+
     // Display title
     g2d.setFont(VCR_OSD_Mono_52);
     String text = "Bored4Pride: The Game";
@@ -82,8 +87,8 @@ public class UI {
     int y = gamePan.tileSize * 3;
 
     // Shadow
-    g2d.setColor(Color.green);
-    g2d.drawString(text, x + 2, y + 2);
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x + 3, y + 3);
 
     // Main text
     g2d.setColor(Color.white);
