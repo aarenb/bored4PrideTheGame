@@ -66,14 +66,14 @@ public class KeyHandler implements KeyListener{
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
         gamePan.ui.commandNum--;
         if (gamePan.ui.commandNum < 0) {
-          gamePan.ui.commandNum = 2;
+          gamePan.ui.commandNum = 3;
         }
       }
 
       // If user presses S key / down arrow
       if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
         gamePan.ui.commandNum++;
-        if (gamePan.ui.commandNum > 2) {
+        if (gamePan.ui.commandNum > 3) {
           gamePan.ui.commandNum = 0;
         }
       }
@@ -85,6 +85,8 @@ public class KeyHandler implements KeyListener{
         } else if (gamePan.ui.commandNum == 1) {
           // load game, add later
         } else if (gamePan.ui.commandNum == 2) {
+          // controls screem, add later
+        } else if (gamePan.ui.commandNum == 3) {
           System.exit(0);
         }
       }

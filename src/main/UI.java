@@ -137,6 +137,24 @@ public class UI {
       g2d.drawString(">", x - gamePan.tileSize, y);
     }
 
+    text = "CONTROLS";
+    x = getXforCenterTxt(text);
+    y += 55;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+    if (commandNum == 2) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
 
     text = "QUIT";
     x = getXforCenterTxt(text);
@@ -147,7 +165,7 @@ public class UI {
     // Main text:
     g2d.setColor(Color.black);
     g2d.drawString(text, x, y);
-    if (commandNum == 2) {
+    if (commandNum == 3) {
       // Shadow:
       g2d.setColor(Color.white);
       g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
