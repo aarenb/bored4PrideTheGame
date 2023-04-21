@@ -21,23 +21,23 @@ public class KeyHandler implements KeyListener{
     int code = e.getKeyCode();
 
     if (gamePan.gameState == gamePan.playState) { // Play state:
-      // if user press W key
-      if (code == KeyEvent.VK_W) {
+      // if user press W key / up arrow
+      if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP ) {
         upPressed = true;
       }
 
-      // if user press S key
-      if (code == KeyEvent.VK_S) {
+      // if user press S key / down arrow
+      if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
         downPressed = true;
       }
 
-      // if user press A key
-      if (code == KeyEvent.VK_A) {
+      // if user press A key / left arrow
+      if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
         leftPressed = true;
       }
 
-      // if user press D key
-      if (code == KeyEvent.VK_D) {
+      // if user press D key / right arrow
+      if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
         rightPressed = true;
       }
 
@@ -62,17 +62,19 @@ public class KeyHandler implements KeyListener{
         gamePan.gameState = gamePan.playState;
       }
     } else if (gamePan.gameState == gamePan.titleState) { // Title screen
-      // If user presses up arrow
-      if (code == KeyEvent.VK_UP) {
-        if (gamePan.ui.commandNum > 0) {
-          gamePan.ui.commandNum--;
+      // If user presses W key / up arrow
+      if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+        gamePan.ui.commandNum--;
+        if (gamePan.ui.commandNum < 0) {
+          gamePan.ui.commandNum = 2;
         }
       }
 
-      // If user presses down arrow
-      if (code == KeyEvent.VK_DOWN) {
-        if (gamePan.ui.commandNum < 2) {
-          gamePan.ui.commandNum++;
+      // If user presses S key / down arrow
+      if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+        gamePan.ui.commandNum++;
+        if (gamePan.ui.commandNum > 2) {
+          gamePan.ui.commandNum = 0;
         }
       }
     }
@@ -82,23 +84,23 @@ public class KeyHandler implements KeyListener{
   public void keyReleased(KeyEvent e) {
     int code = e.getKeyCode();
 
-    // if user press W key
-    if (code == KeyEvent.VK_W) {
+    // if user press W key / up arrow
+    if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
       upPressed = false;
     }
 
-    // if user press S key
-    if (code == KeyEvent.VK_S) {
+    // if user press S key / up arrow
+    if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
       downPressed = false;
     }
 
-    // if user press A key
-    if (code == KeyEvent.VK_A) {
+    // if user press A key / left arrow
+    if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
       leftPressed = false;
     }
 
-    // if user press D key
-    if (code == KeyEvent.VK_D) {
+    // if user press D key / right arrow
+    if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
       rightPressed = false;
     }
   }
