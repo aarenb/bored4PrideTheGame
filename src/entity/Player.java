@@ -114,7 +114,9 @@ public class Player extends Entity{
   }
 
   public void interactNPC(int i) {
-    // do stuff
+    if (i != 999) { // if player is touching npc
+      gamePan.gameState = gamePan.dialogueState;
+    }
   }
 }
 

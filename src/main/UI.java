@@ -35,8 +35,9 @@ public class UI {
     g2d.setFont(VCR_OSD_Mono_80);
     g2d.setColor(Color.white);
 
+    // Game state
     if (gamePan.gameState == gamePan.playState) {
-      // Game state stuff
+      // TODO: Add game state stuff
     }
 
     // Paused
@@ -46,7 +47,7 @@ public class UI {
 
     // Dialogue
     if (gamePan.gameState == gamePan.dialogueState) {
-      
+      drawDialogueScreen();
     }
   }
 
@@ -61,6 +62,28 @@ public class UI {
     int y = gamePan.screenHeight / 2;
 
     g2d.drawString(text, x, y);
+  }
+
+  public void drawDialogueScreen() {
+    // Draw the window
+    int x = gamePan.tileSize*2;
+    int y = gamePan.tileSize/2;
+    int width = gamePan.screenWidth - (gamePan.tileSize * 4);
+    int height = gamePan.tileSize * 5;
+    drawSubWindow(x, y, width, height);
+  }
+
+  /**
+   * Draws a smaller window on the screen
+   * @param x Top and bottom of window
+   * @param y Left and right of window
+   * @param width Window width
+   * @param height Window height
+   */
+  public void drawSubWindow(int x,int y, int width, int height) {
+    Color c = new Color(0, 0, 0);
+    g2d.setColor(c);
+    g2d.fillRoundRect(x, y, width, height, 35, 35);
   }
 
   /**
