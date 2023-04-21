@@ -21,6 +21,8 @@ public class Player extends Entity{
     screenY = gamePan.screenHeight/2;
 
     solidArea = new Rectangle(2, 16, 44, 32); // sets player collision area
+    solidAreaDefaultX = solidArea.x;
+    solidAreaDefaultY = solidArea.y;
 
     setDefaultValues();
     getPlayerImage();

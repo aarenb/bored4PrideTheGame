@@ -118,7 +118,10 @@ public class CollisionChecker {
             }
             break;
         }
-      
+        entity.solidArea.x = entity.solidAreaDefaultX;
+        entity.solidArea.y = entity.solidAreaDefaultY;
+        target[i].solidArea.x = target[i].solidAreaDefaultX;
+        target[i].solidArea.y = target[i].solidAreaDefaultY;
       }
     }
     return index;

@@ -12,6 +12,9 @@ public class NPC_Wongy extends Entity{
     speed = 1;
 
     solidArea = new Rectangle(8, 16, 32, 32);
+    solidAreaDefaultX = solidArea.x;
+    solidAreaDefaultY = solidArea.y;
+    
     getImage();
   }
 
