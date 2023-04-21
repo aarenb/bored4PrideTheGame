@@ -12,7 +12,7 @@ public class UI {
   Graphics2D g2d;
   Font VCR_OSD_Mono;
   Font VCR_OSD_Mono_80;
-  Font VCR_OSD_Mono_40;
+  Font VCR_OSD_Mono_24;
   public String currentWords = "";
 
   public UI(GamePanel gamePan) {
@@ -29,7 +29,7 @@ public class UI {
     }
 
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
-    VCR_OSD_Mono_40 = VCR_OSD_Mono.deriveFont(40f);
+    VCR_OSD_Mono_24 = VCR_OSD_Mono.deriveFont(24f);
   }
 
   public void draw(Graphics2D g2d) {
@@ -78,7 +78,7 @@ public class UI {
     // Draw words
     x += gamePan.tileSize;
     y += gamePan.tileSize;
-    g2d.setFont(VCR_OSD_Mono_40);
+    g2d.setFont(VCR_OSD_Mono_24 );
     g2d.setColor(Color.white);
     g2d.drawString(currentWords, x, y);
   }
