@@ -61,6 +61,20 @@ public class KeyHandler implements KeyListener{
       if (code == KeyEvent.VK_ENTER) {
         gamePan.gameState = gamePan.playState;
       }
+    } else if (gamePan.gameState == gamePan.titleState) { // Title screen
+      // If user presses up arrow
+      if (code == KeyEvent.VK_UP) {
+        if (gamePan.ui.commandNum > 0) {
+          gamePan.ui.commandNum--;
+        }
+      }
+
+      // If user presses down arrow
+      if (code == KeyEvent.VK_DOWN) {
+        if (gamePan.ui.commandNum < 2) {
+          gamePan.ui.commandNum++;
+        }
+      }
     }
   }
 
