@@ -115,9 +115,14 @@ public class Player extends Entity{
 
   public void interactNPC(int i) {
     if (i != 999) { // if player is touching npc
-      gamePan.gameState = gamePan.dialogueState;
-      gamePan.npc[i].speak();
+
+      if (gamePan.keyHand.enterPressed) {
+        gamePan.gameState = gamePan.dialogueState;
+        gamePan.npc[i].speak();
+        
+      }
     }
+    gamePan.keyHand.enterPressed = false;
   }
 }
 

@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
   GamePanel gamePan;
-  public boolean upPressed, downPressed, leftPressed, rightPressed;
+  public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
 
   public KeyHandler(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -43,7 +43,12 @@ public class KeyHandler implements KeyListener{
 
       // if user press escape key [pause]
       if (code == KeyEvent.VK_ESCAPE) {
-          gamePan.gameState = gamePan.pauseState;
+          enterPressed = true;
+      }
+
+      // If user press enter
+      if (code == KeyEvent.VK_ENTER) {
+        enterPressed = true;
       }
 
     } else if (gamePan.gameState == gamePan.pauseState) { // Pause:
@@ -52,6 +57,7 @@ public class KeyHandler implements KeyListener{
         gamePan.gameState = gamePan.playState;
       }
     } else if (gamePan.gameState == gamePan.dialogueState) { // Dialogue
+      // If user press enter
       if (code == KeyEvent.VK_ENTER) {
         gamePan.gameState = gamePan.playState;
       }
