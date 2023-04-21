@@ -67,6 +67,13 @@ public class UI {
     String text = "Bored4Pride: The Game";
     int x = getXforCenterTxt(text);
     int y = gamePan.tileSize * 3;
+
+    // Shadow
+    g2d.setColor(Color.green);
+    g2d.drawString(text, x + 2, y + 2);
+
+    // Main text
+    g2d.setColor(Color.white);
     g2d.drawString(text, x, y);
 
   }
