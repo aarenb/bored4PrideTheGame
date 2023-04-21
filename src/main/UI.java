@@ -12,6 +12,8 @@ public class UI {
   Graphics2D g2d;
   Font VCR_OSD_Mono;
   Font VCR_OSD_Mono_80;
+  Font VCR_OSD_Mono_24;
+  public String currentWords = "";
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -27,6 +29,7 @@ public class UI {
     }
 
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
+    VCR_OSD_Mono_24 = VCR_OSD_Mono.deriveFont(24f);
   }
 
   public void draw(Graphics2D g2d) {
@@ -35,13 +38,19 @@ public class UI {
     g2d.setFont(VCR_OSD_Mono_80);
     g2d.setColor(Color.white);
 
+    // Game state
     if (gamePan.gameState == gamePan.playState) {
-      // Game state stuff
+      // TODO: Add game state stuff
     }
 
     // Paused
     if (gamePan.gameState == gamePan.pauseState) {
       drawPauseMenu();
+    }
+
+    // Dialogue
+    if (gamePan.gameState == gamePan.dialogueState) {
+      drawDialogueScreen();
     }
   }
 
@@ -56,6 +65,39 @@ public class UI {
     int y = gamePan.screenHeight / 2;
 
     g2d.drawString(text, x, y);
+  }
+
+  public void drawDialogueScreen() {
+    // Draw the window
+    int x = gamePan.tileSize*2;
+    int y = gamePan.tileSize/2;
+    int width = gamePan.screenWidth - (gamePan.tileSize * 4);
+    int height = gamePan.tileSize * 4;
+    drawLilWindow(x, y, width, height);
+
+    // Draw words
+    x += 20;
+    y += gamePan.tileSize;
+    g2d.setFont(VCR_OSD_Mono_24 );
+    g2d.setColor(Color.white);
+
+    for (String line : currentWords.split("\n")) {
+      g2d.drawString(line, x, y);
+      y += 40;
+    }
+  }
+
+  /**
+   * Draws a smaller window on the screen
+   * @param x Top and bottom of window
+   * @param y Left and right of window
+   * @param width Window width
+   * @param height Window height
+   */
+  public void drawLilWindow(int x,int y, int width, int height) {
+    Color c = new Color(0, 0, 0);
+    g2d.setColor(c);
+    g2d.fillRoundRect(x, y, width, height, 35, 35);
   }
 
   /**

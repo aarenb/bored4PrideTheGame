@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
   GamePanel gamePan;
-  public boolean upPressed, downPressed, leftPressed, rightPressed;
+  public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
 
   public KeyHandler(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -20,31 +20,45 @@ public class KeyHandler implements KeyListener{
   public void keyPressed(KeyEvent e) {
     int code = e.getKeyCode();
 
-    // if user press W key
-    if (code == KeyEvent.VK_W) {
-      upPressed = true;
-    }
+    if (gamePan.gameState == gamePan.playState) { // Play state:
+      // if user press W key
+      if (code == KeyEvent.VK_W) {
+        upPressed = true;
+      }
 
-    // if user press S key
-    if (code == KeyEvent.VK_S) {
-      downPressed = true;
-    }
+      // if user press S key
+      if (code == KeyEvent.VK_S) {
+        downPressed = true;
+      }
 
-    // if user press A key
-    if (code == KeyEvent.VK_A) {
-      leftPressed = true;
-    }
+      // if user press A key
+      if (code == KeyEvent.VK_A) {
+        leftPressed = true;
+      }
 
-    // if user press D key
-    if (code == KeyEvent.VK_D) {
-      rightPressed = true;
-    }
+      // if user press D key
+      if (code == KeyEvent.VK_D) {
+        rightPressed = true;
+      }
 
-    // if user press escape key [pause]
-    if (code == KeyEvent.VK_ESCAPE) {
-      if (gamePan.gameState == gamePan.playState) {
-        gamePan.gameState = gamePan.pauseState;
-      } else if (gamePan.gameState == gamePan.pauseState) {
+      // if user press escape key [pause]
+      if (code == KeyEvent.VK_ESCAPE) {
+          enterPressed = true;
+      }
+
+      // If user press enter
+      if (code == KeyEvent.VK_ENTER) {
+        enterPressed = true;
+      }
+
+    } else if (gamePan.gameState == gamePan.pauseState) { // Pause:
+      // if user press escape key [unpause]
+      if (code == KeyEvent.VK_ESCAPE) {
+        gamePan.gameState = gamePan.playState;
+      }
+    } else if (gamePan.gameState == gamePan.dialogueState) { // Dialogue
+      // If user press enter
+      if (code == KeyEvent.VK_ENTER) {
         gamePan.gameState = gamePan.playState;
       }
     }

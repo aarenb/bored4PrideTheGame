@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Entity;
 import entity.Player;
 import tile.TileManager;
 
@@ -29,17 +30,21 @@ public class GamePanel extends JPanel implements Runnable{
   public final int worldHeight = tileSize * maxWorldRow;
 
   TileManager tileManager = new TileManager(this);
-  KeyHandler keyHand = new KeyHandler(this);
+  public KeyHandler keyHand = new KeyHandler(this);
   public CollisionChecker colChecker = new CollisionChecker(this);
+  AssetSetter assSetter = new AssetSetter(this);
   public Player player = new Player(this, keyHand);
   public UI ui = new UI(this);
 
   Thread gameThread;// keeps the game running
 
+  public Entity npc[] = new Entity[10];
+
   // Game state
   public int gameState;
   public final int playState = 1;
   public final int pauseState = 2;
+  public final int dialogueState = 3;
 
   public GamePanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -50,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable{
   }
 
   public void setupGame() {
+    assSetter.setNPC();
     gameState = playState;
   }
 
@@ -87,6 +93,11 @@ public class GamePanel extends JPanel implements Runnable{
   public void update () {
     if (gameState == playState) {
       player.update();
+      for(int i = 0; i < npc.length; i++) {
+        if (npc[i] != null) {
+          npc[i].update();
+        }
+      }
     }
     if (gameState == pauseState) {
 
@@ -102,6 +113,13 @@ public class GamePanel extends JPanel implements Runnable{
     Graphics2D g2d = (Graphics2D)g;
 
     tileManager.draw(g2d);
+
+    for (int i = 0; i < npc.length; i++) {
+      if (npc[i] != null) {
+        npc[i].draw(g2d);
+      }
+    }
+
     player.draw(g2d);
     ui.draw(g2d);
 
