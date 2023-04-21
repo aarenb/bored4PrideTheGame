@@ -41,6 +41,7 @@ public class Entity {
     // Check collision
     collisionOn = false;
     gamePan.colChecker.checkTile(this);
+    gamePan.colChecker.checkPlayer(this);
   
     move();
   }
