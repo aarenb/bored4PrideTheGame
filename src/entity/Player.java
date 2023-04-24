@@ -69,6 +69,7 @@ public class Player extends Entity{
       gamePan.colChecker.checkTile(this); // check tile collision
       int npcIndex = gamePan.colChecker.checkEntity(this, gamePan.npc); // check npc collision
       interactNPC(npcIndex);
+      int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot); // check follow bot collision
 
       move();
     }

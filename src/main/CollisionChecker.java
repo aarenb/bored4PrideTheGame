@@ -91,33 +91,24 @@ public class CollisionChecker {
         switch (entity.direction) {
           case "up":
             entity.solidArea.y -= entity.speed;
-            if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
-              entity.collisionOn = true;
-              index = i;
-            }
             break;
           case "down":
             entity.solidArea.y += entity.speed;
-            if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
-              entity.collisionOn = true;
-              index = i;
-            }
             break;
           case "left":
             entity.solidArea.x -= entity.speed;
-            if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
-              entity.collisionOn = true;
-              index = i;
-            }
             break;
           case "right":
             entity.solidArea.x += entity.speed;
-            if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
-              entity.collisionOn = true;
-              index = i;
-            }
             break;
         }
+        if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
+          if (target[i] != entity) { // Make sure it's not the entity colliding with itself
+            entity.collisionOn = true;
+            index = i;
+          }
+        }
+
         entity.solidArea.x = entity.solidAreaDefaultX;
         entity.solidArea.y = entity.solidAreaDefaultY;
         target[i].solidArea.x = target[i].solidAreaDefaultX;

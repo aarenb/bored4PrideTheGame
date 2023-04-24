@@ -68,6 +68,8 @@ public class Entity {
     // Check collision
     collisionOn = false;
     gamePan.colChecker.checkTile(this);
+    gamePan.colChecker.checkEntity(this, gamePan.npc);
+    gamePan.colChecker.checkEntity(this, gamePan.followBot);
     gamePan.colChecker.checkPlayer(this);
   
     move();
