@@ -90,6 +90,34 @@ public class KeyHandler implements KeyListener{
           System.exit(0);
         }
       }
+    } else if (gamePan.gameState == gamePan.gameOverState) { // Game over:
+      // If user presses W key / up arrow
+      if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+        gamePan.ui.commandNum--;
+        if (gamePan.ui.commandNum < 0) {
+          gamePan.ui.commandNum = 1;
+        }
+      }
+
+      // If user presses S key / down arrow
+      if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+        gamePan.ui.commandNum++;
+        if (gamePan.ui.commandNum > 1) {
+          gamePan.ui.commandNum = 0;
+        }
+      }
+
+      // If user press enter
+      if (code == KeyEvent.VK_ENTER) {
+        if (gamePan.ui.commandNum == 0) {
+          gamePan.restart(); // TODO: Change this later?
+          gamePan.gameState = gamePan.playState;
+        } else if (gamePan.ui.commandNum == 1) {
+          gamePan.restart();
+          gamePan.gameState = gamePan.titleState;
+          gamePan.ui.commandNum = 0;
+        }
+      }
     }
   }
 

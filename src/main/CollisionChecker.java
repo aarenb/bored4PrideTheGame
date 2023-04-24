@@ -91,33 +91,24 @@ public class CollisionChecker {
         switch (entity.direction) {
           case "up":
             entity.solidArea.y -= entity.speed;
-            if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
-              entity.collisionOn = true;
-              index = i;
-            }
             break;
           case "down":
             entity.solidArea.y += entity.speed;
-            if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
-              entity.collisionOn = true;
-              index = i;
-            }
             break;
           case "left":
             entity.solidArea.x -= entity.speed;
-            if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
-              entity.collisionOn = true;
-              index = i;
-            }
             break;
           case "right":
             entity.solidArea.x += entity.speed;
-            if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
-              entity.collisionOn = true;
-              index = i;
-            }
             break;
         }
+        if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
+          if (target[i] != entity) { // Make sure it's not the entity colliding with itself
+            entity.collisionOn = true;
+            index = i;
+          }
+        }
+
         entity.solidArea.x = entity.solidAreaDefaultX;
         entity.solidArea.y = entity.solidAreaDefaultY;
         target[i].solidArea.x = target[i].solidAreaDefaultX;
@@ -131,7 +122,9 @@ public class CollisionChecker {
    * Checks if entity is colliding with player
    * @param entity NPC / monster to check
    */
-  public void checkPlayer(Entity entity) {
+  public boolean checkPlayer(Entity entity) {
+    boolean touchPlayer = false;
+
     // Get entity's solid area coords
     entity.solidArea.x = entity.worldX + entity.solidArea.x;
     entity.solidArea.y = entity.worldY + entity.solidArea.y;
@@ -143,32 +136,27 @@ public class CollisionChecker {
     switch (entity.direction) {
       case "up":
         entity.solidArea.y -= entity.speed;
-        if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
-          entity.collisionOn = true;
-        }
         break;
       case "down":
         entity.solidArea.y += entity.speed;
-        if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
-          entity.collisionOn = true;
-        }
         break;
       case "left":
         entity.solidArea.x -= entity.speed;
-        if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
-          entity.collisionOn = true;
-        }
         break;
       case "right":
         entity.solidArea.x += entity.speed;
-        if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
-          entity.collisionOn = true;
-        }
         break;
     }
+    if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
+      entity.collisionOn = true;
+      touchPlayer = true;
+    }
+
     entity.solidArea.x = entity.solidAreaDefaultX;
     entity.solidArea.y = entity.solidAreaDefaultY;
     gamePan.player.solidArea.x = gamePan.player.solidAreaDefaultX;
     gamePan.player.solidArea.y = gamePan.player.solidAreaDefaultY;
+
+    return touchPlayer;
   }
 }

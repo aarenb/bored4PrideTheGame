@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
   Thread gameThread;// keeps the game running
 
   public Entity npc[] = new Entity[10];
+  public Entity followBot[] = new Entity[20];
 
   // Game state
   public int gameState;
@@ -46,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
   public final int playState = 1;
   public final int pauseState = 2;
   public final int dialogueState = 3;
+  public final int gameOverState = 4;
 
   public GamePanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -57,6 +59,7 @@ public class GamePanel extends JPanel implements Runnable{
 
   public void setupGame() {
     assSetter.setNPC();
+    assSetter.setFollowBot();
     gameState = titleState;
   }
 
@@ -66,6 +69,15 @@ public class GamePanel extends JPanel implements Runnable{
   public void startgameThread() {
     gameThread = new Thread(this);
     gameThread.start();
+  }
+
+  /**
+   * Restarts the game.
+   */
+  public void restart() {
+    player.setDefaultValues();
+    assSetter.setNPC();
+    assSetter.setFollowBot();
   }
 
   @Override
@@ -99,6 +111,11 @@ public class GamePanel extends JPanel implements Runnable{
           npc[i].update();
         }
       }
+      for(int i = 0; i < followBot.length; i++) {
+        if (followBot[i] != null) {
+          followBot[i].update();
+        }
+      }
     }
     if (gameState == pauseState) {
 
@@ -124,6 +141,13 @@ public class GamePanel extends JPanel implements Runnable{
     for (int i = 0; i < npc.length; i++) {
       if (npc[i] != null) {
         npc[i].draw(g2d);
+      }
+    }
+
+    // Follow bots
+    for (int i = 0; i < followBot.length; i++) {
+      if (followBot[i] != null) {
+        followBot[i].draw(g2d);
       }
     }
 

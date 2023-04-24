@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -88,6 +89,11 @@ public class UI {
     if (gamePan.gameState == gamePan.dialogueState) {
       drawPlayerHealth();
       drawDialogueScreen();
+    }
+
+    // Game over
+    if (gamePan.gameState == gamePan.gameOverState) {
+      drawGameOver();
     }
   }
 
@@ -189,9 +195,13 @@ public class UI {
   }
 
   public void drawPlayerHealth() {
-    int x = gamePan.tileSize / 2;
-    int y = gamePan.tileSize / 2;
+    int x = 5;
+    int y = 5;
     int i = 0;
+
+    if (gamePan.player.invinsible == true) {
+      g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f)); // Sets heart opacity
+    }
 
     // Draw blank hearts (max health)
     while (i < gamePan.player.maxLife / 2) {
@@ -201,7 +211,7 @@ public class UI {
     }
 
     // Reset
-    x = gamePan.tileSize / 2;
+    x = 5;
     i = 0;
 
     while (i < gamePan.player.life) {
@@ -214,9 +224,12 @@ public class UI {
       x += gamePan.tileSize;
     }
 
+    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); // Reset opacity
+
   }
 
   public void drawPauseMenu() {
+    // Make whole screen darker
     g2d.setColor(new Color(0, 0, 0, 120));
     g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
 
@@ -247,6 +260,36 @@ public class UI {
       g2d.drawString(line, x, y);
       y += 40;
     }
+  }
+
+  public void drawGameOver() {
+    // Make whole screen darker
+    g2d.setColor(new Color(0, 0, 0, 160));
+    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+
+    g2d.setColor(Color.white);
+    String text = "GAME OVER";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize * 5;
+    g2d.drawString(text, x, y);
+
+    g2d.setFont(VCR_OSD_Mono_40);
+    text = "TRY AGAIN";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize * 2;
+    g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
+    text = "TITLE SCREEN";
+    x = getXforCenterTxt(text);
+    y += 55;
+    g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+    
   }
 
   /**

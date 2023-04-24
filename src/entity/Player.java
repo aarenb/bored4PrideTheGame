@@ -36,6 +36,7 @@ public class Player extends Entity{
 
     maxLife = 6; // 3 Hearts
     life = maxLife;
+    invinsible = false;
   }
 
   /**
@@ -63,14 +64,27 @@ public class Player extends Entity{
       } else if (keyHand.rightPressed == true) {
         direction = "right";
       }
-
       // Check collision
       collisionOn = false;
       gamePan.colChecker.checkTile(this); // check tile collision
       int npcIndex = gamePan.colChecker.checkEntity(this, gamePan.npc); // check npc collision
       interactNPC(npcIndex);
+      int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot); // check follow bot collision
+      interactFollowBot(followBotIndex);
 
       move();
+    }
+    // Add to invinsibleCounter & set invinisible back to false after a while if invinsible is true
+    if (invinsible == true) {
+      invinsibleCounter++;
+      if (invinsibleCounter > 60) {
+        invinsible = false;
+        invinsibleCounter = 0;
+      }
+    }
+
+    if (life <= 0) { // If the player has no health
+      gamePan.gameState = gamePan.gameOverState;
     }
   }
 
@@ -111,9 +125,8 @@ public class Player extends Entity{
         }
         break;
     }
-
+  
     g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
-
   }
 
   public void interactNPC(int i) {
@@ -126,6 +139,19 @@ public class Player extends Entity{
       }
     }
     gamePan.keyHand.enterPressed = false;
+  }
+
+  /**
+   * Makes player take damage if touching follow bot.
+   * @param i The index of follow bot player is touching (or 999 if not touching any)
+   */
+  public void interactFollowBot(int i) {
+    if (i != 999) { // if player is touching follow bot
+      if (invinsible == false) {
+        life -= 1;
+        invinsible = true;
+      }
+    }
   }
 }
 

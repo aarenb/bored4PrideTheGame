@@ -14,6 +14,7 @@ public class Entity {
   GamePanel gamePan;
   public int worldX, worldY;
   public int speed;
+  public int type;// 0 = player, 1 = npc, 2 = follow bot
 
   public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
   public String direction;
@@ -26,6 +27,9 @@ public class Entity {
   
   public boolean collisionOn = false;
   public int antiSpinCounter = 0; // prevents spinny moving entity
+  public boolean invinsible = false; // make player not take damage when true
+  public int invinsibleCounter = 0;
+
   String words[] = new String[20];
   int speakIndex = 0;
 
@@ -68,7 +72,16 @@ public class Entity {
     // Check collision
     collisionOn = false;
     gamePan.colChecker.checkTile(this);
-    gamePan.colChecker.checkPlayer(this);
+    gamePan.colChecker.checkEntity(this, gamePan.npc);
+    gamePan.colChecker.checkEntity(this, gamePan.followBot);
+    boolean touchPlayer = gamePan.colChecker.checkPlayer(this);
+
+    if (this.type == 2 && touchPlayer == true) { // If follow bot touches player
+      if (gamePan.player.invinsible == false) { // If player isn't invinsible, it takes damage
+        gamePan.player.life -= 1;
+        gamePan.player.invinsible = true;
+      }
+    }
   
     move();
   }
@@ -117,18 +130,38 @@ public class Entity {
   
       switch (direction) {
         case "up":
-          image = up1;
+          if (spriteNum == 1) {
+            image = up1;
+          } 
+          if (spriteNum == 2) {
+            image = up2;
+          }
           break;
         case "down":
-          image = down1;
+          if (spriteNum == 1) {
+            image = down1;
+          } 
+          if (spriteNum == 2) {
+            image = down2;
+          }
           break;
         case "left":
-          image = left1;
+          if (spriteNum == 1) {
+            image = left1;
+          } 
+          if (spriteNum == 2) {
+            image = left2;
+          }
           break;
         case "right":
-          image = right1;
+          if (spriteNum == 1) {
+            image = right1;
+          } 
+          if (spriteNum == 2) {
+            image = right2;
+          }
           break;
-        }
+      }
 
       g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
     }
