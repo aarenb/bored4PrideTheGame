@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -193,6 +194,10 @@ public class UI {
     int y = 5;
     int i = 0;
 
+    if (gamePan.player.invinsible == true) {
+      g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f)); // Sets heart opacity
+    }
+
     // Draw blank hearts (max health)
     while (i < gamePan.player.maxLife / 2) {
       g2d.drawImage(heart_empty, x, y, null);
@@ -213,6 +218,8 @@ public class UI {
       i++;
       x += gamePan.tileSize;
     }
+
+    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); // Reset opacity
 
   }
 

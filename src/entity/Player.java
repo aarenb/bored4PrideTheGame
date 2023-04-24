@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -76,7 +77,7 @@ public class Player extends Entity{
       // Add to invinsibleCounter & set invinisible back to false after a while if invinsible is true
       if (invinsible == true) {
         invinsibleCounter++;
-        if (invinsibleCounter > 30) {
+        if (invinsibleCounter > 60) {
           invinsible = false;
           invinsibleCounter = 0;
         }
@@ -121,9 +122,8 @@ public class Player extends Entity{
         }
         break;
     }
-
+  
     g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
-
   }
 
   public void interactNPC(int i) {
