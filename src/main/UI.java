@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 public class UI {
   GamePanel gamePan;
   Graphics2D g2d;
+  BufferedImage heart_full, heart_half, heart_empty;
   Font VCR_OSD_Mono;
   Font VCR_OSD_Mono_80;
   Font VCR_OSD_Mono_58;

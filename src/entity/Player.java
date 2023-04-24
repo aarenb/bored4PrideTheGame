@@ -33,6 +33,9 @@ public class Player extends Entity{
     worldY = gamePan.tileSize * 44;
     speed = 4;
     direction = "down";
+
+    maxLife = 6; // 3 Hearts
+    life = maxLife;
   }
 
   /**
