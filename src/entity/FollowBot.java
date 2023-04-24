@@ -10,6 +10,7 @@ public class FollowBot extends Entity {
   public FollowBot(GamePanel gamePan) {
     super(gamePan);
 
+    direction = "down";
     speed = 1;
     maxLife = 4;
     life = maxLife;
@@ -41,7 +42,7 @@ public class FollowBot extends Entity {
   public void setAction() {
     antiSpinCounter++;
     
-    if(antiSpinCounter == 130) {
+    if(antiSpinCounter == 110) {
       Random random = new Random();
       int i = random.nextInt(100)+1; // pick number 1-100
 

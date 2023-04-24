@@ -24,9 +24,13 @@ public class NPC_Wongy extends Entity{
    */
   public void getImage() {
     up1 = setup("/resources/wongy/wongy_up");
+    up2 = setup("/resources/wongy/wongy_up");
     down1 = setup("/resources/wongy/wongy_down");
-    left1 = setup("/resources/wongy/wongy_left"); // TODO: maybe remove left & right?? not currently used
+    down2 = setup("/resources/wongy/wongy_down");
+    left1 = setup("/resources/wongy/wongy_left");
+    left2 = setup("/resources/wongy/wongy_left"); // TODO: maybe remove left & right?? not currently used
     right1 = setup("/resources/wongy/wongy_right");
+    right2 = setup("/resources/wongy/wongy_right");
   }
 
   public void setWords() {

@@ -58,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable{
 
   public void setupGame() {
     assSetter.setNPC();
+    assSetter.setFollowBot();
     gameState = titleState;
   }
 
@@ -100,6 +101,11 @@ public class GamePanel extends JPanel implements Runnable{
           npc[i].update();
         }
       }
+      for(int i = 0; i < followBot.length; i++) {
+        if (followBot[i] != null) {
+          followBot[i].update();
+        }
+      }
     }
     if (gameState == pauseState) {
 
@@ -125,6 +131,13 @@ public class GamePanel extends JPanel implements Runnable{
     for (int i = 0; i < npc.length; i++) {
       if (npc[i] != null) {
         npc[i].draw(g2d);
+      }
+    }
+
+    // Follow bots
+    for (int i = 0; i < followBot.length; i++) {
+      if (followBot[i] != null) {
+        followBot[i].draw(g2d);
       }
     }
 
