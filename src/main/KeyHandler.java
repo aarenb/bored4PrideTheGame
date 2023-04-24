@@ -106,6 +106,16 @@ public class KeyHandler implements KeyListener{
           gamePan.ui.commandNum = 0;
         }
       }
+
+      // If user press enter
+      if (code == KeyEvent.VK_ENTER) {
+        if (gamePan.ui.commandNum == 0) {
+          gamePan.gameState = gamePan.playState;
+        } else if (gamePan.ui.commandNum == 1) {
+          gamePan.gameState = gamePan.titleState;
+          gamePan.ui.commandNum = 0;
+        }
+      }
     }
   }
 
