@@ -71,6 +71,15 @@ public class GamePanel extends JPanel implements Runnable{
     gameThread.start();
   }
 
+  /**
+   * Restarts the game.
+   */
+  public void restart() {
+    player.setDefaultValues();
+    assSetter.setNPC();
+    assSetter.setFollowBot();
+  }
+
   @Override
   public void run() {
 
