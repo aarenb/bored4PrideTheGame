@@ -72,14 +72,13 @@ public class Player extends Entity{
       interactFollowBot(followBotIndex);
 
       move();
-
-      // Add to invinsibleCounter & set invinisible back to false after a while if invinsible is true
-      if (invinsible == true) {
-        invinsibleCounter++;
-        if (invinsibleCounter > 60) {
-          invinsible = false;
-          invinsibleCounter = 0;
-        }
+    }
+    // Add to invinsibleCounter & set invinisible back to false after a while if invinsible is true
+    if (invinsible == true) {
+      invinsibleCounter++;
+      if (invinsibleCounter > 60) {
+        invinsible = false;
+        invinsibleCounter = 0;
       }
     }
   }
