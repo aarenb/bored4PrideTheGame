@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 import object.OBJ_Heart;
 import object.SuperObject;
 
-public class UI {
+public class UI { 
   GamePanel gamePan;
   Graphics2D g2d;
   BufferedImage heart_full, heart_half, heart_empty;
