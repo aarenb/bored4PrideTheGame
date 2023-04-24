@@ -110,7 +110,7 @@ public class KeyHandler implements KeyListener{
       // If user press enter
       if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
-          gamePan.restart();
+          gamePan.restart(); // TODO: Change this later?
           gamePan.gameState = gamePan.playState;
         } else if (gamePan.ui.commandNum == 1) {
           gamePan.restart();
