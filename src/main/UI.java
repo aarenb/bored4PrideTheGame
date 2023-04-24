@@ -189,8 +189,8 @@ public class UI {
   }
 
   public void drawPlayerHealth() {
-    int x = gamePan.tileSize / 2;
-    int y = gamePan.tileSize / 2;
+    int x = 5;
+    int y = 5;
     int i = 0;
 
     // Draw blank hearts (max health)
@@ -201,7 +201,7 @@ public class UI {
     }
 
     // Reset
-    x = gamePan.tileSize / 2;
+    x = 5;
     i = 0;
 
     while (i < gamePan.player.life) {
