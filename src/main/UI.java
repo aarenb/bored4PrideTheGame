@@ -93,6 +93,7 @@ public class UI {
 
     // Game over
     if (gamePan.gameState == gamePan.gameOverState) {
+      drawGameOver();
     }
   }
 
@@ -228,6 +229,7 @@ public class UI {
   }
 
   public void drawPauseMenu() {
+    // Make whole screen darker
     g2d.setColor(new Color(0, 0, 0, 120));
     g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
 
@@ -258,6 +260,36 @@ public class UI {
       g2d.drawString(line, x, y);
       y += 40;
     }
+  }
+
+  public void drawGameOver() {
+    // Make whole screen darker
+    g2d.setColor(new Color(0, 0, 0, 160));
+    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+
+    g2d.setColor(Color.white);
+    String text = "GAME OVER";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize * 5;
+    g2d.drawString(text, x, y);
+
+    g2d.setFont(VCR_OSD_Mono_40);
+    text = "TRY AGAIN";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize * 2;
+    g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
+    text = "TITLE SCREEN";
+    x = getXforCenterTxt(text);
+    y += 55;
+    g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+    
   }
 
   /**
