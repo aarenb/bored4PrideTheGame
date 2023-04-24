@@ -17,6 +17,8 @@ public class FollowBot extends Entity {
     solidArea = new Rectangle(0, 0, 48, 48); // TODO: change???
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
+
+    getImage();
   }
 
   /**

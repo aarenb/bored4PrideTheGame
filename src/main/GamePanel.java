@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
   Thread gameThread;// keeps the game running
 
   public Entity npc[] = new Entity[10];
+  public Entity followBot[] = new Entity[20];
 
   // Game state
   public int gameState;
