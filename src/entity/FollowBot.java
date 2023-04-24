@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.Rectangle;
+import java.util.Random;
 
 import main.GamePanel;
 
@@ -31,4 +32,29 @@ public class FollowBot extends Entity {
     right1 = setup("/resources/followbot/followbot_right1");
     right2 = setup("/resources/followbot/followbot_right2");
   }
+
+  /**
+   * Make follow bot change direction randomly
+   */
+  public void setAction() {
+    antiSpinCounter++;
+    
+    if(antiSpinCounter == 130) {
+      Random random = new Random();
+      int i = random.nextInt(100)+1; // pick number 1-100
+
+      if (i <= 25){
+        direction = "up";
+      } else if (i > 25 && i <= 50) {
+        direction = "down";
+      } else if (i > 50 && i <= 75) {
+        direction = "left";
+      } else {
+        direction = "right";
+      }
+
+      antiSpinCounter = 0;
+    }
+  }
+  
 }
