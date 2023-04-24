@@ -81,6 +81,10 @@ public class Player extends Entity{
         invinsibleCounter = 0;
       }
     }
+
+    if (life <= 0) { // If the player has no health
+      gamePan.gameState = gamePan.gameOverState;
+    }
   }
 
   public void draw(Graphics2D g2d) {

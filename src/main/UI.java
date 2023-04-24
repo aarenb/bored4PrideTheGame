@@ -90,6 +90,10 @@ public class UI {
       drawPlayerHealth();
       drawDialogueScreen();
     }
+
+    // Game over
+    if (gamePan.gameState == gamePan.gameOverState) {
+    }
   }
 
   public void drawTitleScreen() {
