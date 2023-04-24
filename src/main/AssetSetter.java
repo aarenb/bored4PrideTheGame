@@ -1,5 +1,6 @@
 package main;
 
+import entity.FollowBot;
 import entity.NPC_Wongy;
 
 public class AssetSetter {
@@ -13,5 +14,11 @@ public class AssetSetter {
     gamePan.npc[0] = new NPC_Wongy(gamePan);
     gamePan.npc[0].worldX = gamePan.tileSize * 18;
     gamePan.npc[0].worldY = gamePan.tileSize * 32;
+  }
+
+  public void setFollowBot() {
+    gamePan.followBot[0] = new FollowBot(gamePan);
+    gamePan.followBot[0].worldX = gamePan.tileSize * 29;
+    gamePan.followBot[0].worldY = gamePan.tileSize * 32;
   }
 }
