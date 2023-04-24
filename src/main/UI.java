@@ -10,6 +10,9 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import object.OBJ_Heart;
+import object.SuperObject;
+
 public class UI {
   GamePanel gamePan;
   Graphics2D g2d;
@@ -36,6 +39,12 @@ public class UI {
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+    // Get heart images
+    SuperObject heart = new OBJ_Heart(gamePan);
+    heart_full = heart.image;
+    heart_half = heart.image2;
+    heart_empty = heart.image3;
 
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
     VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
@@ -66,16 +75,18 @@ public class UI {
 
     // Game state
     if (gamePan.gameState == gamePan.playState) {
-      // TODO: Add game state stuff
+      drawPlayerHealth();
     }
 
     // Paused
     if (gamePan.gameState == gamePan.pauseState) {
+      drawPlayerHealth();
       drawPauseMenu();
     }
 
     // Dialogue
     if (gamePan.gameState == gamePan.dialogueState) {
+      drawPlayerHealth();
       drawDialogueScreen();
     }
   }
@@ -173,6 +184,34 @@ public class UI {
       // Main:
       g2d.setColor(Color.black);
       g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
+  }
+
+  public void drawPlayerHealth() {
+    int x = gamePan.tileSize / 2;
+    int y = gamePan.tileSize / 2;
+    int i = 0;
+
+    // Draw blank hearts (max health)
+    while (i < gamePan.player.maxLife / 2) {
+      g2d.drawImage(heart_empty, x, y, null);
+      i++;
+      x += gamePan.tileSize;
+    }
+
+    // Reset
+    x = gamePan.tileSize / 2;
+    i = 0;
+
+    while (i < gamePan.player.life) {
+      g2d.drawImage(heart_half, x, y, null);
+      i++;
+      if (i < gamePan.player.life) {
+        g2d.drawImage(heart_full, x, y, null); // draw over with full heart
+      }
+      i++;
+      x += gamePan.tileSize;
     }
 
   }
