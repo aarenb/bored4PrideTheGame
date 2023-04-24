@@ -14,6 +14,7 @@ public class Entity {
   GamePanel gamePan;
   public int worldX, worldY;
   public int speed;
+  public int type;// 0 = player, 1 = npc, 2 = follow bot
 
   public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
   public String direction;
@@ -73,7 +74,14 @@ public class Entity {
     gamePan.colChecker.checkTile(this);
     gamePan.colChecker.checkEntity(this, gamePan.npc);
     gamePan.colChecker.checkEntity(this, gamePan.followBot);
-    gamePan.colChecker.checkPlayer(this);
+    boolean touchPlayer = gamePan.colChecker.checkPlayer(this);
+
+    if (this.type == 2 && touchPlayer == true) { // If follow bot touches player
+      if (gamePan.player.invinsible == false) { // If player isn't invinsible, it takes damage
+        gamePan.player.life -= 1;
+        gamePan.player.invinsible = true;
+      }
+    }
   
     move();
   }

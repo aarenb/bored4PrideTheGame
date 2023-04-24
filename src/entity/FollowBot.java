@@ -10,6 +10,7 @@ public class FollowBot extends Entity {
   public FollowBot(GamePanel gamePan) {
     super(gamePan);
 
+    type = 2;
     direction = "down";
     speed = 1;
     maxLife = 4;
