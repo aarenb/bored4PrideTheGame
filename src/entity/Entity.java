@@ -29,6 +29,10 @@ public class Entity {
   String words[] = new String[20];
   int speakIndex = 0;
 
+  // Character status
+  public int maxLife;
+  public int life;
+
   public Entity(GamePanel gamePan) {
     this.gamePan = gamePan;
   }
