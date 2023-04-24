@@ -26,6 +26,9 @@ public class Entity {
   
   public boolean collisionOn = false;
   public int antiSpinCounter = 0; // prevents spinny moving entity
+  public boolean invinsible = false; // make player not take damage when true
+  public int invinsibleCounter = 0;
+
   String words[] = new String[20];
   int speakIndex = 0;
 
