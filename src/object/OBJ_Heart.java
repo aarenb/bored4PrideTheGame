@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 
 public class OBJ_Heart extends SuperObject{
-  GamePanel gamePan;
   
   public OBJ_Heart(GamePanel gamePan) {
     this.gamePan = gamePan;
