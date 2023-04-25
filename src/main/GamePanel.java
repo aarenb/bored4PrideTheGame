@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import entity.Entity;
 import entity.Player;
+import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -38,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
 
   Thread gameThread;// keeps the game running
 
+  public SuperObject obj[] = new SuperObject[10];
   public Entity npc[] = new Entity[10];
   public Entity followBot[] = new Entity[20];
 
