@@ -13,7 +13,7 @@ public class OBJ_Heart extends SuperObject{
     this.gamePan = gamePan;
     name = "heart";
 
-    try{
+    try {
       image = ImageIO.read(getClass().getResourceAsStream("/resources/objects/heart_full.png"));
       image2 = ImageIO.read(getClass().getResourceAsStream("/resources/objects/heart_half.png"));
       image3 = ImageIO.read(getClass().getResourceAsStream("/resources/objects/heart_empty.png"));
