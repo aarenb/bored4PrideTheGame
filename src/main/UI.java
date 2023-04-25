@@ -23,6 +23,8 @@ public class UI {
   Font VCR_OSD_Mono_58;
   Font VCR_OSD_Mono_40;
   Font VCR_OSD_Mono_24;
+  Font Pixeltype;
+  Font Pixeltype_36;
   public String currentWords = "";
   public int commandNum = 0; 
 
@@ -32,9 +34,11 @@ public class UI {
     this.gamePan = gamePan;
 
     // Import font
-    InputStream input = getClass().getResourceAsStream("/resources/font/VCR_OSD_MONO_1.001.ttf");
+    InputStream input1 = getClass().getResourceAsStream("/resources/font/VCR_OSD_MONO_1.001.ttf");
+    InputStream input2 = getClass().getResourceAsStream("/resources/font/Pixeltype.ttf");
     try {
-      VCR_OSD_Mono = Font.createFont(Font.TRUETYPE_FONT, input);
+      VCR_OSD_Mono = Font.createFont(Font.TRUETYPE_FONT, input1);
+      Pixeltype = Font.createFont(Font.TRUETYPE_FONT, input2);
     } catch (FontFormatException e) {
       e.printStackTrace();
     } catch (IOException e) {
@@ -51,6 +55,7 @@ public class UI {
     VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
     VCR_OSD_Mono_40 = VCR_OSD_Mono.deriveFont(40f);
     VCR_OSD_Mono_24 = VCR_OSD_Mono.deriveFont(24f);
+    Pixeltype_36 = Pixeltype.deriveFont(36f);
 
     loadImage();
   }
@@ -253,7 +258,7 @@ public class UI {
     // Draw words
     x += 20;
     y += gamePan.tileSize;
-    g2d.setFont(VCR_OSD_Mono_24 );
+    g2d.setFont(Pixeltype_36);
     g2d.setColor(Color.white);
 
     for (String line : currentWords.split("\n")) {
