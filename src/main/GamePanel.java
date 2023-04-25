@@ -60,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable{
   }
 
   public void setupGame() {
+    assSetter.setObject();
     assSetter.setNPC();
     assSetter.setFollowBot();
     gameState = titleState;
@@ -78,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable{
    */
   public void restart() {
     player.setDefaultValues();
+    assSetter.setObject();
     assSetter.setNPC();
     assSetter.setFollowBot();
   }

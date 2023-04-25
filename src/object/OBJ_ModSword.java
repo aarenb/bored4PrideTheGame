@@ -13,7 +13,7 @@ public class OBJ_ModSword extends SuperObject {
     this.gamePan = gamePan;
     
     try {
-      image = ImageIO.read(getClass().getResourceAsStream("/resources/objecst/modsword.png"));
+      image = ImageIO.read(getClass().getResourceAsStream("/resources/objects/modsword.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }
