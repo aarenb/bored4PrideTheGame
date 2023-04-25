@@ -22,7 +22,6 @@ public class UI {
   Font VCR_OSD_Mono_80;
   Font VCR_OSD_Mono_58;
   Font VCR_OSD_Mono_40;
-  Font VCR_OSD_Mono_24;
   Font Pixeltype;
   Font Pixeltype_36;
   public String currentWords = "";
@@ -54,7 +53,6 @@ public class UI {
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
     VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
     VCR_OSD_Mono_40 = VCR_OSD_Mono.deriveFont(40f);
-    VCR_OSD_Mono_24 = VCR_OSD_Mono.deriveFont(24f);
     Pixeltype_36 = Pixeltype.deriveFont(36f);
 
     loadImage();
