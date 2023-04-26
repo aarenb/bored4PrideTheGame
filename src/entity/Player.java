@@ -71,6 +71,7 @@ public class Player extends Entity{
       interactNPC(npcIndex);
       int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot); // check follow bot collision
       interactFollowBot(followBotIndex);
+      int objIndex = gamePan.colChecker.checkObject(this, true); // Check object collision
 
       move();
     }

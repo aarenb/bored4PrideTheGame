@@ -149,16 +149,15 @@ public class CollisionChecker {
         if (entity.solidArea.intersects(gamePan.obj[i].solidArea)) { // If they collide
           if (player != true) {
             entity.collisionOn = true;
-          } else {
-            index = i;
-          }
-        }
+          } 
+          index = i;
         }
 
         entity.solidArea.x = entity.solidAreaDefaultX;
         entity.solidArea.y = entity.solidAreaDefaultY;
         gamePan.obj[i].solidArea.x = gamePan.obj[i].solidAreaDefaultX;
         gamePan.obj[i].solidArea.y = gamePan.obj[i].solidAreaDefaultY;
+        }
       }
     return index;
   }

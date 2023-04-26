@@ -74,6 +74,7 @@ public class Entity {
     gamePan.colChecker.checkTile(this);
     gamePan.colChecker.checkEntity(this, gamePan.npc);
     gamePan.colChecker.checkEntity(this, gamePan.followBot);
+    gamePan.colChecker.checkObject(this, false);
     boolean touchPlayer = gamePan.colChecker.checkPlayer(this);
 
     if (this.type == 2 && touchPlayer == true) { // If follow bot touches player
