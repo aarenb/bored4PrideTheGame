@@ -26,6 +26,7 @@ public class Player extends Entity{
 
     setDefaultValues();
     getPlayerImage();
+    getPlayerAttackImage();
   }
 
   public void setDefaultValues() {
@@ -146,15 +147,16 @@ public class Player extends Entity{
   }
 
   public void interactNPC(int i) {
-    if (i != 999) { // if player is touching npc
 
-      if (gamePan.keyHand.enterPressed) {
+    if (gamePan.keyHand.enterPressed == true) {
+      if (i != 999) { // if player is touching npc
         gamePan.gameState = gamePan.dialogueState;
         gamePan.npc[i].speak();
-        
+      } else {
+        // If enter key is pressed but player isn't touching npc
+          attacking = true;
       }
     }
-    gamePan.keyHand.enterPressed = false;
   }
 
   public void interactObject(int i) {
