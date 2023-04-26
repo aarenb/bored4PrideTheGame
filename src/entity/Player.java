@@ -146,6 +146,7 @@ public class Player extends Entity{
   public void interactObject(int i) {
     if (i != 999) { // If player is touching object
       gamePan.obj[i] = null;
+      gamePan.ui.showMessage("You picked up a mod sword!");
     }
   }
 
