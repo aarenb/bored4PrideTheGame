@@ -10,7 +10,6 @@ public class OBJ_Heart extends SuperObject{
   
   public OBJ_Heart(GamePanel gamePan) {
     this.gamePan = gamePan;
-    name = "heart";
 
     try {
       image = ImageIO.read(getClass().getResourceAsStream("/resources/objects/heart_full.png"));

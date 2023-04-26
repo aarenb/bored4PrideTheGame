@@ -25,7 +25,9 @@ public class UI {
   Font Pixeltype;
   Font Pixeltype_36;
   public String currentWords = "";
-  public int commandNum = 0; 
+  public int commandNum = 0;
+  public boolean messageOn = false;
+  public String message = "";
 
   BufferedImage backgroundImg;
 
@@ -64,6 +66,11 @@ public class UI {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  public void showMessage(String message) {
+    this.message = message;
+    messageOn = true;
   }
 
   public void draw(Graphics2D g2d) {
