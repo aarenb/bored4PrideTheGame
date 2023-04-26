@@ -118,6 +118,51 @@ public class CollisionChecker {
     return index;
   }
 
+  public int checkObject(Entity entity, boolean player) {
+    int index = 999;
+
+    for (int i = 0; i < gamePan.obj.length; i++) {
+      if (gamePan.obj[i] != null) {
+        // Get entity's solid area coords
+        entity.solidArea.x = entity.worldX + entity.solidArea.x;
+        entity.solidArea.y = entity.worldY + entity.solidArea.y;
+
+        // Get objects solid area coords
+        gamePan.obj[i].solidArea.x = gamePan.obj[i].worldX + gamePan.obj[i].solidArea.x;
+        gamePan.obj[i].solidArea.y = gamePan.obj[i].worldY + gamePan.obj[i].solidArea.y;
+
+        switch (entity.direction) {
+          case "up":
+            entity.solidArea.y -= entity.speed;
+            break;
+          case "down":
+            entity.solidArea.y += entity.speed;
+            break;
+          case "left":
+            entity.solidArea.x -= entity.speed;
+            break;
+          case "right":
+            entity.solidArea.x += entity.speed;
+            break;
+        }
+
+        if (entity.solidArea.intersects(gamePan.obj[i].solidArea)) { // If they collide
+          if (player != true) {
+            entity.collisionOn = true;
+          } else {
+            index = i;
+          }
+        }
+        }
+
+        entity.solidArea.x = entity.solidAreaDefaultX;
+        entity.solidArea.y = entity.solidAreaDefaultY;
+        gamePan.obj[i].solidArea.x = gamePan.obj[i].solidAreaDefaultX;
+        gamePan.obj[i].solidArea.y = gamePan.obj[i].solidAreaDefaultY;
+      }
+    return index;
+  }
+
   /**
    * Checks if entity is colliding with player
    * @param entity NPC / monster to check
