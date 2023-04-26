@@ -69,7 +69,10 @@ public class Player extends Entity{
   }
 
   public void update() {
-    if (keyHand.upPressed == true || keyHand.downPressed == true || keyHand.leftPressed == true || keyHand.rightPressed == true) {
+
+    if (attacking == true) {
+      attacking();
+    } else if (keyHand.upPressed == true || keyHand.downPressed == true || keyHand.leftPressed == true || keyHand.rightPressed == true) {
       if (keyHand.upPressed == true) {
         direction = "up";
       } else if (keyHand.downPressed == true) {
@@ -103,6 +106,24 @@ public class Player extends Entity{
     if (life <= 0) { // If the player has no health
       gamePan.gameState = gamePan.gameOverState;
     }
+  }
+
+  public void attacking() {
+    spriteCount++;
+
+    // Attack animation
+    if (spriteCount <= 5) {
+      spriteNum = 1;
+    }
+    if (spriteCount > 5 && spriteCount <= 25) {
+      spriteNum = 2;
+    }
+    if (spriteNum > 25) {
+      spriteNum = 1;
+      spriteCount = 0;
+      attacking = false;
+    }
+
   }
 
   public void draw(Graphics2D g2d) {
