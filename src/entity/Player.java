@@ -72,6 +72,7 @@ public class Player extends Entity{
       int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot); // check follow bot collision
       interactFollowBot(followBotIndex);
       int objIndex = gamePan.colChecker.checkObject(this, true); // Check object collision
+      interactObject(objIndex);
 
       move();
     }
@@ -140,6 +141,12 @@ public class Player extends Entity{
       }
     }
     gamePan.keyHand.enterPressed = false;
+  }
+
+  public void interactObject(int i) {
+    if (i != 999) { // If player is touching object
+      
+    }
   }
 
   /**
