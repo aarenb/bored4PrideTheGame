@@ -53,6 +53,20 @@ public class Player extends Entity{
     right2 = setup("/player/player_right2");
   }
 
+  /**
+   * Load player attack images.
+   */
+  public void getPlayerAttackImage() {
+    attackUp1 = setup("/player/player_attack_up1");
+    attackUp2 = setup("/player/player_attack_up2");
+    attackDown1 = setup("/player/player_attack_down1");
+    attackDown2 = setup("/player/player_attack_down2");
+    attackLeft1 = setup("/player/player_attack_left1");
+    attackLeft2 = setup("/player/player_attack_left2");
+    attackRight1 = setup("/player/player_attack_right1");
+    attackRight2 = setup("/player/player_attack_right2");
+  }
+
   public void update() {
     if (keyHand.upPressed == true || keyHand.downPressed == true || keyHand.leftPressed == true || keyHand.rightPressed == true) {
       if (keyHand.upPressed == true) {
