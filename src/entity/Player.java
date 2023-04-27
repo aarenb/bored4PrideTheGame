@@ -128,6 +128,8 @@ public class Player extends Entity{
 
   public void draw(Graphics2D g2d) {
     BufferedImage image = null;
+    int tempScreenX = screenX;
+    int tempScreenY = screenY;
 
     switch (direction) {
       case "up":
@@ -145,6 +147,7 @@ public class Player extends Entity{
           if (spriteNum == 2) {
             image = attackUp2;
           }
+          tempScreenY = screenY - gamePan.tileSize;
         }
         break;
       case "down":
@@ -179,6 +182,7 @@ public class Player extends Entity{
           if (spriteNum == 2) {
             image = attackLeft2;
           }
+          tempScreenX = screenX - gamePan.tileSize;
         }
         break;
       case "right":
@@ -199,19 +203,8 @@ public class Player extends Entity{
         }
         break;
     }
-  
-    if (attacking == false) {
-      g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
-    } else if (attacking == true && direction.equals("up")) {
-      g2d.drawImage(image, screenX, screenY - gamePan.tileSize, gamePan.tileSize, gamePan.tileSize 
-      * 2, null);
-    } else if (attacking == true && direction.equals("down")) {
-      g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize * 2, null);
-    } else if (attacking == true && direction.equals("left")) {
-      g2d.drawImage(image, screenX - gamePan.tileSize, screenY, gamePan.tileSize * 2, gamePan.tileSize, null);
-    } else if (attacking == true && direction.equals("right")) {
-      g2d.drawImage(image, screenX, screenY, gamePan.tileSize * 2, gamePan.tileSize, null);
-    }
+
+    g2d.drawImage(image, tempScreenX, tempScreenY, null);
   }
 
   public void interactNPC(int i) {
