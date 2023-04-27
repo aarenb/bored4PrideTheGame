@@ -17,7 +17,6 @@ public class Entity {
   public int type;// 0 = player, 1 = npc, 2 = follow bot
 
   public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-  public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
   public String direction;
 
   public int spriteCount = 0;
@@ -30,7 +29,6 @@ public class Entity {
   public int antiSpinCounter = 0; // prevents spinny moving entity
   public boolean invinsible = false; // make player not take damage when true
   public int invinsibleCounter = 0;
-  boolean attacking = false;
 
   String words[] = new String[20];
   int speakIndex = 0;
@@ -79,8 +77,8 @@ public class Entity {
     gamePan.colChecker.checkObject(this, false);
     boolean touchPlayer = gamePan.colChecker.checkPlayer(this);
 
-    if (this.type == 2 && touchPlayer == true) { // If follow bot touches player
-      if (gamePan.player.invinsible == false) { // If player isn't invinsible, it takes damage
+    if (this.type == 2 && touchPlayer) { // If follow bot touches player
+      if (!gamePan.player.invinsible) { // If player isn't invinsible, it takes damage
         gamePan.player.life -= 1;
         gamePan.player.invinsible = true;
       }
@@ -92,7 +90,7 @@ public class Entity {
   public void move() {
 
     // If no collision entity can move
-    if (collisionOn == false) {
+    if (!collisionOn) {
       switch (direction) {
       case "up":
         worldY = worldY - speed;// move entity up

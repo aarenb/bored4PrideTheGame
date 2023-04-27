@@ -91,7 +91,7 @@ public class UI {
     if (gamePan.gameState == gamePan.playState) {
       drawPlayerHealth();
 
-      if (messageOn == true) {
+      if (messageOn) {
         g2d.setFont(VCR_OSD_Mono_28);
         int x = getXforCenterTxt(message);
         int y = gamePan.tileSize * 2;

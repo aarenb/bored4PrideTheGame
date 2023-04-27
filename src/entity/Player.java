@@ -13,6 +13,10 @@ public class Player extends Entity{
   public final int screenX;
   public final int screenY;
 
+  public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+  boolean attacking = false;
+  boolean hasSword = false;
+
   public Player(GamePanel gamePan, KeyHandler keyHand) {
     super(gamePan);
     this.keyHand = keyHand;
@@ -70,16 +74,16 @@ public class Player extends Entity{
 
   public void update() {
 
-    if (attacking == true) {
+    if (attacking) {
       attacking();
-    } else if (keyHand.upPressed == true || keyHand.downPressed == true || keyHand.leftPressed == true || keyHand.rightPressed == true) {
-      if (keyHand.upPressed == true) {
+    } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed) {
+      if (keyHand.upPressed) {
         direction = "up";
-      } else if (keyHand.downPressed == true) {
+      } else if (keyHand.downPressed) {
         direction = "down";
-      } else if (keyHand.leftPressed == true) {
+      } else if (keyHand.leftPressed) {
         direction = "left";
-      } else if (keyHand.rightPressed == true) {
+      } else if (keyHand.rightPressed) {
         direction = "right";
       }
       // Check collision
@@ -95,7 +99,7 @@ public class Player extends Entity{
       move();
     }
     // Add to invinsibleCounter & set invinisible back to false after a while if invinsible is true
-    if (invinsible == true) {
+    if (invinsible) {
       invinsibleCounter++;
       if (invinsibleCounter > 60) {
         invinsible = false;
@@ -133,14 +137,14 @@ public class Player extends Entity{
 
     switch (direction) {
       case "up":
-        if (attacking == false) {
+        if (!attacking) {
           if (spriteNum == 1) {
             image = up1;
           } 
           if (spriteNum == 2) {
             image = up2;
           }
-        } else if (attacking == true) {
+        } else if (attacking) {
           if (spriteNum == 1) {
             image = attackUp1;
           } 
@@ -151,14 +155,14 @@ public class Player extends Entity{
         }
         break;
       case "down":
-        if (attacking == false) {
+        if (!attacking) {
           if (spriteNum == 1) {
             image = down1;
           } 
           if (spriteNum == 2) {
             image = down2;
           }
-        } else if (attacking == true) {
+        } else if (attacking) {
           if (spriteNum == 1) {
             image = attackDown1;
           } 
@@ -168,14 +172,14 @@ public class Player extends Entity{
         }
         break;
       case "left":
-        if (attacking == false) {
+        if (!attacking) {
           if (spriteNum == 1) {
             image = left1;
           } 
           if (spriteNum == 2) {
             image = left2;
           }
-        } else if (attacking == true) {
+        } else if (attacking) {
           if (spriteNum == 1) {
             image = attackLeft1;
           } 
@@ -186,14 +190,14 @@ public class Player extends Entity{
         }
         break;
       case "right":
-        if (attacking == false) {
+        if (!attacking) {
           if (spriteNum == 1) {
             image = right1;
           } 
           if (spriteNum == 2) {
             image = right2;
           }
-        } else if (attacking == true) {
+        } else if (attacking) {
           if (spriteNum == 1) {
             image = attackRight1;
           } 
@@ -209,7 +213,7 @@ public class Player extends Entity{
 
   public void interactNPC(int i) {
 
-    if (gamePan.keyHand.enterPressed == true) {
+    if (gamePan.keyHand.enterPressed) {
       if (i != 999) { // if player is touching npc
         gamePan.gameState = gamePan.dialogueState;
         gamePan.npc[i].speak();
@@ -224,6 +228,7 @@ public class Player extends Entity{
     if (i != 999) { // If player is touching object
       gamePan.obj[i] = null;
       gamePan.ui.showMessage("You picked up a mod sword!");
+      hasSword = true;
     }
   }
 
@@ -233,7 +238,7 @@ public class Player extends Entity{
    */
   public void interactFollowBot(int i) {
     if (i != 999) { // if player is touching follow bot
-      if (invinsible == false) {
+      if (!invinsible) {
         life -= 1;
         invinsible = true;
       }

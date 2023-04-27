@@ -32,7 +32,7 @@ public class CollisionChecker {
         tileNum2 = gamePan.tileManager.mapTileNum[entityRightColumn][entityTopRow]; // right upper corner
 
         // If any of the tiles entity is about to hit has collision, set entity collision to true
-        if (gamePan.tileManager.tile[tileNum1].collision == true || gamePan.tileManager.tile[tileNum2].collision == true) {
+        if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -42,7 +42,7 @@ public class CollisionChecker {
         tileNum2 = gamePan.tileManager.mapTileNum[entityRightColumn][entityBottomRow]; // right bottom corner
 
          // If any of the tiles entity is about to hit has collision, set entity collision to true
-        if (gamePan.tileManager.tile[tileNum1].collision == true || gamePan.tileManager.tile[tileNum2].collision == true) {
+        if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -52,7 +52,7 @@ public class CollisionChecker {
         tileNum2 = gamePan.tileManager.mapTileNum[entityLeftColumn][entityBottomRow]; // left bottom corner
 
          // If any of the tiles entity is about to hit has collision, set entity collision to true
-        if (gamePan.tileManager.tile[tileNum1].collision == true || gamePan.tileManager.tile[tileNum2].collision == true) {
+        if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -62,7 +62,7 @@ public class CollisionChecker {
         tileNum2 = gamePan.tileManager.mapTileNum[entityRightColumn][entityBottomRow]; // right bottom corner
 
          // If any of the tiles entity is about to hit has collision, set entity collision to true
-        if (gamePan.tileManager.tile[tileNum1].collision == true || gamePan.tileManager.tile[tileNum2].collision == true) {
+        if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -147,7 +147,7 @@ public class CollisionChecker {
         }
 
         if (entity.solidArea.intersects(gamePan.obj[i].solidArea)) { // If they collide
-          if (player != true) {
+          if (!player) {
             entity.collisionOn = true;
           } 
           index = i;
