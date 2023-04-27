@@ -249,9 +249,14 @@ public class Player extends Entity{
 
   public void damageFollowBot(int i) {
     if (i != 999) {
-      System.out.println("Hitting!");
-    } else {
-      System.out.println("lol miss");
+      if (!gamePan.followBot[i].invinsible) {
+        gamePan.followBot[i].life -= 1;
+        gamePan.followBot[i].invinsible = true;
+
+        if (gamePan.followBot[i].life <= 0) {
+          gamePan.followBot[i] = null;
+        }
+      }
     }
   }
 

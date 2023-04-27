@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -27,7 +28,7 @@ public class Entity {
   
   public boolean collisionOn = false;
   public int antiSpinCounter = 0; // prevents spinny moving entity
-  public boolean invinsible = false; // make player not take damage when true
+  public boolean invinsible = false; // make entity not take damage when true
   public int invinsibleCounter = 0;
 
   String words[] = new String[20];
@@ -81,6 +82,14 @@ public class Entity {
       if (!gamePan.player.invinsible) { // If player isn't invinsible, it takes damage
         gamePan.player.life -= 1;
         gamePan.player.invinsible = true;
+      }
+    }
+
+    if (invinsible) {
+      invinsibleCounter++;
+      if (invinsibleCounter > 30) {
+        invinsible = false;
+        invinsibleCounter = 0;
       }
     }
   
@@ -164,7 +173,12 @@ public class Entity {
           break;
       }
 
+      if (invinsible == true) {
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f)); // Set opacity
+      }
+
       g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
+      g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); // Reset opacity
     }
   }
 
