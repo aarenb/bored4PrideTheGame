@@ -13,7 +13,9 @@ public class Player extends Entity{
   public final int screenX;
   public final int screenY;
 
-  public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+  public Rectangle attackArea = new Rectangle(0, 0, 36, 36);
+
+  BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
   boolean attacking = false;
   boolean hasSword = false;
 
@@ -121,6 +123,40 @@ public class Player extends Entity{
     }
     if (spriteCount > 5 && spriteCount <= 25) {
       spriteNum = 2;
+
+      // Save current data
+      int currentWorldX = worldX;
+      int currentWorldY = worldY;
+      int solidAreaWidth = solidArea.width;
+      int solidAreaHeight = solidArea.height;
+
+      switch (direction) {
+        case "up":
+          worldY -= attackArea.height;
+          break;
+        case "down":
+          worldY += attackArea.height;
+          break;
+        case "left":
+          worldX -= attackArea.width; 
+          break;
+        case "right":
+          worldX += attackArea.width;
+          break;
+      }
+      solidArea.width = attackArea.width;
+      solidArea.height = attackArea.height;
+
+      // Check if sword collides with follow bot
+      int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot);
+      damageFollowBot(followBotIndex);
+
+      // Reset data back to what it was
+      worldX = currentWorldX;
+      worldY = currentWorldY;
+      solidArea.width = solidAreaWidth;
+      solidArea.height = solidAreaHeight;
+
     }
     if (spriteCount > 25) {
       spriteNum = 1;
@@ -209,6 +245,14 @@ public class Player extends Entity{
     }
 
     g2d.drawImage(image, tempScreenX, tempScreenY, null);
+  }
+
+  public void damageFollowBot(int i) {
+    if (i != 999) {
+      System.out.println("Hitting!");
+    } else {
+      System.out.println("lol miss");
+    }
   }
 
   public void interactNPC(int i) {
