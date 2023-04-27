@@ -74,7 +74,7 @@ public class Player extends Entity{
 
   public void update() {
 
-    if (attacking) {
+    if (attacking && hasSword) {
       attacking();
     } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed) {
       if (keyHand.upPressed) {
@@ -137,7 +137,7 @@ public class Player extends Entity{
 
     switch (direction) {
       case "up":
-        if (!attacking) {
+        if (!attacking || !hasSword) {
           if (spriteNum == 1) {
             image = up1;
           } 
@@ -155,7 +155,7 @@ public class Player extends Entity{
         }
         break;
       case "down":
-        if (!attacking) {
+        if (!attacking || !hasSword) {
           if (spriteNum == 1) {
             image = down1;
           } 
@@ -172,7 +172,7 @@ public class Player extends Entity{
         }
         break;
       case "left":
-        if (!attacking) {
+        if (!attacking || !hasSword) {
           if (spriteNum == 1) {
             image = left1;
           } 
@@ -190,7 +190,7 @@ public class Player extends Entity{
         }
         break;
       case "right":
-        if (!attacking) {
+        if (!attacking || !hasSword) {
           if (spriteNum == 1) {
             image = right1;
           } 
