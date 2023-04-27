@@ -118,7 +118,7 @@ public class Player extends Entity{
     if (spriteCount > 5 && spriteCount <= 25) {
       spriteNum = 2;
     }
-    if (spriteNum > 25) {
+    if (spriteCount > 25) {
       spriteNum = 1;
       spriteCount = 0;
       attacking = false;
@@ -200,7 +200,18 @@ public class Player extends Entity{
         break;
     }
   
-    g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
+    if (attacking == false) {
+      g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
+    } else if (attacking == true && direction.equals("up")) {
+      g2d.drawImage(image, screenX, screenY - gamePan.tileSize, gamePan.tileSize, gamePan.tileSize 
+      * 2, null);
+    } else if (attacking == true && direction.equals("down")) {
+      g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize * 2, null);
+    } else if (attacking == true && direction.equals("left")) {
+      g2d.drawImage(image, screenX - gamePan.tileSize, screenY, gamePan.tileSize * 2, gamePan.tileSize, null);
+    } else if (attacking == true && direction.equals("right")) {
+      g2d.drawImage(image, screenX, screenY, gamePan.tileSize * 2, gamePan.tileSize, null);
+    }
   }
 
   public void interactNPC(int i) {
