@@ -16,6 +16,8 @@ public class Entity {
   public int worldX, worldY;
   public int speed;
   public int type;// 0 = player, 1 = npc, 2 = follow bot
+  public boolean alive = true;
+  public boolean dying = false;
 
   public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
   public String direction;
@@ -30,6 +32,7 @@ public class Entity {
   public int antiSpinCounter = 0; // prevents spinny moving entity
   public boolean invinsible = false; // make entity not take damage when true
   public int invinsibleCounter = 0;
+  int dyingCounter = 0;
 
   String words[] = new String[20];
   int speakIndex = 0;
@@ -173,14 +176,52 @@ public class Entity {
           break;
       }
 
-      if (invinsible == true) {
+      if (invinsible) {
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f)); // Set opacity
+      }
+      
+      if (dying) {
+        dyingAnimation(g2d);
       }
 
       g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
       g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); // Reset opacity
     }
   }
+
+  public void dyingAnimation(Graphics2D g2d) {
+    dyingCounter++;
+    int i = 5;
+    if (dyingCounter <= i) {
+      changeAlpha(g2d, 0f);
+    } else if (dyingCounter > i && dyingCounter <= i * 2) {
+      changeAlpha(g2d, 1f);
+    } else if (dyingCounter > i * 2 && dyingCounter <= i * 3) {
+      changeAlpha(g2d, 0f);
+    } else if (dyingCounter > i * 3 && dyingCounter <= i * 4) {
+      changeAlpha(g2d, 1f);
+    } else if (dyingCounter > i * 4 && dyingCounter <= i * 5) {
+      changeAlpha(g2d, 0f);
+    } else if (dyingCounter > i * 5 && dyingCounter <= i * 6) {
+      changeAlpha(g2d, 1f);
+    } else if (dyingCounter > i * 6 && dyingCounter <= i * 7) {
+      changeAlpha(g2d, 0f);
+    } else if (dyingCounter > i * 7 && dyingCounter <= i * 8) {
+      changeAlpha(g2d, 1f);
+    } else if (dyingCounter > i * 8 && dyingCounter <= i * 9) {
+      changeAlpha(g2d, 0f);
+    } else if (dyingCounter > i * 9 && dyingCounter <= i * 10) {
+      changeAlpha(g2d, 1f);
+    } else if (dyingCounter > i * 10) {
+      dying = false;
+      alive = false;
+    }
+  }
+
+  public void changeAlpha(Graphics2D g2d, float alphaValue){
+    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
+  }
+
 
   public BufferedImage setup(String imagePath, int width, int height) {
     UtilityTool uTool = new UtilityTool();

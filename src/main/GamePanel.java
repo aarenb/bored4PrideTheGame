@@ -117,7 +117,11 @@ public class GamePanel extends JPanel implements Runnable{
       }
       for(int i = 0; i < followBot.length; i++) {
         if (followBot[i] != null) {
-          followBot[i].update();
+          if (followBot[i].alive && !followBot[i].dying) {
+            followBot[i].update();
+          } else if (!followBot[i].alive) {
+            followBot[i] = null;
+          }
         }
       }
     }
