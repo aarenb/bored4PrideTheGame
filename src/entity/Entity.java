@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -176,6 +177,20 @@ public class Entity {
           break;
       }
 
+      // Follow bot health bar
+      if (type == 2) {
+        double oneScale = (double)gamePan.tileSize / maxLife; // Length of 1 hp in health bar
+        double hpBarScale = oneScale * life; // Current length of health bar
+
+        // Outline:
+        g2d.setColor(new Color(35, 35, 35));
+        g2d.fillRect(screenX - 1, screenY - 19, gamePan.tileSize + 2, 9);
+        // Main part:
+        g2d.setColor(new Color(255, 0, 30));
+        g2d.fillRect(screenX, screenY - 18, (int)hpBarScale, 7);
+
+      }
+      
       if (invinsible) {
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f)); // Set opacity
       }
