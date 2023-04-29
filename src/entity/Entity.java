@@ -210,7 +210,7 @@ public class Entity {
         dyingAnimation(g2d);
       }
 
-      g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
+      g2d.drawImage(image, screenX, screenY, null);
       changeAlpha(g2d, 1f); // Reset opacity
     }
   }
