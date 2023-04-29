@@ -13,7 +13,7 @@ public class FollowBot extends Entity {
     type = 2;
     direction = "down";
     speed = 1;
-    maxLife = 8;
+    maxLife = 5;
     life = maxLife;
 
     solidArea = new Rectangle(0, 0, 48, 48); // TODO: change???
