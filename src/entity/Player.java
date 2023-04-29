@@ -252,6 +252,7 @@ public class Player extends Entity{
       if (!gamePan.followBot[i].invinsible) {
         gamePan.followBot[i].life -= 1;
         gamePan.followBot[i].invinsible = true;
+        gamePan.followBot[i].damageReaction();
 
         if (gamePan.followBot[i].life <= 0) {
           gamePan.followBot[i].dying = true;

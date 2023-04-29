@@ -13,7 +13,7 @@ public class FollowBot extends Entity {
     type = 2;
     direction = "down";
     speed = 1;
-    maxLife = 4;
+    maxLife = 8;
     life = maxLife;
 
     solidArea = new Rectangle(0, 0, 48, 48); // TODO: change???
@@ -58,6 +58,23 @@ public class FollowBot extends Entity {
       }
 
       antiSpinCounter = 0;
+    }
+  }
+
+  public void damageReaction() {
+    antiSpinCounter = 0;
+    switch (gamePan.player.direction) {
+      case "up":
+        direction = "down";
+        break;
+      case "down":
+        direction = "up";
+        break;
+      case "left":
+        direction = "right";
+        break;
+      case "right":
+        direction = "left";
     }
   }
   
