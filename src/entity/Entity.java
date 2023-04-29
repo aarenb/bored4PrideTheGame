@@ -19,6 +19,7 @@ public class Entity {
   public int type;// 0 = player, 1 = npc, 2 = follow bot
   public boolean alive = true;
   public boolean dying = false;
+  boolean hpBarOn = false;
 
   public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
   public String direction;
@@ -34,6 +35,7 @@ public class Entity {
   public boolean invinsible = false; // make entity not take damage when true
   public int invinsibleCounter = 0;
   int dyingCounter = 0;
+  int hpBarCounter = 0;
 
   String words[] = new String[20];
   int speakIndex = 0;
@@ -178,7 +180,7 @@ public class Entity {
       }
 
       // Follow bot health bar
-      if (type == 2) {
+      if (type == 2 && hpBarOn) {
         double oneScale = (double)gamePan.tileSize / maxLife; // Length of 1 hp in health bar
         double hpBarScale = oneScale * life; // Current length of health bar
 
@@ -189,10 +191,18 @@ public class Entity {
         g2d.setColor(new Color(255, 0, 30));
         g2d.fillRect(screenX, screenY - 18, (int)hpBarScale, 7);
 
+        hpBarCounter++;
+        if (hpBarCounter > 600) {
+          hpBarCounter = 0;
+          hpBarOn = false;
+        }
+
       }
       
       if (invinsible) {
-        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f)); // Set opacity
+        hpBarOn = true;
+        hpBarCounter = 0;
+        changeAlpha(g2d, 0.4f);
       }
       
       if (dying) {
@@ -200,7 +210,7 @@ public class Entity {
       }
 
       g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
-      g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); // Reset opacity
+      changeAlpha(g2d, 1f); // Reset opacity
     }
   }
 
