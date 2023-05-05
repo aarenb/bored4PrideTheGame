@@ -13,7 +13,7 @@ public class FollowBot extends Entity {
     type = 2;
     direction = "down";
     speed = 1;
-    maxLife = 4;
+    maxLife = 5;
     life = maxLife;
 
     solidArea = new Rectangle(0, 0, 48, 48); // TODO: change???
@@ -27,14 +27,14 @@ public class FollowBot extends Entity {
    * Load follow bot images
    */
   public void getImage() {
-    up1 = setup("/resources/followbot/followbot_up1");
-    up2 = setup("/resources/followbot/followbot_up2");
-    down1 = setup("/resources/followbot/followbot_down1");
-    down2 = setup("/resources/followbot/followbot_down2");
-    left1 = setup("/resources/followbot/followbot_left1");
-    left2 = setup("/resources/followbot/followbot_left2");
-    right1 = setup("/resources/followbot/followbot_right1");
-    right2 = setup("/resources/followbot/followbot_right2");
+    up1 = setup("/resources/followbot/followbot_up1", gamePan.tileSize, gamePan.tileSize);
+    up2 = setup("/resources/followbot/followbot_up2", gamePan.tileSize, gamePan.tileSize);
+    down1 = setup("/resources/followbot/followbot_down1", gamePan.tileSize, gamePan.tileSize);
+    down2 = setup("/resources/followbot/followbot_down2", gamePan.tileSize, gamePan.tileSize);
+    left1 = setup("/resources/followbot/followbot_left1", gamePan.tileSize, gamePan.tileSize);
+    left2 = setup("/resources/followbot/followbot_left2", gamePan.tileSize, gamePan.tileSize);
+    right1 = setup("/resources/followbot/followbot_right1", gamePan.tileSize, gamePan.tileSize);
+    right2 = setup("/resources/followbot/followbot_right2", gamePan.tileSize, gamePan.tileSize);
   }
 
   /**
@@ -58,6 +58,23 @@ public class FollowBot extends Entity {
       }
 
       antiSpinCounter = 0;
+    }
+  }
+
+  public void damageReaction() {
+    antiSpinCounter = 0;
+    switch (gamePan.player.direction) {
+      case "up":
+        direction = "down";
+        break;
+      case "down":
+        direction = "up";
+        break;
+      case "left":
+        direction = "right";
+        break;
+      case "right":
+        direction = "left";
     }
   }
   

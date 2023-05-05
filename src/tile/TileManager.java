@@ -125,7 +125,12 @@ public class TileManager {
       int screenX = worldX - gamePan.player.worldX + gamePan.player.screenX;
       int screenY = worldY - gamePan.player.worldY + gamePan.player.screenY;
 
-      g2d.drawImage(tile[tileNum].image, screenX, screenY, null);
+      if (worldX + gamePan.tileSize > gamePan.player.worldX - gamePan.player.screenX &&
+          worldX - gamePan.tileSize < gamePan.player.worldX + gamePan.player.screenX && 
+          worldY + gamePan.tileSize > gamePan.player.worldY - gamePan.player.screenY && 
+          worldY - gamePan.tileSize < gamePan.player.worldY + gamePan.player.screenY) {
+            g2d.drawImage(tile[tileNum].image, screenX, screenY, null);
+      }
       worldCol++;  
 
       if (worldCol == gamePan.maxWorldColumn) {

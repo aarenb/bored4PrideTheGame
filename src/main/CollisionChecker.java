@@ -32,7 +32,7 @@ public class CollisionChecker {
         tileNum2 = gamePan.tileManager.mapTileNum[entityRightColumn][entityTopRow]; // right upper corner
 
         // If any of the tiles entity is about to hit has collision, set entity collision to true
-        if (gamePan.tileManager.tile[tileNum1].collision == true || gamePan.tileManager.tile[tileNum2].collision == true) {
+        if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -42,7 +42,7 @@ public class CollisionChecker {
         tileNum2 = gamePan.tileManager.mapTileNum[entityRightColumn][entityBottomRow]; // right bottom corner
 
          // If any of the tiles entity is about to hit has collision, set entity collision to true
-        if (gamePan.tileManager.tile[tileNum1].collision == true || gamePan.tileManager.tile[tileNum2].collision == true) {
+        if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -52,7 +52,7 @@ public class CollisionChecker {
         tileNum2 = gamePan.tileManager.mapTileNum[entityLeftColumn][entityBottomRow]; // left bottom corner
 
          // If any of the tiles entity is about to hit has collision, set entity collision to true
-        if (gamePan.tileManager.tile[tileNum1].collision == true || gamePan.tileManager.tile[tileNum2].collision == true) {
+        if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -62,7 +62,7 @@ public class CollisionChecker {
         tileNum2 = gamePan.tileManager.mapTileNum[entityRightColumn][entityBottomRow]; // right bottom corner
 
          // If any of the tiles entity is about to hit has collision, set entity collision to true
-        if (gamePan.tileManager.tile[tileNum1].collision == true || gamePan.tileManager.tile[tileNum2].collision == true) {
+        if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
         break;
@@ -115,6 +115,50 @@ public class CollisionChecker {
         target[i].solidArea.y = target[i].solidAreaDefaultY;
       }
     }
+    return index;
+  }
+
+  public int checkObject(Entity entity, boolean player) {
+    int index = 999;
+
+    for (int i = 0; i < gamePan.obj.length; i++) {
+      if (gamePan.obj[i] != null) {
+        // Get entity's solid area coords
+        entity.solidArea.x = entity.worldX + entity.solidArea.x;
+        entity.solidArea.y = entity.worldY + entity.solidArea.y;
+
+        // Get objects solid area coords
+        gamePan.obj[i].solidArea.x = gamePan.obj[i].worldX + gamePan.obj[i].solidArea.x;
+        gamePan.obj[i].solidArea.y = gamePan.obj[i].worldY + gamePan.obj[i].solidArea.y;
+
+        switch (entity.direction) {
+          case "up":
+            entity.solidArea.y -= entity.speed;
+            break;
+          case "down":
+            entity.solidArea.y += entity.speed;
+            break;
+          case "left":
+            entity.solidArea.x -= entity.speed;
+            break;
+          case "right":
+            entity.solidArea.x += entity.speed;
+            break;
+        }
+
+        if (entity.solidArea.intersects(gamePan.obj[i].solidArea)) { // If they collide
+          if (!player) {
+            entity.collisionOn = true;
+          } 
+          index = i;
+        }
+
+        entity.solidArea.x = entity.solidAreaDefaultX;
+        entity.solidArea.y = entity.solidAreaDefaultY;
+        gamePan.obj[i].solidArea.x = gamePan.obj[i].solidAreaDefaultX;
+        gamePan.obj[i].solidArea.y = gamePan.obj[i].solidAreaDefaultY;
+        }
+      }
     return index;
   }
 

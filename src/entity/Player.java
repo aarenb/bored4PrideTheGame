@@ -13,6 +13,12 @@ public class Player extends Entity{
   public final int screenX;
   public final int screenY;
 
+  public Rectangle attackArea = new Rectangle(0, 0, 36, 26);
+
+  BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+  boolean attacking = false;
+  boolean hasSword = false;
+
   public Player(GamePanel gamePan, KeyHandler keyHand) {
     super(gamePan);
     this.keyHand = keyHand;
@@ -26,6 +32,7 @@ public class Player extends Entity{
 
     setDefaultValues();
     getPlayerImage();
+    getPlayerAttackImage();
   }
 
   public void setDefaultValues() {
@@ -43,25 +50,42 @@ public class Player extends Entity{
    * Load player images.
    */
   public void getPlayerImage() {
-    up1 = setup("/player/player_up1");
-    up2 = setup("/player/player_up2");
-    down1 = setup("/player/player_down1");
-    down2 = setup("/player/player_down2");
-    left1 = setup("/player/player_left1");
-    left2 = setup("/player/player_left2");
-    right1 = setup("/player/player_right1");
-    right2 = setup("/player/player_right2");
+    up1 = setup("/player/player_up1", gamePan.tileSize, gamePan.tileSize);
+    up2 = setup("/player/player_up2", gamePan.tileSize, gamePan.tileSize);
+    down1 = setup("/player/player_down1", gamePan.tileSize, gamePan.tileSize);
+    down2 = setup("/player/player_down2", gamePan.tileSize, gamePan.tileSize);
+    left1 = setup("/player/player_left1", gamePan.tileSize, gamePan.tileSize);
+    left2 = setup("/player/player_left2", gamePan.tileSize, gamePan.tileSize);
+    right1 = setup("/player/player_right1", gamePan.tileSize, gamePan.tileSize);
+    right2 = setup("/player/player_right2", gamePan.tileSize, gamePan.tileSize);
+  }
+
+  /**
+   * Load player attack images.
+   */
+  public void getPlayerAttackImage() {
+    attackUp1 = setup("/player/player_attack_up1", gamePan.tileSize, gamePan.tileSize * 2);
+    attackUp2 = setup("/player/player_attack_up2", gamePan.tileSize, gamePan.tileSize * 2);
+    attackDown1 = setup("/player/player_attack_down1", gamePan.tileSize, gamePan.tileSize * 2);
+    attackDown2 = setup("/player/player_attack_down2", gamePan.tileSize, gamePan.tileSize * 2);
+    attackLeft1 = setup("/player/player_attack_left1", gamePan.tileSize * 2, gamePan.tileSize);
+    attackLeft2 = setup("/player/player_attack_left2", gamePan.tileSize * 2, gamePan.tileSize);
+    attackRight1 = setup("/player/player_attack_right1", gamePan.tileSize * 2, gamePan.tileSize);
+    attackRight2 = setup("/player/player_attack_right2", gamePan.tileSize * 2, gamePan.tileSize);
   }
 
   public void update() {
-    if (keyHand.upPressed == true || keyHand.downPressed == true || keyHand.leftPressed == true || keyHand.rightPressed == true) {
-      if (keyHand.upPressed == true) {
+
+    if (attacking && hasSword) {
+      attacking();
+    } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed) {
+      if (keyHand.upPressed) {
         direction = "up";
-      } else if (keyHand.downPressed == true) {
+      } else if (keyHand.downPressed) {
         direction = "down";
-      } else if (keyHand.leftPressed == true) {
+      } else if (keyHand.leftPressed) {
         direction = "left";
-      } else if (keyHand.rightPressed == true) {
+      } else if (keyHand.rightPressed) {
         direction = "right";
       }
       // Check collision
@@ -71,11 +95,13 @@ public class Player extends Entity{
       interactNPC(npcIndex);
       int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot); // check follow bot collision
       interactFollowBot(followBotIndex);
+      int objIndex = gamePan.colChecker.checkObject(this, true); // Check object collision
+      interactObject(objIndex);
 
       move();
     }
     // Add to invinsibleCounter & set invinisible back to false after a while if invinsible is true
-    if (invinsible == true) {
+    if (invinsible) {
       invinsibleCounter++;
       if (invinsibleCounter > 60) {
         invinsible = false;
@@ -88,57 +114,172 @@ public class Player extends Entity{
     }
   }
 
+  public void attacking() {
+    spriteCount++;
+
+    // Attack animation
+    if (spriteCount <= 5) {
+      spriteNum = 1;
+    }
+    if (spriteCount > 5 && spriteCount <= 25) {
+      spriteNum = 2;
+
+      // Save current data
+      int currentWorldX = worldX;
+      int currentWorldY = worldY;
+      int solidAreaWidth = solidArea.width;
+      int solidAreaHeight = solidArea.height;
+
+      switch (direction) {
+        case "up":
+          worldY -= attackArea.height;
+          break;
+        case "down":
+          worldY += attackArea.height;
+          break;
+        case "left":
+          worldX -= attackArea.width; 
+          break;
+        case "right":
+          worldX += attackArea.width;
+          break;
+      }
+      solidArea.width = attackArea.width;
+      solidArea.height = attackArea.height;
+
+      // Check if sword collides with follow bot
+      int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot);
+      damageFollowBot(followBotIndex);
+
+      // Reset data back to what it was
+      worldX = currentWorldX;
+      worldY = currentWorldY;
+      solidArea.width = solidAreaWidth;
+      solidArea.height = solidAreaHeight;
+
+    }
+    if (spriteCount > 25) {
+      spriteNum = 1;
+      spriteCount = 0;
+      attacking = false;
+    }
+
+  }
+
   public void draw(Graphics2D g2d) {
     BufferedImage image = null;
+    int tempScreenX = screenX;
+    int tempScreenY = screenY;
 
     switch (direction) {
       case "up":
-        if (spriteNum == 1) {
-          image = up1;
-        } 
-        if (spriteNum == 2) {
-          image = up2;
+        if (!attacking || !hasSword) {
+          if (spriteNum == 1) {
+            image = up1;
+          } 
+          if (spriteNum == 2) {
+            image = up2;
+          }
+        } else if (attacking) {
+          if (spriteNum == 1) {
+            image = attackUp1;
+          } 
+          if (spriteNum == 2) {
+            image = attackUp2;
+          }
+          tempScreenY = screenY - gamePan.tileSize;
         }
         break;
       case "down":
-        if (spriteNum == 1) {
-          image = down1;
-        } 
-        if (spriteNum == 2) {
-          image = down2;
+        if (!attacking || !hasSword) {
+          if (spriteNum == 1) {
+            image = down1;
+          } 
+          if (spriteNum == 2) {
+            image = down2;
+          }
+        } else if (attacking) {
+          if (spriteNum == 1) {
+            image = attackDown1;
+          } 
+          if (spriteNum == 2) {
+            image = attackDown2;
+          }
         }
         break;
       case "left":
-        if (spriteNum == 1) {
-          image = left1;
-        } 
-        if (spriteNum == 2) {
-          image = left2;
+        if (!attacking || !hasSword) {
+          if (spriteNum == 1) {
+            image = left1;
+          } 
+          if (spriteNum == 2) {
+            image = left2;
+          }
+        } else if (attacking) {
+          if (spriteNum == 1) {
+            image = attackLeft1;
+          } 
+          if (spriteNum == 2) {
+            image = attackLeft2;
+          }
+          tempScreenX = screenX - gamePan.tileSize;
         }
         break;
       case "right":
-        if (spriteNum == 1) {
-          image = right1;
-        } 
-        if (spriteNum == 2) {
-          image = right2;
+        if (!attacking || !hasSword) {
+          if (spriteNum == 1) {
+            image = right1;
+          } 
+          if (spriteNum == 2) {
+            image = right2;
+          }
+        } else if (attacking) {
+          if (spriteNum == 1) {
+            image = attackRight1;
+          } 
+          if (spriteNum == 2) {
+            image = attackRight2;
+          }
         }
         break;
     }
-  
-    g2d.drawImage(image, screenX, screenY, gamePan.tileSize, gamePan.tileSize, null);
+
+    g2d.drawImage(image, tempScreenX, tempScreenY, null);
+  }
+
+  public void damageFollowBot(int i) {
+    if (i != 999) {
+      if (!gamePan.followBot[i].invinsible) {
+        gamePan.followBot[i].life -= 1;
+        gamePan.followBot[i].invinsible = true;
+        gamePan.followBot[i].damageReaction();
+
+        if (gamePan.followBot[i].life <= 0) {
+          gamePan.followBot[i].dying = true;
+        }
+      }
+    }
   }
 
   public void interactNPC(int i) {
-    if (i != 999) { // if player is touching npc
 
-      if (gamePan.keyHand.enterPressed) {
+    if (gamePan.keyHand.enterPressed) {
+      if (i != 999) { // if player is touching npc
         gamePan.gameState = gamePan.dialogueState;
         gamePan.npc[i].speak();
-        
+      } else {
+        // If enter key is pressed but player isn't touching npc
+          attacking = true;
       }
     }
-    gamePan.keyHand.enterPressed = false;
+  }
+
+  public void interactObject(int i) {
+    if (i != 999) { // If player is touching object
+      gamePan.obj[i] = null;
+      gamePan.ui.showMessage("You picked up a mod sword!");
+      hasSword = true;
+    }
   }
 
   /**
@@ -147,7 +288,7 @@ public class Player extends Entity{
    */
   public void interactFollowBot(int i) {
     if (i != 999) { // if player is touching follow bot
-      if (invinsible == false) {
+      if (!invinsible) {
         life -= 1;
         invinsible = true;
       }

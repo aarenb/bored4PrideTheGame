@@ -22,10 +22,14 @@ public class UI {
   Font VCR_OSD_Mono_80;
   Font VCR_OSD_Mono_58;
   Font VCR_OSD_Mono_40;
+  Font VCR_OSD_Mono_28;
   Font Pixeltype;
   Font Pixeltype_36;
   public String currentWords = "";
-  public int commandNum = 0; 
+  public int commandNum = 0;
+  public boolean messageOn = false;
+  public String message = "";
+  int messageCount = 0;
 
   BufferedImage backgroundImg;
 
@@ -53,6 +57,7 @@ public class UI {
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
     VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
     VCR_OSD_Mono_40 = VCR_OSD_Mono.deriveFont(40f);
+    VCR_OSD_Mono_28 = VCR_OSD_Mono.deriveFont(28f);
     Pixeltype_36 = Pixeltype.deriveFont(36f);
 
     loadImage();
@@ -64,6 +69,11 @@ public class UI {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  public void showMessage(String message) {
+    this.message = message;
+    messageOn = true;
   }
 
   public void draw(Graphics2D g2d) {
@@ -80,6 +90,19 @@ public class UI {
     // Game state
     if (gamePan.gameState == gamePan.playState) {
       drawPlayerHealth();
+
+      if (messageOn) {
+        g2d.setFont(VCR_OSD_Mono_28);
+        int x = getXforCenterTxt(message);
+        int y = gamePan.tileSize * 2;
+        g2d.drawString(message, x, y);
+        messageCount++;
+
+        if (messageCount > 120){
+          messageOn = false;
+          messageCount = 0;
+        }
+      }
     }
 
     // Paused

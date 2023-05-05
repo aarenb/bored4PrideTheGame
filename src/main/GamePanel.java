@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import entity.Entity;
 import entity.Player;
+import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -38,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
 
   Thread gameThread;// keeps the game running
 
+  public SuperObject obj[] = new SuperObject[10];
   public Entity npc[] = new Entity[10];
   public Entity followBot[] = new Entity[20];
 
@@ -58,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable{
   }
 
   public void setupGame() {
+    assSetter.setObject();
     assSetter.setNPC();
     assSetter.setFollowBot();
     gameState = titleState;
@@ -76,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable{
    */
   public void restart() {
     player.setDefaultValues();
+    assSetter.setObject();
     assSetter.setNPC();
     assSetter.setFollowBot();
   }
@@ -113,7 +117,11 @@ public class GamePanel extends JPanel implements Runnable{
       }
       for(int i = 0; i < followBot.length; i++) {
         if (followBot[i] != null) {
-          followBot[i].update();
+          if (followBot[i].alive && !followBot[i].dying) {
+            followBot[i].update();
+          } else if (!followBot[i].alive) {
+            followBot[i] = null;
+          }
         }
       }
     }
@@ -136,6 +144,13 @@ public class GamePanel extends JPanel implements Runnable{
     } else {
     // Tiles
     tileManager.draw(g2d);
+
+    // Objects
+    for (int i = 0; i < obj.length; i++) {
+      if (obj[i] != null) {
+        obj[i].draw(g2d);
+      }
+    }
 
     // NPC
     for (int i = 0; i < npc.length; i++) {
