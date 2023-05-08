@@ -98,7 +98,7 @@ public class UI {
         g2d.drawString(message, x, y);
         messageCount++;
 
-        if (messageCount > 120){
+        if (messageCount > 100){
           messageOn = false;
           messageCount = 0;
         }
