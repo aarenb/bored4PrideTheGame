@@ -50,28 +50,28 @@ public class Player extends Entity{
    * Load player images.
    */
   public void getPlayerImage() {
-    up1 = setup("/player/player_up1", gamePan.tileSize, gamePan.tileSize);
-    up2 = setup("/player/player_up2", gamePan.tileSize, gamePan.tileSize);
-    down1 = setup("/player/player_down1", gamePan.tileSize, gamePan.tileSize);
-    down2 = setup("/player/player_down2", gamePan.tileSize, gamePan.tileSize);
-    left1 = setup("/player/player_left1", gamePan.tileSize, gamePan.tileSize);
-    left2 = setup("/player/player_left2", gamePan.tileSize, gamePan.tileSize);
-    right1 = setup("/player/player_right1", gamePan.tileSize, gamePan.tileSize);
-    right2 = setup("/player/player_right2", gamePan.tileSize, gamePan.tileSize);
+    up1 = setup("/resources/player/player_up1", gamePan.tileSize, gamePan.tileSize);
+    up2 = setup("/resources/player/player_up2", gamePan.tileSize, gamePan.tileSize);
+    down1 = setup("/resources/player/player_down1", gamePan.tileSize, gamePan.tileSize);
+    down2 = setup("/resources/player/player_down2", gamePan.tileSize, gamePan.tileSize);
+    left1 = setup("/resources/player/player_left1", gamePan.tileSize, gamePan.tileSize);
+    left2 = setup("/resources/player/player_left2", gamePan.tileSize, gamePan.tileSize);
+    right1 = setup("/resources/player/player_right1", gamePan.tileSize, gamePan.tileSize);
+    right2 = setup("/resources/player/player_right2", gamePan.tileSize, gamePan.tileSize);
   }
 
   /**
    * Load player attack images.
    */
   public void getPlayerAttackImage() {
-    attackUp1 = setup("/player/player_attack_up1", gamePan.tileSize, gamePan.tileSize * 2);
-    attackUp2 = setup("/player/player_attack_up2", gamePan.tileSize, gamePan.tileSize * 2);
-    attackDown1 = setup("/player/player_attack_down1", gamePan.tileSize, gamePan.tileSize * 2);
-    attackDown2 = setup("/player/player_attack_down2", gamePan.tileSize, gamePan.tileSize * 2);
-    attackLeft1 = setup("/player/player_attack_left1", gamePan.tileSize * 2, gamePan.tileSize);
-    attackLeft2 = setup("/player/player_attack_left2", gamePan.tileSize * 2, gamePan.tileSize);
-    attackRight1 = setup("/player/player_attack_right1", gamePan.tileSize * 2, gamePan.tileSize);
-    attackRight2 = setup("/player/player_attack_right2", gamePan.tileSize * 2, gamePan.tileSize);
+    attackUp1 = setup("/resources/player/player_attack_up1", gamePan.tileSize, gamePan.tileSize * 2);
+    attackUp2 = setup("/resources/player/player_attack_up2", gamePan.tileSize, gamePan.tileSize * 2);
+    attackDown1 = setup("/resources/player/player_attack_down1", gamePan.tileSize, gamePan.tileSize * 2);
+    attackDown2 = setup("/resources/player/player_attack_down2", gamePan.tileSize, gamePan.tileSize * 2);
+    attackLeft1 = setup("/resources/player/player_attack_left1", gamePan.tileSize * 2, gamePan.tileSize);
+    attackLeft2 = setup("/resources/player/player_attack_left2", gamePan.tileSize * 2, gamePan.tileSize);
+    attackRight1 = setup("/resources/player/player_attack_right1", gamePan.tileSize * 2, gamePan.tileSize);
+    attackRight2 = setup("/resources/player/player_attack_right2", gamePan.tileSize * 2, gamePan.tileSize);
   }
 
   public void update() {

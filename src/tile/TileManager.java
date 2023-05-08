@@ -23,7 +23,7 @@ public class TileManager {
     this.gamePan = gamePan;
 
     // Read tile data file
-    InputStream input = getClass().getResourceAsStream("/maps/tilesdata.txt");
+    InputStream input = getClass().getResourceAsStream("/resources/maps/tilesdata.txt");
     BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
     // Get tile names + collission info from file data
@@ -43,7 +43,7 @@ public class TileManager {
     getTileImage();
 
     mapTileNum = new int[gamePan.maxWorldColumn][gamePan.maxWorldRow];
-    loadMap("/maps/mainmap.txt");
+    loadMap("/resources/maps/mainmap.txt");
   }
 
   /**
@@ -72,7 +72,7 @@ public class TileManager {
 
     try {
       tile[index] = new Tile();
-      tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imageName));
+      tile[index].image = ImageIO.read(getClass().getResourceAsStream("/resources/tiles/" + imageName));
       tile[index].image = uTool.scaleImage(tile[index].image, gamePan.tileSize, gamePan.tileSize);
       tile[index].collision = collision;
     } catch (IOException e){
