@@ -11,8 +11,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import object.OBJ_Bit;
 import object.OBJ_Heart;
-import object.SuperObject;
 
 public class UI { 
   GamePanel gamePan;
@@ -32,6 +32,7 @@ public class UI {
   int messageCount = 0;
 
   BufferedImage backgroundImg;
+  BufferedImage bitImg;
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -49,10 +50,14 @@ public class UI {
     }
 
     // Get heart images
-    SuperObject heart = new OBJ_Heart(gamePan);
+    OBJ_Heart heart = new OBJ_Heart(gamePan);
     heart_full = heart.image;
     heart_half = heart.image2;
     heart_empty = heart.image3;
+
+    // Get bit image
+    OBJ_Bit bit = new OBJ_Bit(gamePan);
+    bitImg = bit.image;
 
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
     VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
@@ -222,7 +227,12 @@ public class UI {
   }
 
   public void drawBitCounter() {
-    showMessage(String.valueOf(gamePan.player.bits));
+    g2d.setFont(VCR_OSD_Mono_28);
+    int x = gamePan.screenWidth - gamePan.tileSize;
+    int y = gamePan.tileSize;
+
+    g2d.drawImage(bitImg, x - gamePan.tileSize, y - 35, null);
+    g2d.drawString(String.valueOf(gamePan.player.bits), x, y);
   }
 
   public void drawPlayerHealth() {
