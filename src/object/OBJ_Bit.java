@@ -6,14 +6,13 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 
-public class OBJ_ModSword extends SuperObject {
-
-  public OBJ_ModSword(GamePanel gamePan) {
+public class OBJ_Bit extends SuperObject{
+  public OBJ_Bit(GamePanel gamePan) {
     this.gamePan = gamePan;
-    name = "mod sword";
-    
+    name = "bit";
+
     try {
-      image = ImageIO.read(getClass().getResourceAsStream("/resources/objects/modsword.png"));
+      image = ImageIO.read(getClass().getResourceAsStream("/resources/objects/bit.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }

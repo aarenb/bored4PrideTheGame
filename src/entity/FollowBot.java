@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 import main.GamePanel;
+import object.OBJ_Bit;
 
 public class FollowBot extends Entity {
 
@@ -77,5 +78,18 @@ public class FollowBot extends Entity {
         direction = "left";
     }
   }
-  
+
+  /**
+   * Drops a bit item on the ground where follow bot is.
+   */
+  public void dropItem() {
+    for (int i = 0; i < gamePan.obj.length; i++) {
+      if (gamePan.obj[i] == null) {
+        gamePan.obj[i] = new OBJ_Bit(gamePan);
+        gamePan.obj[i].worldX = worldX;
+        gamePan.obj[i].worldY = worldY;
+        break;
+      }
+    }
+  }
 }

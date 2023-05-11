@@ -18,6 +18,7 @@ public class Player extends Entity{
   BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
   boolean attacking = false;
   boolean hasSword = false;
+  public int bits = 0;
 
   public Player(GamePanel gamePan, KeyHandler keyHand) {
     super(gamePan);
@@ -44,6 +45,8 @@ public class Player extends Entity{
     maxLife = 6; // 3 Hearts
     life = maxLife;
     invinsible = false;
+    hasSword = false;
+    bits = 0;
   }
 
   /**
@@ -276,9 +279,20 @@ public class Player extends Entity{
 
   public void interactObject(int i) {
     if (i != 999) { // If player is touching object
-      gamePan.obj[i] = null;
-      gamePan.ui.showMessage("You picked up a mod sword!");
-      hasSword = true;
+
+      String objName = gamePan.obj[i].name;
+      
+      gamePan.ui.showMessage(("You picked up a " + objName + "!"));
+
+      switch(objName) {
+        case "mod sword": 
+          gamePan.obj[i] = null;
+          hasSword = true;
+          break;
+        case "bit":
+          gamePan.obj[i] = null;
+          bits++;
+      }
     }
   }
 
