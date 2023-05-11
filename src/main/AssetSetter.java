@@ -35,5 +35,9 @@ public class AssetSetter {
     gamePan.obj[1] = new OBJ_Bit(gamePan);
     gamePan.obj[1].worldX = gamePan.tileSize * 24;
     gamePan.obj[1].worldY = gamePan.tileSize * 40;
+    gamePan.obj[2] = new OBJ_Bit(gamePan);
+    gamePan.obj[2].worldX = gamePan.tileSize * 22;
+    gamePan.obj[2].worldY = gamePan.tileSize * 40;
+
   }
 }

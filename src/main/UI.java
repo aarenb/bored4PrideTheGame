@@ -90,6 +90,7 @@ public class UI {
     // Game state
     if (gamePan.gameState == gamePan.playState) {
       drawPlayerHealth();
+      drawBitCounter();
 
       if (messageOn) {
         g2d.setFont(VCR_OSD_Mono_28);
@@ -218,6 +219,10 @@ public class UI {
       g2d.drawString(">", x - gamePan.tileSize, y);
     }
 
+  }
+
+  public void drawBitCounter() {
+    showMessage(String.valueOf(gamePan.player.bits));
   }
 
   public void drawPlayerHealth() {
