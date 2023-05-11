@@ -282,7 +282,7 @@ public class Player extends Entity{
 
       String objName = gamePan.obj[i].name;
       
-      // gamePan.ui.showMessage(("You picked up a " + objName + "!"));
+      gamePan.ui.showMessage(("You picked up a " + objName + "!"));
 
       switch(objName) {
         case "mod sword": 

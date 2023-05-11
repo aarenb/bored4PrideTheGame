@@ -120,6 +120,7 @@ public class UI {
     // Dialogue
     if (gamePan.gameState == gamePan.dialogueState) {
       drawPlayerHealth();
+      drawBitCounter();
       drawDialogueScreen();
     }
 
