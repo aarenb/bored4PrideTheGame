@@ -85,7 +85,7 @@ public class KeyHandler implements KeyListener{
         } else if (gamePan.ui.commandNum == 1) {
           // load game, add later
         } else if (gamePan.ui.commandNum == 2) {
-          // controls screem, add later
+          gamePan.gameState = gamePan.controlsState;
         } else if (gamePan.ui.commandNum == 3) {
           System.exit(0);
         }

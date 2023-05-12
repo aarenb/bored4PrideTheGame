@@ -87,9 +87,14 @@ public class UI {
     g2d.setFont(VCR_OSD_Mono_80);
     g2d.setColor(Color.white);
 
-    // Title scrren
+    // Title screen
     if (gamePan.gameState == gamePan.titleState) {
       drawTitleScreen();
+    }
+
+    // Controls screen
+    if (gamePan.gameState == gamePan.controlsState) {
+      drawControlsScreen();
     }
 
     // Game state
@@ -224,6 +229,10 @@ public class UI {
       g2d.setColor(Color.black);
       g2d.drawString(">", x - gamePan.tileSize, y);
     }
+
+  }
+
+  public void drawControlsScreen() {
 
   }
 
