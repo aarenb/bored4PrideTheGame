@@ -116,7 +116,8 @@ public class GamePanel extends JPanel implements Runnable{
 
       if (delta >= 1) {
         update();
-        repaint();// calls paintComponent
+        drawToTempScreen();
+        drawToScreen();
         delta--;
       }
     }
@@ -200,5 +201,14 @@ public class GamePanel extends JPanel implements Runnable{
     // UI
     ui.draw(g2d);
     }
+  }
+
+  /**
+   * Draws temp screen to the actual screen.
+   */
+  public void drawToScreen(){
+    Graphics g = getGraphics();
+    g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
+    g.dispose();
   }
 }
