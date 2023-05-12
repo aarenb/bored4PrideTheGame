@@ -1,22 +1,20 @@
 package object;
 
-import java.io.IOException;
+import java.awt.Rectangle;
 
-import javax.imageio.ImageIO;
-
+import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_ModSword extends SuperObject {
+public class OBJ_ModSword extends Entity {
 
   public OBJ_ModSword(GamePanel gamePan) {
-    this.gamePan = gamePan;
+    super(gamePan);
     name = "mod sword";
+
+    solidArea = new Rectangle(0, 0, 48, 48);
+    solidAreaDefaultX = solidArea.x;
+    solidAreaDefaultY = solidArea.y;
     
-    try {
-      image = ImageIO.read(getClass().getResourceAsStream("/resources/objects/modsword.png"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    image = uTool.scaleImage(image, gamePan.tileSize, gamePan.tileSize);
+    down1 = setup("/resources/objects/modsword", gamePan.tileSize, gamePan.tileSize);
   }
 }

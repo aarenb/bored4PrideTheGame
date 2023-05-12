@@ -1,21 +1,19 @@
 package object;
 
-import java.io.IOException;
+import java.awt.Rectangle;
 
-import javax.imageio.ImageIO;
-
+import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_Bit extends SuperObject{
+public class OBJ_Bit extends Entity{
   public OBJ_Bit(GamePanel gamePan) {
-    this.gamePan = gamePan;
+    super(gamePan);
     name = "bit";
 
-    try {
-      image = ImageIO.read(getClass().getResourceAsStream("/resources/objects/bit.png"));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    image = uTool.scaleImage(image, gamePan.tileSize, gamePan.tileSize);
+    solidArea = new Rectangle(0, 0, 48, 48);
+    solidAreaDefaultX = solidArea.x;
+    solidAreaDefaultY = solidArea.y;
+
+    down1 = setup("/resources/objects/bit", gamePan.tileSize, gamePan.tileSize);
   }
 }

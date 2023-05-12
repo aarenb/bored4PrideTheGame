@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
 
   Thread gameThread;// keeps the game running
 
-  public SuperObject obj[] = new SuperObject[10];
+  public Entity obj[] = new Entity[10];
   public Entity npc[] = new Entity[10];
   public FollowBot followBot[] = new FollowBot[20];
 
