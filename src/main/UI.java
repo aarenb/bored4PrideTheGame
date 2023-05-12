@@ -272,6 +272,12 @@ public class UI {
     y += 60;
     g2d.drawString(text, x, y);
 
+    g2d.setFont(VCR_OSD_Mono_28);
+    text = "[ESC] - Back";
+    x = 10;
+    y = 30;
+    g2d.drawString(text, x, y);
+
   }
 
   public void drawBitCounter() {
