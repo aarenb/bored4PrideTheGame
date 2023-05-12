@@ -70,7 +70,7 @@ public class UI {
 
   public void loadImage() {
     try {
-      backgroundImg = ImageIO.read(getClass().getResourceAsStream("/resources/titlescreen/prideflag.png"));
+      backgroundImg = ImageIO.read(getClass().getResourceAsStream("/resources/screens/prideflag.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }
