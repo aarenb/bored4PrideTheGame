@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,6 +27,12 @@ public class GamePanel extends JPanel implements Runnable{
   public final int screenWidth = tileSize * maxScreenColumn;// 960px
   public final int screenHeight = tileSize * maxScreenRow;// 576px
   int FPS = 60;
+
+  // Full screen
+  int screenWidth2 = screenWidth;
+  int screenHeight2 = screenHeight;
+  BufferedImage tempScreen;
+  Graphics2D g2d;
 
   // World settings
   public final int maxWorldColumn = 50;
@@ -69,6 +76,9 @@ public class GamePanel extends JPanel implements Runnable{
     assSetter.setNPC();
     assSetter.setFollowBot();
     gameState = titleState;
+
+    tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+    g2d = (Graphics2D)tempScreen.getGraphics();
   }
 
   /**
@@ -137,13 +147,9 @@ public class GamePanel extends JPanel implements Runnable{
   }
 
   /**
-   * Paint component in window
+   * Draws the game to the temp screen.
    */
-  public void paintComponent(Graphics g) {
-    super.paintComponent(g);
-
-    Graphics2D g2d = (Graphics2D)g;
-
+  public void drawToTempScreen() {
     // Title screen
     if (gameState == titleState) {
       ui.draw(g2d);
@@ -194,7 +200,5 @@ public class GamePanel extends JPanel implements Runnable{
     // UI
     ui.draw(g2d);
     }
-
-    g2d.dispose();// saves some memory
   }
 }
