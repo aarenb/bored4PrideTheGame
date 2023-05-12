@@ -57,7 +57,7 @@ public class UI {
 
     // Get bit image
     OBJ_Bit bit = new OBJ_Bit(gamePan);
-    bitImg = bit.image;
+    bitImg = bit.down1;
 
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
     VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
