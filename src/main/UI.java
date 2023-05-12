@@ -236,6 +236,42 @@ public class UI {
   public void drawControlsScreen() {
     // Background image
     g2d.drawImage(backgroundImg2, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
+
+    // Display title
+    g2d.setFont(VCR_OSD_Mono_58);
+    String text = "Controls";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize * 3;
+
+    // Shadow
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 5, y + 5);
+
+    // Main text
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+
+    g2d.setFont(VCR_OSD_Mono_40);
+    text = "Walk = W/A/S/D or arrow keys";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize * 2;
+    g2d.drawString(text, x, y);
+
+    text = "Talk to NPC = enter";
+    x = getXforCenterTxt(text);
+    y += 60;
+    g2d.drawString(text, x, y);
+
+    text = "Attack = enter";
+    x = getXforCenterTxt(text);
+    y += 60;
+    g2d.drawString(text, x, y);
+
+    text = "Pause/settings = escape";
+    x = getXforCenterTxt(text);
+    y += 60;
+    g2d.drawString(text, x, y);
+
   }
 
   public void drawBitCounter() {
