@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.KeyHandler;
 import main.UtilityTool;
 
 public class Entity {
@@ -110,7 +111,7 @@ public class Entity {
   public void move() {
 
     // If no collision entity can move
-    if (!collisionOn) {
+    if (!collisionOn && !gamePan.keyHand.enterPressed) {
       switch (direction) {
       case "up":
         worldY = worldY - speed;// move entity up
