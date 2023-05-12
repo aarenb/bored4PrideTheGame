@@ -31,7 +31,7 @@ public class UI {
   public String message = "";
   int messageCount = 0;
 
-  BufferedImage backgroundImg;
+  BufferedImage backgroundImg1, backgroundImg2;
   BufferedImage bitImg;
 
   public UI(GamePanel gamePan) {
@@ -70,7 +70,8 @@ public class UI {
 
   public void loadImage() {
     try {
-      backgroundImg = ImageIO.read(getClass().getResourceAsStream("/resources/screens/prideflag.png"));
+      backgroundImg1 = ImageIO.read(getClass().getResourceAsStream("/resources/screens/prideflag.png"));
+      backgroundImg2 = ImageIO.read(getClass().getResourceAsStream("/resources/screens/transflag.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -137,7 +138,7 @@ public class UI {
 
   public void drawTitleScreen() {
     // Background image
-    g2d.drawImage(backgroundImg, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
+    g2d.drawImage(backgroundImg1, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
 
     // Display title
     g2d.setFont(VCR_OSD_Mono_58);
@@ -233,7 +234,8 @@ public class UI {
   }
 
   public void drawControlsScreen() {
-
+    // Background image
+    g2d.drawImage(backgroundImg2, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
   }
 
   public void drawBitCounter() {
