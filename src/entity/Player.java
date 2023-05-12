@@ -81,7 +81,7 @@ public class Player extends Entity{
 
     if (attacking && hasSword) {
       attacking();
-    } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed) {
+    } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed || keyHand.enterPressed) {
       if (keyHand.upPressed) {
         direction = "up";
       } else if (keyHand.downPressed) {
@@ -102,6 +102,7 @@ public class Player extends Entity{
       interactObject(objIndex);
 
       move();
+      keyHand.enterPressed = false;
     }
     // Add to invinsibleCounter & set invinisible back to false after a while if invinsible is true
     if (invinsible) {
