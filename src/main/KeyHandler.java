@@ -85,10 +85,14 @@ public class KeyHandler implements KeyListener{
         } else if (gamePan.ui.commandNum == 1) {
           // load game, add later
         } else if (gamePan.ui.commandNum == 2) {
-          // controls screem, add later
+          gamePan.gameState = gamePan.controlsState;
         } else if (gamePan.ui.commandNum == 3) {
           System.exit(0);
         }
+      }
+    } else if (gamePan.gameState == gamePan.controlsState) { // Controls screen:
+      if (code == KeyEvent.VK_ESCAPE) {
+        gamePan.gameState = gamePan.titleState;
       }
     } else if (gamePan.gameState == gamePan.gameOverState) { // Game over:
       // If user presses W key / up arrow
