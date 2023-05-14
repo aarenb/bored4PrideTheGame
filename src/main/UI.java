@@ -333,8 +333,24 @@ public class UI {
   
     int x = getXforCenterTxt(text);
     int y = gamePan.screenHeight / 2;
-
     g2d.drawString(text, x, y);
+
+    g2d.setFont(VCR_OSD_Mono_28);
+    text = "options";
+    x = getXforCenterTxt(text);
+    y += 60;
+    g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
+
+    text = "title screen";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize;
+    g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
   }
 
   public void drawDialogueScreen() {
