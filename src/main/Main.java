@@ -4,11 +4,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Main {
+
+  public static JFrame window;
   public static void main(String[] args){
-    JFrame window = new JFrame();
+    window = new JFrame();
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     window.setResizable(false); // cant resize window
     window.setTitle("Bored4Pride: The Game");
+    window.setUndecorated(true);
 
     // Set custom icon
     ImageIcon icon = new ImageIcon(Main.class.getResource("/resources/icon.png"));

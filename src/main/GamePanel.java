@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -21,11 +24,17 @@ public class GamePanel extends JPanel implements Runnable{
   final int ogTileSize = 16;
   final int scale = 3;
   public final int tileSize = ogTileSize * scale;
-  public final int maxScreenColumn = 16;
+  public final int maxScreenColumn = 20;
   public final int maxScreenRow = 12;
-  public final int screenWidth = tileSize * maxScreenColumn;// 768px
+  public final int screenWidth = tileSize * maxScreenColumn;// 960px
   public final int screenHeight = tileSize * maxScreenRow;// 576px
   int FPS = 60;
+
+  // Full screen
+  int screenWidth2 = screenWidth;
+  int screenHeight2 = screenHeight;
+  BufferedImage tempScreen;
+  Graphics2D g2d;
 
   // World settings
   public final int maxWorldColumn = 50;
@@ -69,6 +78,23 @@ public class GamePanel extends JPanel implements Runnable{
     assSetter.setNPC();
     assSetter.setFollowBot();
     gameState = titleState;
+
+    tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+    g2d = (Graphics2D)tempScreen.getGraphics();
+
+    setFullScreen();
+  }
+
+  public void setFullScreen() {
+
+    // Get monitor screen information
+    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    GraphicsDevice gd = ge.getDefaultScreenDevice();
+    gd.setFullScreenWindow(Main.window);
+
+    screenWidth2 = Main.window.getWidth();
+    screenHeight2 = Main.window.getHeight();
+
   }
 
   /**
@@ -106,7 +132,8 @@ public class GamePanel extends JPanel implements Runnable{
 
       if (delta >= 1) {
         update();
-        repaint();// calls paintComponent
+        drawToTempScreen();
+        drawToScreen();
         delta--;
       }
     }
@@ -137,13 +164,9 @@ public class GamePanel extends JPanel implements Runnable{
   }
 
   /**
-   * Paint component in window
+   * Draws the game to the temp screen.
    */
-  public void paintComponent(Graphics g) {
-    super.paintComponent(g);
-
-    Graphics2D g2d = (Graphics2D)g;
-
+  public void drawToTempScreen() {
     // Title screen
     if (gameState == titleState) {
       ui.draw(g2d);
@@ -194,7 +217,14 @@ public class GamePanel extends JPanel implements Runnable{
     // UI
     ui.draw(g2d);
     }
+  }
 
-    g2d.dispose();// saves some memory
+  /**
+   * Draws temp screen to the actual screen.
+   */
+  public void drawToScreen(){
+    Graphics g = getGraphics();
+    g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
+    g.dispose();
   }
 }

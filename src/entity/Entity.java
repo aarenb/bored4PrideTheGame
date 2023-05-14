@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
-import main.KeyHandler;
 import main.UtilityTool;
 
 public class Entity {
