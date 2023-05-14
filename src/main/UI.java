@@ -344,7 +344,7 @@ public class UI {
     g2d.drawString(text, x, y);
 
     g2d.setFont(VCR_OSD_Mono_28);
-    text = "options";
+    text = "Settings";
     x = getXforCenterTxt(text);
     y += 60;
     g2d.drawString(text, x, y);
@@ -352,7 +352,7 @@ public class UI {
       g2d.drawString(">", x - 30, y + 3);
     }
 
-    text = "title screen";
+    text = "Title screen";
     x = getXforCenterTxt(text);
     y += gamePan.tileSize;
     g2d.drawString(text, x, y);
@@ -372,11 +372,17 @@ public class UI {
     int x = getXforCenterTxt(text);
     int y = gamePan.tileSize * 5;
     g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
 
     text = "Back";
     x = getXforCenterTxt(text);
     y += gamePan.tileSize;
     g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
   }
 
   public void drawDialogueScreen() {
