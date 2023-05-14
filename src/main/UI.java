@@ -120,7 +120,15 @@ public class UI {
     // Paused
     if (gamePan.gameState == gamePan.pauseState) {
       drawPlayerHealth();
+      drawBitCounter();
       drawPauseMenu();
+    }
+
+    // Options
+    if (gamePan.gameState == gamePan.optionsState) {
+      drawPlayerHealth();
+      drawBitCounter();
+      drawOptionsMenu();
     }
 
     // Dialogue
@@ -328,11 +336,11 @@ public class UI {
     g2d.setColor(new Color(0, 0, 0, 120));
     g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
 
+    g2d.setFont(VCR_OSD_Mono_58);
     g2d.setColor(Color.white);
     String text = "PAUSED";
-  
     int x = getXforCenterTxt(text);
-    int y = gamePan.screenHeight / 2;
+    int y = gamePan.tileSize * 5;
     g2d.drawString(text, x, y);
 
     g2d.setFont(VCR_OSD_Mono_28);
@@ -351,6 +359,24 @@ public class UI {
     if (commandNum == 1) {
       g2d.drawString(">", x - 30, y + 3);
     }
+  }
+
+  public void drawOptionsMenu() {
+    // Make whole screen darker
+    g2d.setColor(new Color(0, 0, 0, 120));
+    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+
+    g2d.setFont(VCR_OSD_Mono_28);
+    g2d.setColor(Color.white);
+    String text = "Full screen";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize * 5;
+    g2d.drawString(text, x, y);
+
+    text = "Back";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize;
+    g2d.drawString(text, x, y);
   }
 
   public void drawDialogueScreen() {
