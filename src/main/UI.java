@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -30,6 +31,7 @@ public class UI {
   public boolean messageOn = false;
   public String message = "";
   int messageCount = 0;
+  public boolean resetMessageOn = false;
 
   BufferedImage backgroundImg1, backgroundImg2;
   BufferedImage bitImg;
@@ -120,7 +122,18 @@ public class UI {
     // Paused
     if (gamePan.gameState == gamePan.pauseState) {
       drawPlayerHealth();
+      drawBitCounter();
       drawPauseMenu();
+    }
+
+    // Options
+    if (gamePan.gameState == gamePan.optionsState) {
+      drawPlayerHealth();
+      drawBitCounter();
+      drawOptionsMenu();
+      if (resetMessageOn) {
+        resetMessage();
+      }
     }
 
     // Dialogue
@@ -328,11 +341,74 @@ public class UI {
     g2d.setColor(new Color(0, 0, 0, 120));
     g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
 
+    g2d.setFont(VCR_OSD_Mono_58);
     g2d.setColor(Color.white);
     String text = "PAUSED";
-  
     int x = getXforCenterTxt(text);
-    int y = gamePan.screenHeight / 2;
+    int y = gamePan.tileSize * 5;
+    g2d.drawString(text, x, y);
+
+    g2d.setFont(VCR_OSD_Mono_28);
+    text = "Settings";
+    x = getXforCenterTxt(text);
+    y += 60;
+    g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
+
+    text = "Title screen";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize;
+    g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
+  }
+
+  public void drawOptionsMenu() {
+    // Make whole screen darker
+    g2d.setColor(new Color(0, 0, 0, 120));
+    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+
+    g2d.setFont(VCR_OSD_Mono_28);
+    g2d.setColor(Color.white);
+    String text = "Full screen";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize * 5;
+    g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
+
+    text = "Back";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize;
+    g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
+
+    // Full screen check box
+    x = gamePan.tileSize * 12 + 20;
+    y = gamePan.tileSize * 4 + 27;
+    g2d.setStroke(new BasicStroke(3));
+    g2d.drawRect(x, y, 20, 20);
+    if (gamePan.fullScreenOn) {
+      text = "X";
+      y = gamePan.tileSize * 5;
+      x += 2;
+      g2d.drawString(text, x, y);
+    }
+
+    gamePan.config.saveConfig();
+  }
+
+  public void resetMessage() {
+    g2d.setFont(VCR_OSD_Mono_28);
+    String text = "Restart the game to implement change";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize;
 
     g2d.drawString(text, x, y);
   }

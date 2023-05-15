@@ -56,6 +56,62 @@ public class KeyHandler implements KeyListener{
       if (code == KeyEvent.VK_ESCAPE) {
         gamePan.gameState = gamePan.playState;
       }
+
+      // If user presses W key / up arrow
+      if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+        gamePan.ui.commandNum--;
+        if (gamePan.ui.commandNum < 0) {
+          gamePan.ui.commandNum = 1;
+        }
+      }
+
+      // If user presses S key / down arrow
+      if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+        gamePan.ui.commandNum++;
+        if (gamePan.ui.commandNum > 1) {
+          gamePan.ui.commandNum = 0;
+        }
+      }
+
+      // If user presses enter
+      if (code == KeyEvent.VK_ENTER) {
+        if (gamePan.ui.commandNum == 0) {
+          gamePan.gameState = gamePan.optionsState;
+        } else if (gamePan.ui.commandNum == 1) {
+          gamePan.ui.commandNum = 0;
+          gamePan.gameState = gamePan.titleState;
+        }
+      }
+    } else if (gamePan.gameState == gamePan.optionsState) { // Options:
+      // If user presses W key / up arrow
+      if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+        gamePan.ui.commandNum--;
+        if (gamePan.ui.commandNum < 0) {
+          gamePan.ui.commandNum = 1;
+        }
+      }
+
+      // If user presses S key / down arrow
+      if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+        gamePan.ui.commandNum++;
+        if (gamePan.ui.commandNum > 1) {
+          gamePan.ui.commandNum = 0;
+        }
+      }
+
+      if (code == KeyEvent.VK_ENTER) {
+        if (gamePan.ui.commandNum == 0) {
+          if (!gamePan.fullScreenOn) {
+            gamePan.fullScreenOn = true;
+          } else if (gamePan.fullScreenOn) {
+            gamePan.fullScreenOn = false;
+          }
+          gamePan.ui.resetMessageOn = true;
+        } else if (gamePan.ui.commandNum == 1) {
+          gamePan.ui.commandNum = 0;
+          gamePan.gameState = gamePan.pauseState;
+        }
+      }
     } else if (gamePan.gameState == gamePan.dialogueState) { // Dialogue:
       // If user press enter
       if (code == KeyEvent.VK_ENTER) {
@@ -114,7 +170,7 @@ public class KeyHandler implements KeyListener{
       // If user press enter
       if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
-          gamePan.restart(); // TODO: Change this later?
+          gamePan.restart();
           gamePan.gameState = gamePan.playState;
         } else if (gamePan.ui.commandNum == 1) {
           gamePan.restart();

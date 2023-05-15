@@ -35,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable{
   int screenHeight2 = screenHeight;
   BufferedImage tempScreen;
   Graphics2D g2d;
+  public boolean fullScreenOn = true;
 
   // World settings
   public final int maxWorldColumn = 50;
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
   AssetSetter assSetter = new AssetSetter(this);
   public Player player = new Player(this, keyHand);
   public UI ui = new UI(this);
+  Config config = new Config(this);
 
   Thread gameThread;// keeps the game running
 
@@ -64,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
   public final int dialogueState = 3;
   public final int gameOverState = 4;
   public final int controlsState = 5;
+  public final int optionsState = 6;
 
   public GamePanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -82,7 +85,9 @@ public class GamePanel extends JPanel implements Runnable{
     tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
     g2d = (Graphics2D)tempScreen.getGraphics();
 
-    setFullScreen();
+    if (fullScreenOn) {
+      setFullScreen();
+    }
   }
 
   public void setFullScreen() {
