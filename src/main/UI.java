@@ -31,6 +31,7 @@ public class UI {
   public boolean messageOn = false;
   public String message = "";
   int messageCount = 0;
+  public boolean resetMessageOn = false;
 
   BufferedImage backgroundImg1, backgroundImg2;
   BufferedImage bitImg;
@@ -130,6 +131,9 @@ public class UI {
       drawPlayerHealth();
       drawBitCounter();
       drawOptionsMenu();
+      if (resetMessageOn) {
+        resetMessage();
+      }
     }
 
     // Dialogue
@@ -396,6 +400,17 @@ public class UI {
       x += 2;
       g2d.drawString(text, x, y);
     }
+
+    gamePan.config.saveConfig();
+  }
+
+  public void resetMessage() {
+    g2d.setFont(VCR_OSD_Mono_28);
+    String text = "Restart the game to implement change";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize;
+
+    g2d.drawString(text, x, y);
   }
 
   public void drawDialogueScreen() {

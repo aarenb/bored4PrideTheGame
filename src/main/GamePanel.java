@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
   AssetSetter assSetter = new AssetSetter(this);
   public Player player = new Player(this, keyHand);
   public UI ui = new UI(this);
+  Config config = new Config(this);
 
   Thread gameThread;// keeps the game running
 
@@ -84,7 +85,9 @@ public class GamePanel extends JPanel implements Runnable{
     tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
     g2d = (Graphics2D)tempScreen.getGraphics();
 
-    setFullScreen();
+    if (fullScreenOn) {
+      setFullScreen();
+    }
   }
 
   public void setFullScreen() {

@@ -106,6 +106,7 @@ public class KeyHandler implements KeyListener{
           } else if (gamePan.fullScreenOn) {
             gamePan.fullScreenOn = false;
           }
+          gamePan.ui.resetMessageOn = true;
         } else if (gamePan.ui.commandNum == 1) {
           gamePan.ui.commandNum = 0;
           gamePan.gameState = gamePan.pauseState;
