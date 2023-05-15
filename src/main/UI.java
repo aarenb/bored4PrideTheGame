@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -382,6 +383,18 @@ public class UI {
     g2d.drawString(text, x, y);
     if (commandNum == 1) {
       g2d.drawString(">", x - 30, y + 3);
+    }
+
+    // Full screen check box
+    x = gamePan.tileSize * 12 + 20;
+    y = gamePan.tileSize * 4 + 27;
+    g2d.setStroke(new BasicStroke(3));
+    g2d.drawRect(x, y, 20, 20);
+    if (gamePan.fullScreenOn) {
+      text = "X";
+      y = gamePan.tileSize * 5;
+      x += 2;
+      g2d.drawString(text, x, y);
     }
   }
 

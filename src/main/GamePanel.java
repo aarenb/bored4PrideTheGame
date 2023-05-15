@@ -35,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable{
   int screenHeight2 = screenHeight;
   BufferedImage tempScreen;
   Graphics2D g2d;
+  public boolean fullScreenOn = true;
 
   // World settings
   public final int maxWorldColumn = 50;

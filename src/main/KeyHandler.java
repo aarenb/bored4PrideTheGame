@@ -101,7 +101,11 @@ public class KeyHandler implements KeyListener{
 
       if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
-          // Fullscreen option
+          if (!gamePan.fullScreenOn) {
+            gamePan.fullScreenOn = true;
+          } else if (gamePan.fullScreenOn) {
+            gamePan.fullScreenOn = false;
+          }
         } else if (gamePan.ui.commandNum == 1) {
           gamePan.ui.commandNum = 0;
           gamePan.gameState = gamePan.pauseState;
