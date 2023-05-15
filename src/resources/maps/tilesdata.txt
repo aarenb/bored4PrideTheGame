@@ -95,7 +95,7 @@ true
 prideflag_right2.png
 false
 transflag_left1.png
-true
+false
 transflag_left2.png
 false
 transflag_right1.png
@@ -105,4 +105,6 @@ false
 u_fence1.png
 true
 u_fence2.png
+true
+u_tree.png
 true
