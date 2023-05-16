@@ -116,3 +116,9 @@ v_sussy3.png
 true
 v_sussy4.png
 true
+w_quiplash1.png
+true
+w_quiplash2.png
+true
+w_quiplash3.png
+true
