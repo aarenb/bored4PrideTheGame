@@ -31,6 +31,8 @@ public class NPC_Alex extends Entity {
    * Sets the NPC dialogue
    */
   public void setWords() {
+    words[0] = "Hello! My outfit? I'm obviously dressed as a chess \nrook piece. My name is AlexJC by the way. You here \nto fix the follow bot issue?";
+    words[1] = "I really just want to play some jackbox man, so \nget rid of them fast please.";
   }
 
 }
