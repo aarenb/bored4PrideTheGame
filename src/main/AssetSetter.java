@@ -1,6 +1,7 @@
 package main;
 
 import entity.FollowBot;
+import entity.NPC_Alex;
 import entity.NPC_Grass;
 import entity.NPC_Wongy;
 import object.OBJ_Bit;
@@ -24,6 +25,10 @@ public class AssetSetter {
     gamePan.npc[1] = new NPC_Grass(gamePan);
     gamePan.npc[1].worldX = gamePan.tileSize * 7;
     gamePan.npc[1].worldY = gamePan.tileSize * 11;
+
+    gamePan.npc[2] = new NPC_Alex(gamePan);
+    gamePan.npc[2].worldX = gamePan.tileSize * 44;
+    gamePan.npc[2].worldY = gamePan.tileSize * 7;
   }
 
   /**
