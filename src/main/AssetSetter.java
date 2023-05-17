@@ -12,12 +12,18 @@ public class AssetSetter {
     this.gamePan = gamePan;
   }
 
+/**
+ * Places NPCs on the game map.
+ */
   public void setNPC() {
     gamePan.npc[0] = new NPC_Wongy(gamePan);
     gamePan.npc[0].worldX = gamePan.tileSize * 18;
     gamePan.npc[0].worldY = gamePan.tileSize * 32;
   }
 
+  /**
+   * Places follow bots on the game map.
+   */
   public void setFollowBot() {
     gamePan.followBot[0] = new FollowBot(gamePan);
     gamePan.followBot[0].worldX = gamePan.tileSize * 20;
@@ -60,6 +66,9 @@ public class AssetSetter {
     gamePan.followBot[9].worldY = gamePan.tileSize * 3;
   }
 
+  /**
+   * Places objects on the game map.
+   */
   public void setObject() {
     gamePan.obj[0] = new OBJ_ModSword(gamePan);
     gamePan.obj[0].worldX = gamePan.tileSize * 29;
