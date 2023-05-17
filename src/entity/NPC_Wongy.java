@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 import main.GamePanel;
 
-public class NPC_Wongy extends Entity{
+public class NPC_Wongy extends Entity {
   public NPC_Wongy(GamePanel gamePan) {
     super(gamePan);
 
@@ -34,7 +34,7 @@ public class NPC_Wongy extends Entity{
   }
 
   /**
-   * Setsthe NPC dialogue
+   * Sets the NPC dialogue
    */
   public void setWords() {
     words[0] = "*oh no oh no...*\nOh hi there! Finally someone to help! I'm Wongy. \nGrass sent you, right?";
