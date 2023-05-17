@@ -151,7 +151,7 @@ public class KeyHandler implements KeyListener{
       if (code == KeyEvent.VK_ESCAPE) {
         gamePan.gameState = gamePan.titleState;
       }
-    } else if (gamePan.gameState == gamePan.gameOverState) { // Game over:
+    } else if (gamePan.gameState == gamePan.gameOverState || gamePan.gameState == gamePan.winState) { // Game over/win:
       // If user presses W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
         gamePan.ui.commandNum--;
