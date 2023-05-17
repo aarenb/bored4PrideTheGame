@@ -16,6 +16,7 @@ public class NPC_Grass extends Entity {
     solidAreaDefaultY = solidArea.y;
 
     getImage();
+    setWords();
   }
 
   /**
@@ -30,7 +31,9 @@ public class NPC_Grass extends Entity {
    * Sets the NPC dialogue
    */
   public void setWords() {
-    words[0] = "Oh, hello! ";
+    words[0] = "GAHHHH!!! These sussy follow bots are \nEVERYWHERE! Please please go away you sussy \nbots!!!";
+    words[1] = "Oh we spoke on the phone right? I'm Grass! I was \nmid setting up the among us event when these \nbots just came out of nowhere!";
+    words[2] = "Now ban them all, and please hurry!! \n*oh god so sussy..*";
   }
   
 }
