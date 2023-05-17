@@ -42,7 +42,7 @@ public class Player extends Entity{
     speed = 4;
     direction = "down";
 
-    maxLife = 6; // 3 Hearts
+    maxLife = 10; // 5 Hearts
     life = maxLife;
     invinsible = false;
     hasSword = false;
@@ -107,7 +107,7 @@ public class Player extends Entity{
     // Add to invinsibleCounter & set invinisible back to false after a while if invinsible is true
     if (invinsible) {
       invinsibleCounter++;
-      if (invinsibleCounter > 60) {
+      if (invinsibleCounter > 80) {
         invinsible = false;
         invinsibleCounter = 0;
       }
