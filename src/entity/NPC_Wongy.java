@@ -33,6 +33,9 @@ public class NPC_Wongy extends Entity{
     right2 = setup("/resources/npc/wongy/wongy_right", gamePan.tileSize, gamePan.tileSize);
   }
 
+  /**
+   * Setsthe NPC dialogue
+   */
   public void setWords() {
     words[0] = "*oh no oh no...*\nOh hi there! Finally someone to help! I'm Wongy. \nGrass sent you, right?";
     words[1] = "Bored4Pride starts in a matter of hours, but \neverything is so messed up! Please say you \ncan help!!";

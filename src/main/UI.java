@@ -415,14 +415,14 @@ public class UI {
 
   public void drawDialogueScreen() {
     // Draw the window
-    int x = gamePan.tileSize*2;
+    int x = gamePan.tileSize*4;
     int y = gamePan.tileSize/2;
-    int width = gamePan.screenWidth - (gamePan.tileSize * 4);
+    int width = gamePan.screenWidth - (gamePan.tileSize * 8);
     int height = gamePan.tileSize * 4;
     drawLilWindow(x, y, width, height);
 
     // Draw words
-    x += 20;
+    x += 30;
     y += gamePan.tileSize;
     g2d.setFont(Pixeltype_36);
     g2d.setColor(Color.white);

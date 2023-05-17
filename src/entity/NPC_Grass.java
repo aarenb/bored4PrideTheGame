@@ -25,5 +25,12 @@ public class NPC_Grass extends Entity {
     down1 = setup("/resources/npc/grass/grass_down1", gamePan.tileSize, gamePan.tileSize);
     down2 = setup("/resources/npc/grass/grass_down2", gamePan.tileSize, gamePan.tileSize);
   }
+
+  /**
+   * Sets the NPC dialogue
+   */
+  public void setWords() {
+    words[0] = "Oh, hello! ";
+  }
   
 }
