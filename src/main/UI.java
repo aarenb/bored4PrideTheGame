@@ -32,6 +32,7 @@ public class UI {
   public String message = "";
   int messageCount = 0;
   public boolean resetMessageOn = false;
+  public boolean loadGameMessageOn = false;
 
   BufferedImage backgroundImg1, backgroundImg2;
   BufferedImage bitImg;
@@ -93,15 +94,21 @@ public class UI {
     // Title screen
     if (gamePan.gameState == gamePan.titleState) {
       drawTitleScreen();
+
+      if (loadGameMessageOn) {
+        loadGameMessage();
+      }
     }
 
     // Controls screen
     if (gamePan.gameState == gamePan.controlsState) {
+      loadGameMessageOn = false;
       drawControlsScreen();
     }
 
     // Game state
     if (gamePan.gameState == gamePan.playState) {
+      loadGameMessageOn = false;
       drawPlayerHealth();
       drawBitCounter();
 
@@ -501,6 +508,16 @@ public class UI {
     if (commandNum == 1) {
       g2d.drawString(">", x - gamePan.tileSize, y);
     }
+  }
+
+  public void loadGameMessage() {
+    g2d.setColor(Color.white);
+    g2d.setFont(VCR_OSD_Mono_28);
+    String text = "Load game feature coming soon";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize;
+
+    g2d.drawString(text, x, y);
   }
 
   /**

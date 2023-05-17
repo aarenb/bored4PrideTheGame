@@ -137,13 +137,17 @@ public class KeyHandler implements KeyListener{
       // If user press enter
       if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
+          // New game
           gamePan.restart();
           gamePan.gameState = gamePan.playState;
         } else if (gamePan.ui.commandNum == 1) {
-          // load game, add later
+          // Load game
+          gamePan.ui.loadGameMessageOn = true;
         } else if (gamePan.ui.commandNum == 2) {
+          // Controls
           gamePan.gameState = gamePan.controlsState;
         } else if (gamePan.ui.commandNum == 3) {
+          // Quit
           System.exit(0);
         }
       }
