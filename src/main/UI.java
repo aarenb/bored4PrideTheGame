@@ -474,10 +474,33 @@ public class UI {
     g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
 
     g2d.setColor(Color.white);
-    String text = "You win!";
+    String text = "YOU WIN!";
     int x = getXforCenterTxt(text);
     int y = gamePan.tileSize * 5;
     g2d.drawString(text, x, y);
+
+    g2d.setFont(VCR_OSD_Mono_28);
+    x = gamePan.screenWidth / 2;
+    y += 60;
+    g2d.drawImage(bitImg, x - gamePan.tileSize, y - 35, null);
+    g2d.drawString(String.valueOf(gamePan.player.bits), x, y);
+
+    g2d.setFont(VCR_OSD_Mono_40);
+    text = "RESTART GAME";
+    x = getXforCenterTxt(text);
+    y += 60;
+    g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
+    text = "TITLE SCREEN";
+    x = getXforCenterTxt(text);
+    y += 55;
+    g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
   }
 
   /**
