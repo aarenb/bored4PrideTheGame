@@ -79,7 +79,7 @@ public class Player extends Entity{
 
   public void update() {
 
-    if (attacking && hasSword) {
+    if (attacking) {
       attacking();
     } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed || keyHand.enterPressed) {
       if (keyHand.upPressed) {
@@ -115,6 +115,7 @@ public class Player extends Entity{
 
     if (life <= 0) { // If the player has no health
       gamePan.gameState = gamePan.gameOverState;
+      gamePan.playSE(6);
     }
   }
 
@@ -254,11 +255,13 @@ public class Player extends Entity{
   public void damageFollowBot(int i) {
     if (i != 999) {
       if (!gamePan.followBot[i].invinsible) {
+        gamePan.playSE(8);
         gamePan.followBot[i].life -= 1;
         gamePan.followBot[i].invinsible = true;
         gamePan.followBot[i].damageReaction();
 
         if (gamePan.followBot[i].life <= 0) {
+          gamePan.playSE(9);
           gamePan.followBot[i].dying = true;
         }
       }
@@ -269,11 +272,15 @@ public class Player extends Entity{
 
     if (gamePan.keyHand.enterPressed) {
       if (i != 999) { // if player is touching npc
+        gamePan.playSE(10);
         gamePan.gameState = gamePan.dialogueState;
         gamePan.npc[i].speak();
       } else {
         // If enter key is pressed but player isn't touching npc
-          attacking = true;
+          if (hasSword) {
+            attacking = true;
+            gamePan.playSE(4);
+          }
       }
     }
   }
@@ -287,10 +294,12 @@ public class Player extends Entity{
 
       switch(objName) {
         case "mod sword": 
+          gamePan.playSE(7);
           gamePan.obj[i] = null;
           hasSword = true;
           break;
         case "bit":
+          gamePan.playSE(3);
           gamePan.obj[i] = null;
           bits++;
       }
@@ -304,6 +313,7 @@ public class Player extends Entity{
   public void interactFollowBot(int i) {
     if (i != 999) { // if player is touching follow bot
       if (!invinsible) {
+        gamePan.playSE(5);
         life -= 1;
         invinsible = true;
       }

@@ -40,8 +40,6 @@ public class GamePanel extends JPanel implements Runnable{
   // World settings
   public final int maxWorldColumn = 50;
   public final int maxWorldRow = 50;
-  public final int worldWidth = tileSize * maxWorldColumn;
-  public final int worldHeight = tileSize * maxWorldRow;
 
   TileManager tileManager = new TileManager(this);
   public KeyHandler keyHand = new KeyHandler(this);
@@ -50,6 +48,8 @@ public class GamePanel extends JPanel implements Runnable{
   public Player player = new Player(this, keyHand);
   public UI ui = new UI(this);
   Config config = new Config(this);
+  Sound music = new Sound();
+  Sound SE = new Sound();
 
   Thread gameThread;// keeps the game running
 
@@ -89,6 +89,7 @@ public class GamePanel extends JPanel implements Runnable{
     if (fullScreenOn) {
       setFullScreen();
     }
+    playMusic(0);
   }
 
   public void setFullScreen() {
@@ -240,5 +241,20 @@ public class GamePanel extends JPanel implements Runnable{
     Graphics g = getGraphics();
     g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
     g.dispose();
+  }
+
+  public void playMusic(int i) {
+    music.setFile(i);
+    music.play();
+    music.loop();
+  }
+
+  public void stopMusic() {
+    music.stop();
+  }
+
+  public void playSE(int i) {
+    SE.setFile(i);
+    SE.play();
   }
 }

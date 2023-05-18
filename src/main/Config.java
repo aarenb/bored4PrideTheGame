@@ -26,6 +26,14 @@ public class Config {
       } else if (!gamePan.fullScreenOn) {
         writer.write("Off");
       }
+      writer.newLine();
+
+      // Music volume
+      writer.write(String.valueOf(gamePan.music.volumeScale));
+      writer.newLine();
+
+      // Sound effects volume
+      writer.write(String.valueOf(gamePan.SE.volumeScale));
 
       writer.close();
     } catch (IOException e) {
@@ -48,6 +56,14 @@ public class Config {
       } else if (s.equals("Off")) {
         gamePan.fullScreenOn = false;
       }
+
+      // Music volume
+      s = reader.readLine();
+      gamePan.music.volumeScale = Integer.parseInt(s);
+
+      // Sound effects volume
+      s = reader.readLine();
+      gamePan.SE.volumeScale = Integer.parseInt(s);
 
       reader.close();
     } catch (IOException e) {
