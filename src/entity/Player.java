@@ -115,6 +115,7 @@ public class Player extends Entity{
 
     if (life <= 0) { // If the player has no health
       gamePan.gameState = gamePan.gameOverState;
+      gamePan.playSE(6);
     }
   }
 
