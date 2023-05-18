@@ -393,11 +393,17 @@ public class UI {
       g2d.drawString(">", x - 30, y + 3);
     }
 
-    text = "Back";
-    x = getXforCenterTxt(text);
+    text = "Music";
     y += gamePan.tileSize;
     g2d.drawString(text, x, y);
     if (commandNum == 1) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
+
+    text = "Back";
+    y += gamePan.tileSize;
+    g2d.drawString(text, x, y);
+    if (commandNum == 2) {
       g2d.drawString(">", x - 30, y + 3);
     }
 
@@ -412,6 +418,13 @@ public class UI {
       x += 2;
       g2d.drawString(text, x, y);
     }
+
+    // Music volume
+    x = gamePan.tileSize * 12 + 20;
+    y = gamePan.tileSize * 5 + 27;
+    g2d.drawRect(x, y, 120, 24);
+    int volumeWidth = 24 * gamePan.music.volumeScale;
+    g2d.fillRect(x, y, volumeWidth, 24);
 
     gamePan.config.saveConfig();
   }
