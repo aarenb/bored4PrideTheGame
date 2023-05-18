@@ -23,14 +23,10 @@ public class NPC_Wongy extends Entity {
    * Load NPC images.
    */
   public void getImage() {
-    up1 = setup("/resources/npc/wongy/wongy_up", gamePan.tileSize, gamePan.tileSize);
-    up2 = setup("/resources/npc/wongy/wongy_up", gamePan.tileSize, gamePan.tileSize);
-    down1 = setup("/resources/npc/wongy/wongy_down", gamePan.tileSize, gamePan.tileSize);
-    down2 = setup("/resources/npc/wongy/wongy_down", gamePan.tileSize, gamePan.tileSize);
-    left1 = setup("/resources/npc/wongy/wongy_left", gamePan.tileSize, gamePan.tileSize);
-    left2 = setup("/resources/npc/wongy/wongy_left", gamePan.tileSize, gamePan.tileSize); // TODO: maybe remove left & right?? not currently used
-    right1 = setup("/resources/npc/wongy/wongy_right", gamePan.tileSize, gamePan.tileSize);
-    right2 = setup("/resources/npc/wongy/wongy_right", gamePan.tileSize, gamePan.tileSize);
+    up1 = setup("/resources/npc/wongy/wongy_up1", gamePan.tileSize, gamePan.tileSize);
+    up2 = setup("/resources/npc/wongy/wongy_up2", gamePan.tileSize, gamePan.tileSize);
+    down1 = setup("/resources/npc/wongy/wongy_down1", gamePan.tileSize, gamePan.tileSize);
+    down2 = setup("/resources/npc/wongy/wongy_down2", gamePan.tileSize, gamePan.tileSize);
   }
 
   /**
