@@ -112,7 +112,7 @@ public class Entity {
   public void move() {
 
     // If no collision entity can move
-    if (!collisionOn && !gamePan.keyHand.enterPressed) {
+    if (!collisionOn && !gamePan.keyHand.spacePressed) {
       switch (direction) {
       case "up":
         worldY = worldY - speed;// move entity up

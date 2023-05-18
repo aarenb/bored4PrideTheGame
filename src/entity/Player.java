@@ -81,7 +81,7 @@ public class Player extends Entity{
 
     if (attacking) {
       attacking();
-    } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed || keyHand.enterPressed) {
+    } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed || keyHand.spacePressed) {
       if (keyHand.upPressed) {
         direction = "up";
       } else if (keyHand.downPressed) {
@@ -102,7 +102,7 @@ public class Player extends Entity{
       interactObject(objIndex);
 
       move();
-      keyHand.enterPressed = false;
+      keyHand.spacePressed = false;
     }
     // Add to invinsibleCounter & set invinisible back to false after a while if invinsible is true
     if (invinsible) {
@@ -270,7 +270,7 @@ public class Player extends Entity{
 
   public void interactNPC(int i) {
 
-    if (gamePan.keyHand.enterPressed) {
+    if (gamePan.keyHand.spacePressed) {
       if (i != 999) { // if player is touching npc
         gamePan.playSE(10);
         gamePan.gameState = gamePan.dialogueState;
