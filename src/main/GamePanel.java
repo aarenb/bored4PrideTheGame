@@ -186,6 +186,11 @@ public class GamePanel extends JPanel implements Runnable{
     if (gameState == titleState) {
       ui.draw(g2d);
     } else {
+
+    // Set background color (for outside map)
+    g2d.setColor(new Color(32, 132, 52));
+    g2d.fillRect(0, 0, screenWidth, screenHeight);
+
     // Tiles
     tileManager.draw(g2d);
 
