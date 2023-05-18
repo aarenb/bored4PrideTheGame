@@ -80,6 +80,8 @@ public class KeyHandler implements KeyListener{
         } else if (gamePan.ui.commandNum == 1) {
           gamePan.ui.commandNum = 0;
           gamePan.gameState = gamePan.titleState;
+          gamePan.stopMusic();
+          gamePan.playMusic(0);
         }
       }
     } else if (gamePan.gameState == gamePan.optionsState) { // Options:
@@ -140,6 +142,8 @@ public class KeyHandler implements KeyListener{
           // New game
           gamePan.restart();
           gamePan.gameState = gamePan.playState;
+          gamePan.stopMusic();
+          gamePan.playMusic(1);
         } else if (gamePan.ui.commandNum == 1) {
           // Load game
           gamePan.ui.loadGameMessageOn = true;
@@ -180,6 +184,8 @@ public class KeyHandler implements KeyListener{
         } else if (gamePan.ui.commandNum == 1) {
           gamePan.restart();
           gamePan.gameState = gamePan.titleState;
+          gamePan.stopMusic();
+          gamePan.playMusic(0);
           gamePan.ui.commandNum = 0;
         }
       }
