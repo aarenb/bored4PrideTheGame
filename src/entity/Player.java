@@ -308,6 +308,7 @@ public class Player extends Entity{
   public void interactFollowBot(int i) {
     if (i != 999) { // if player is touching follow bot
       if (!invinsible) {
+        gamePan.playSE(5);
         life -= 1;
         invinsible = true;
       }
