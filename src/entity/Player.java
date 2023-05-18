@@ -79,7 +79,7 @@ public class Player extends Entity{
 
   public void update() {
 
-    if (attacking && hasSword) {
+    if (attacking) {
       attacking();
     } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed || keyHand.enterPressed) {
       if (keyHand.upPressed) {
@@ -273,7 +273,10 @@ public class Player extends Entity{
         gamePan.npc[i].speak();
       } else {
         // If enter key is pressed but player isn't touching npc
-          attacking = true;
+          if (hasSword) {
+            attacking = true;
+            gamePan.playSE(4);
+          }
       }
     }
   }
