@@ -291,6 +291,7 @@ public class Player extends Entity{
           hasSword = true;
           break;
         case "bit":
+        gamePan.playSE(3);
           gamePan.obj[i] = null;
           bits++;
       }
