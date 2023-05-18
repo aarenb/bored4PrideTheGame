@@ -11,12 +11,19 @@ public class Sound {
   Clip clip;
   URL soundURL[] = new URL[30];
   FloatControl fc;
-  int volumeScale = 3;
+  int volumeScale;
   float volume;
   
   public Sound() {
+    // Music
     soundURL[0] = getClass().getResource("/resources/sound/Voyage.wav");
     soundURL[1] = getClass().getResource("/resources/sound/PixelParty.wav");
+
+    // Sound effects
+    soundURL[2] = getClass().getResource("/resources/sound/cursor.wav");
+    soundURL[3] = getClass().getResource("/resources/sound/bit.wav");
+    soundURL[4] = getClass().getResource("/resources/sound/sword.wav");
+    soundURL[5] = getClass().getResource("/resources/sound/oof.wav");
   }
 
   /**

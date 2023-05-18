@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
   public UI ui = new UI(this);
   Config config = new Config(this);
   Sound music = new Sound();
+  Sound SE = new Sound();
 
   Thread gameThread;// keeps the game running
 
@@ -89,6 +90,8 @@ public class GamePanel extends JPanel implements Runnable{
       setFullScreen();
     }
 
+    music.volumeScale = 2;
+    SE.volumeScale = 3;
     playMusic(0);
   }
 
@@ -254,7 +257,7 @@ public class GamePanel extends JPanel implements Runnable{
   }
 
   public void playSE(int i) {
-    music.setFile(i);
-    music.play();
+    SE.setFile(i);
+    SE.play();
   }
 }
