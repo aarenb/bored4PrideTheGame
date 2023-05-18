@@ -255,11 +255,13 @@ public class Player extends Entity{
   public void damageFollowBot(int i) {
     if (i != 999) {
       if (!gamePan.followBot[i].invinsible) {
+        gamePan.playSE(8);
         gamePan.followBot[i].life -= 1;
         gamePan.followBot[i].invinsible = true;
         gamePan.followBot[i].damageReaction();
 
         if (gamePan.followBot[i].life <= 0) {
+          gamePan.playSE(9);
           gamePan.followBot[i].dying = true;
         }
       }
@@ -270,6 +272,7 @@ public class Player extends Entity{
 
     if (gamePan.keyHand.enterPressed) {
       if (i != 999) { // if player is touching npc
+        gamePan.playSE(10);
         gamePan.gameState = gamePan.dialogueState;
         gamePan.npc[i].speak();
       } else {
