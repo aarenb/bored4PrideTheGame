@@ -291,11 +291,12 @@ public class Player extends Entity{
 
       switch(objName) {
         case "mod sword": 
+          gamePan.playSE(7);
           gamePan.obj[i] = null;
           hasSword = true;
           break;
         case "bit":
-        gamePan.playSE(3);
+          gamePan.playSE(3);
           gamePan.obj[i] = null;
           bits++;
       }

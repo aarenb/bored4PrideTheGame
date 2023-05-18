@@ -25,6 +25,7 @@ public class Sound {
     soundURL[4] = getClass().getResource("/resources/sound/sword.wav");
     soundURL[5] = getClass().getResource("/resources/sound/oof.wav");
     soundURL[6] = getClass().getResource("/resources/sound/gameOver.wav");
+    soundURL[7] = getClass().getResource("/resources/sound/sparkle.wav");
   }
 
   /**
