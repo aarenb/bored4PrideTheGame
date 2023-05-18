@@ -400,15 +400,22 @@ public class UI {
       g2d.drawString(">", x - 30, y + 3);
     }
 
-    text = "Back";
+    text = "Sound effects";
     y += gamePan.tileSize;
     g2d.drawString(text, x, y);
     if (commandNum == 2) {
       g2d.drawString(">", x - 30, y + 3);
     }
 
+    text = "Back";
+    y += gamePan.tileSize;
+    g2d.drawString(text, x, y);
+    if (commandNum == 3) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
+
     // Full screen check box
-    x = gamePan.tileSize * 12 + 20;
+    x = gamePan.tileSize * 13;
     y = gamePan.tileSize * 4 + 27;
     g2d.setStroke(new BasicStroke(3));
     g2d.drawRect(x, y, 20, 20);
@@ -420,10 +427,16 @@ public class UI {
     }
 
     // Music volume
-    x = gamePan.tileSize * 12 + 20;
+    x = gamePan.tileSize * 13;
     y = gamePan.tileSize * 5 + 27;
     g2d.drawRect(x, y, 120, 24);
     int volumeWidth = 24 * gamePan.music.volumeScale;
+    g2d.fillRect(x, y, volumeWidth, 24);
+
+    // Sound effect volume
+    y += gamePan.tileSize;
+    g2d.drawRect(x, y, 120, 24);
+    volumeWidth = 24 * gamePan.SE.volumeScale;
     g2d.fillRect(x, y, volumeWidth, 24);
 
     gamePan.config.saveConfig();

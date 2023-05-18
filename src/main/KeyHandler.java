@@ -92,7 +92,7 @@ public class KeyHandler implements KeyListener{
         gamePan.playSE(2);
         gamePan.ui.commandNum--;
         if (gamePan.ui.commandNum < 0) {
-          gamePan.ui.commandNum = 2;
+          gamePan.ui.commandNum = 3;
         }
       }
 
@@ -100,7 +100,7 @@ public class KeyHandler implements KeyListener{
       if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
         gamePan.playSE(2);
         gamePan.ui.commandNum++;
-        if (gamePan.ui.commandNum > 2) {
+        if (gamePan.ui.commandNum > 3) {
           gamePan.ui.commandNum = 0;
         }
       }
@@ -116,7 +116,7 @@ public class KeyHandler implements KeyListener{
             gamePan.fullScreenOn = false;
           }
           gamePan.ui.resetMessageOn = true;
-        } else if (gamePan.ui.commandNum == 2) {
+        } else if (gamePan.ui.commandNum == 3) {
           // Title screen:
           gamePan.ui.commandNum = 0;
           gamePan.gameState = gamePan.pauseState;
@@ -130,17 +130,23 @@ public class KeyHandler implements KeyListener{
           gamePan.music.volumeScale--;
           gamePan.music.checkVolume();
         }
+        if (gamePan.ui.commandNum == 2 && gamePan.SE.volumeScale > 0) {
+          gamePan.SE.volumeScale--;
+          gamePan.playSE(2);
+        }
       }
 
       // if user press D key / right arrow
       if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
-        if (gamePan.ui.commandNum == 1) {
           if (gamePan.ui.commandNum == 1 && gamePan.music.volumeScale < 5) {
             gamePan.playSE(2);
             gamePan.music.volumeScale++;
             gamePan.music.checkVolume();
           }
-        }
+          if (gamePan.ui.commandNum == 2 && gamePan.SE.volumeScale < 5) {
+            gamePan.SE.volumeScale++;
+            gamePan.playSE(2);
+          }
       }
     } else if (gamePan.gameState == gamePan.dialogueState) { // Dialogue:
       // If user press enter
