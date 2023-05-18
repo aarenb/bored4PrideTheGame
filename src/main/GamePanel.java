@@ -89,9 +89,6 @@ public class GamePanel extends JPanel implements Runnable{
     if (fullScreenOn) {
       setFullScreen();
     }
-
-    music.volumeScale = 2;
-    SE.volumeScale = 3;
     playMusic(0);
   }
 
