@@ -3,6 +3,9 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Represents a key handler.
+ */
 public class KeyHandler implements KeyListener{
   GamePanel gamePan;
   public boolean upPressed, downPressed, leftPressed, rightPressed, spacePressed;
@@ -20,7 +23,8 @@ public class KeyHandler implements KeyListener{
   public void keyPressed(KeyEvent e) {
     int code = e.getKeyCode();
 
-    if (gamePan.gameState == gamePan.playState) { // Play state:
+    // PLAY STATE:
+    if (gamePan.gameState == gamePan.playState) {
       // if user press W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP ) {
         upPressed = true;
@@ -50,8 +54,8 @@ public class KeyHandler implements KeyListener{
       if (code == KeyEvent.VK_SPACE) {
         spacePressed = true;
       }
-
-    } else if (gamePan.gameState == gamePan.pauseState) { // Pause:
+      // PAUSE:
+    } else if (gamePan.gameState == gamePan.pauseState) {
       // if user press escape key [unpause]
       if (code == KeyEvent.VK_ESCAPE) {
         gamePan.gameState = gamePan.playState;
@@ -86,7 +90,8 @@ public class KeyHandler implements KeyListener{
           gamePan.playMusic(0);
         }
       }
-    } else if (gamePan.gameState == gamePan.optionsState) { // Options:
+      // OPTIONS:
+    } else if (gamePan.gameState == gamePan.optionsState) {
       // If user presses W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
         gamePan.playSE(2);
@@ -148,12 +153,14 @@ public class KeyHandler implements KeyListener{
             gamePan.playSE(2);
           }
       }
-    } else if (gamePan.gameState == gamePan.dialogueState) { // Dialogue:
+      // DIALOGUE:
+    } else if (gamePan.gameState == gamePan.dialogueState) {
       // If user press space bar
       if (code == KeyEvent.VK_SPACE) {
         gamePan.gameState = gamePan.playState;
       }
-    } else if (gamePan.gameState == gamePan.titleState) { // Title screen:
+      // TITLE SCREEN:
+    } else if (gamePan.gameState == gamePan.titleState) { 
       // If user presses W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
         gamePan.playSE(2);
@@ -191,11 +198,13 @@ public class KeyHandler implements KeyListener{
           System.exit(0);
         }
       }
-    } else if (gamePan.gameState == gamePan.controlsState) { // Controls screen:
+      // CONTROLS SCREEN:
+    } else if (gamePan.gameState == gamePan.controlsState) {
       if (code == KeyEvent.VK_ESCAPE) {
         gamePan.gameState = gamePan.titleState;
       }
-    } else if (gamePan.gameState == gamePan.gameOverState || gamePan.gameState == gamePan.winState) { // Game over/win:
+      // GAME OVER/WIN:
+    } else if (gamePan.gameState == gamePan.gameOverState || gamePan.gameState == gamePan.winState) {
       // If user presses W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
         gamePan.playSE(2);
@@ -254,6 +263,7 @@ public class KeyHandler implements KeyListener{
       rightPressed = false;
     }
 
+    // if user press space bar
     if (code == KeyEvent.VK_SPACE) {
       spacePressed = false;
     }
