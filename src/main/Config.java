@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Represents the configuration. 
+ */
 public class Config {
   GamePanel gamePan;
 
@@ -43,6 +46,7 @@ public class Config {
 
   /**
    * Loads game settings from config file.
+   *
    * @throws IOException
    */
   public void loadConfig() {

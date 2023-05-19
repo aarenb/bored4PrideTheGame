@@ -10,14 +10,15 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
 import javax.swing.JPanel;
-
 import entity.Entity;
 import entity.FollowBot;
 import entity.Player;
 import tile.TileManager;
 
+/**
+ * Represents a game panel.
+ */
 public class GamePanel extends JPanel implements Runnable{
   
   // Screen settings
@@ -53,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable{
 
   Thread gameThread;// keeps the game running
 
+  // Entities
   public Entity obj[] = new Entity[10];
   public Entity npc[] = new Entity[10];
   public FollowBot followBot[] = new FollowBot[20];
@@ -77,6 +79,9 @@ public class GamePanel extends JPanel implements Runnable{
     this.setFocusable(true);// can be set "focused" to get key input
   }
 
+  /**
+   * Sets up the game.
+   */
   public void setupGame() {
     assSetter.setObject();
     assSetter.setNPC();
@@ -92,7 +97,10 @@ public class GamePanel extends JPanel implements Runnable{
     playMusic(0);
   }
 
-  public void setFullScreen() {
+  /**
+   * Sets game to fullscreen.
+   */
+  private void setFullScreen() {
 
     // Get monitor screen information
     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -146,6 +154,9 @@ public class GamePanel extends JPanel implements Runnable{
     }
   }
 
+  /**
+   * Updates game.
+   */
   public void update () {
     if (gameState == playState) {
       player.update();
@@ -166,6 +177,7 @@ public class GamePanel extends JPanel implements Runnable{
       }
     }
 
+    // Checks if all follow bots are dead
     Boolean empty = true;
 
     for (FollowBot bot : followBot){
@@ -248,16 +260,27 @@ public class GamePanel extends JPanel implements Runnable{
     g.dispose();
   }
 
+  /**
+   * Starts playing music.
+   * @param i Index of sound file.
+   */
   public void playMusic(int i) {
     music.setFile(i);
     music.play();
     music.loop();
   }
 
+  /**
+   * Stops playing music.
+   */
   public void stopMusic() {
     music.stop();
   }
 
+  /**
+   * Plays sound effect.
+   * @param i Index of sound file.
+   */
   public void playSE(int i) {
     SE.setFile(i);
     SE.play();
