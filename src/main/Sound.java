@@ -7,6 +7,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+/**
+ * Represents a sound object.
+ */
 public class Sound {
   Clip clip;
   URL soundURL[] = new URL[30];
@@ -33,6 +36,7 @@ public class Sound {
 
   /**
    * Opens an audio file.
+   *
    * @param int Index of audio file.
    */
     public void setFile(int i) {
@@ -47,18 +51,30 @@ public class Sound {
       }
   }
 
+  /**
+   * Plays sound.
+   */
   public void play() {
     clip.start();
   }
 
+  /*
+   * Loops audio file.
+   */
   public void loop() {
     clip.loop(Clip.LOOP_CONTINUOUSLY);
   }
 
+  /**
+   * Stops playing sound.
+   */
   public void stop() {
     clip.stop();
   }
 
+  /**
+   * Checks volume settings and sets volume accordingly.
+   */
   public void checkVolume() {
     switch (volumeScale) {
       case 0:
