@@ -19,6 +19,9 @@ public class UI {
   GamePanel gamePan;
   Graphics2D g2d;
   BufferedImage heart_full, heart_half, heart_empty;
+  BufferedImage backgroundImg1, backgroundImg2;
+  BufferedImage bitImg;
+
   Font VCR_OSD_Mono;
   Font VCR_OSD_Mono_80;
   Font VCR_OSD_Mono_58;
@@ -26,16 +29,14 @@ public class UI {
   Font VCR_OSD_Mono_28;
   Font Pixeltype;
   Font Pixeltype_36;
+
   public String currentWords = "";
   public int commandNum = 0;
-  public boolean messageOn = false;
   public String message = "";
   int messageCount = 0;
+  public boolean messageOn = false;
   public boolean resetMessageOn = false;
   public boolean loadGameMessageOn = false;
-
-  BufferedImage backgroundImg1, backgroundImg2;
-  BufferedImage bitImg;
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -62,6 +63,7 @@ public class UI {
     OBJ_Bit bit = new OBJ_Bit(gamePan);
     bitImg = bit.down1;
 
+    // Set size of fonts
     VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
     VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
     VCR_OSD_Mono_40 = VCR_OSD_Mono.deriveFont(40f);
@@ -71,6 +73,9 @@ public class UI {
     loadImage();
   }
 
+  /**
+   * Loads background images.
+   */
   public void loadImage() {
     try {
       backgroundImg1 = ImageIO.read(getClass().getResourceAsStream("/resources/screens/prideflag.png"));
@@ -80,18 +85,13 @@ public class UI {
     }
   }
 
-  public void showMessage(String message) {
-    this.message = message;
-    messageOn = true;
-  }
-
   public void draw(Graphics2D g2d) {
     this.g2d = g2d;
 
     g2d.setFont(VCR_OSD_Mono_80);
     g2d.setColor(Color.white);
 
-    // Title screen
+    // TITLE SCREEN:
     if (gamePan.gameState == gamePan.titleState) {
       drawTitleScreen();
 
@@ -100,18 +100,21 @@ public class UI {
       }
     }
 
-    // Controls screen
+    // CONTROLS SCREEN:
     if (gamePan.gameState == gamePan.controlsState) {
       loadGameMessageOn = false;
       drawControlsScreen();
     }
 
-    // Game state
+    // GAME:
     if (gamePan.gameState == gamePan.playState) {
       loadGameMessageOn = false;
       drawPlayerHealth();
       drawBitCounter();
 
+      /**
+       * If showMessage has been called, display the message for a short while.
+       */
       if (messageOn) {
         g2d.setFont(VCR_OSD_Mono_28);
         int x = getXforCenterTxt(message);
@@ -126,14 +129,14 @@ public class UI {
       }
     }
 
-    // Paused
+    // PAUSED:
     if (gamePan.gameState == gamePan.pauseState) {
       drawPlayerHealth();
       drawBitCounter();
       drawPauseMenu();
     }
 
-    // Options
+    // OPTIONS:
     if (gamePan.gameState == gamePan.optionsState) {
       drawPlayerHealth();
       drawBitCounter();
@@ -143,25 +146,28 @@ public class UI {
       }
     }
 
-    // Dialogue
+    // DIALOGUE:
     if (gamePan.gameState == gamePan.dialogueState) {
       drawPlayerHealth();
       drawBitCounter();
       drawDialogueScreen();
     }
 
-    // Game over
+    // GAME OVER:
     if (gamePan.gameState == gamePan.gameOverState) {
       drawGameOver();
     }
 
-    // Win
+    // WIN:
     if (gamePan.gameState == gamePan.winState) {
       drawWinScreen();
     }
   }
 
-  public void drawTitleScreen() {
+  /**
+   * Draws the title screen.
+   */
+  private void drawTitleScreen() {
     // Background image
     g2d.drawImage(backgroundImg1, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
 
@@ -170,12 +176,10 @@ public class UI {
     String text = "Bored4Pride: The Game";
     int x = getXforCenterTxt(text);
     int y = gamePan.tileSize * 3;
-
-    // Shadow
+    // Shadow:
     g2d.setColor(Color.black);
     g2d.drawString(text, x + 5, y + 5);
-
-    // Main text
+    // Main text:
     g2d.setColor(Color.white);
     g2d.drawString(text, x, y);
 
@@ -256,6 +260,7 @@ public class UI {
       g2d.drawString(">", x - gamePan.tileSize, y);
     }
 
+    // Game version
     g2d.setFont(VCR_OSD_Mono_28);
     g2d.setColor(Color.white);
     x = gamePan.screenWidth - gamePan.tileSize * 3 + - 20;
@@ -264,7 +269,10 @@ public class UI {
     g2d.drawString(text, x, y);
   }
 
-  public void drawControlsScreen() {
+  /**
+   * Draws controls info screen.
+   */
+  private void drawControlsScreen() {
     // Background image
     g2d.drawImage(backgroundImg2, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
 
@@ -273,15 +281,14 @@ public class UI {
     String text = "Controls";
     int x = getXforCenterTxt(text);
     int y = gamePan.tileSize * 3;
-
-    // Shadow
+    // Shadow:
     g2d.setColor(Color.white);
     g2d.drawString(text, x + 5, y + 5);
-
-    // Main text
+    // Main text:
     g2d.setColor(Color.black);
     g2d.drawString(text, x, y);
 
+    // Controls
     g2d.setFont(VCR_OSD_Mono_40);
     text = "Walk = W/A/S/D or arrow keys";
     x = getXforCenterTxt(text);
@@ -311,53 +318,12 @@ public class UI {
 
   }
 
-  public void drawBitCounter() {
-    g2d.setFont(VCR_OSD_Mono_28);
-    int x = gamePan.screenWidth - gamePan.tileSize;
-    int y = gamePan.tileSize;
 
-    g2d.drawImage(bitImg, x - gamePan.tileSize, y - 35, null);
-    g2d.drawString(String.valueOf(gamePan.player.bits), x, y);
-  }
-
-  public void drawPlayerHealth() {
-    int x = 5;
-    int y = 5;
-    int i = 0;
-
-    if (gamePan.player.invinsible == true) {
-      g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f)); // Sets heart opacity
-    }
-
-    // Draw blank hearts (max health)
-    while (i < gamePan.player.maxLife / 2) {
-      g2d.drawImage(heart_empty, x, y, null);
-      i++;
-      x += gamePan.tileSize;
-    }
-
-    // Reset
-    x = 5;
-    i = 0;
-
-    while (i < gamePan.player.life) {
-      g2d.drawImage(heart_half, x, y, null);
-      i++;
-      if (i < gamePan.player.life) {
-        g2d.drawImage(heart_full, x, y, null); // draw over with full heart
-      }
-      i++;
-      x += gamePan.tileSize;
-    }
-
-    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); // Reset opacity
-
-  }
-
-  public void drawPauseMenu() {
-    // Make whole screen darker
-    g2d.setColor(new Color(0, 0, 0, 120));
-    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+  /**
+   * Draws the pause menu.
+   */
+  private void drawPauseMenu() {
+    darkenScreen();
 
     g2d.setFont(VCR_OSD_Mono_58);
     g2d.setColor(Color.white);
@@ -366,6 +332,7 @@ public class UI {
     int y = gamePan.tileSize * 5;
     g2d.drawString(text, x, y);
 
+    // Menu
     g2d.setFont(VCR_OSD_Mono_28);
     text = "Settings";
     x = getXforCenterTxt(text);
@@ -384,10 +351,11 @@ public class UI {
     }
   }
 
-  public void drawOptionsMenu() {
-    // Make whole screen darker
-    g2d.setColor(new Color(0, 0, 0, 120));
-    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+  /**
+   * Draws the options menu.
+   */
+  private void drawOptionsMenu() {
+    darkenScreen();
 
     g2d.setFont(VCR_OSD_Mono_28);
     g2d.setColor(Color.white);
@@ -432,14 +400,14 @@ public class UI {
       g2d.drawString(text, x, y);
     }
 
-    // Music volume
+    // Music volume bar
     x = gamePan.tileSize * 13;
     y = gamePan.tileSize * 5 + 27;
     g2d.drawRect(x, y, 120, 24);
-    int volumeWidth = 24 * gamePan.music.volumeScale;
+    int volumeWidth = 24 * gamePan.music.volumeScale; 
     g2d.fillRect(x, y, volumeWidth, 24);
 
-    // Sound effect volume
+    // Sound effect volume bar
     y += gamePan.tileSize;
     g2d.drawRect(x, y, 120, 24);
     volumeWidth = 24 * gamePan.SE.volumeScale;
@@ -448,16 +416,10 @@ public class UI {
     gamePan.config.saveConfig();
   }
 
-  public void resetMessage() {
-    g2d.setFont(VCR_OSD_Mono_28);
-    String text = "Restart the game to implement change";
-    int x = getXforCenterTxt(text);
-    int y = gamePan.tileSize;
-
-    g2d.drawString(text, x, y);
-  }
-
-  public void drawDialogueScreen() {
+  /**
+   * Draws a dialogue window with NPC dialogue.
+   */
+  private void drawDialogueScreen() {
     // Draw the window
     int x = gamePan.tileSize*4;
     int y = gamePan.tileSize/2;
@@ -477,10 +439,11 @@ public class UI {
     }
   }
 
-  public void drawGameOver() {
-    // Make whole screen darker
-    g2d.setColor(new Color(0, 0, 0, 160));
-    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+  /**
+   * Draws game over screen.
+   */
+  private void drawGameOver() {
+    darkenScreen();
 
     g2d.setColor(Color.white);
     String text = "GAME OVER";
@@ -488,6 +451,7 @@ public class UI {
     int y = gamePan.tileSize * 5;
     g2d.drawString(text, x, y);
 
+    // Menu
     g2d.setFont(VCR_OSD_Mono_40);
     text = "TRY AGAIN";
     x = getXforCenterTxt(text);
@@ -507,10 +471,11 @@ public class UI {
     
   }
 
-  public void drawWinScreen() {
-    // Make whole screen darker
-    g2d.setColor(new Color(0, 0, 0, 160));
-    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+  /**
+   * Draws the win screen.
+   */
+  private void drawWinScreen() {
+    darkenScreen();
 
     g2d.setColor(Color.white);
     String text = "YOU WIN!";
@@ -518,12 +483,14 @@ public class UI {
     int y = gamePan.tileSize * 5;
     g2d.drawString(text, x, y);
 
+    // Amount of bits collected
     g2d.setFont(VCR_OSD_Mono_28);
     x = gamePan.screenWidth / 2;
     y += 60;
     g2d.drawImage(bitImg, x - gamePan.tileSize, y - 35, null);
     g2d.drawString(String.valueOf(gamePan.player.bits), x, y);
 
+    // Menu
     g2d.setFont(VCR_OSD_Mono_40);
     text = "RESTART GAME";
     x = getXforCenterTxt(text);
@@ -542,7 +509,81 @@ public class UI {
     }
   }
 
-  public void loadGameMessage() {
+  /**
+   * Draws the bit counter in upper right corner.
+   */
+  private void drawBitCounter() {
+    g2d.setFont(VCR_OSD_Mono_28);
+    int x = gamePan.screenWidth - gamePan.tileSize;
+    int y = gamePan.tileSize;
+
+    g2d.drawImage(bitImg, x - gamePan.tileSize, y - 35, null);
+    g2d.drawString(String.valueOf(gamePan.player.bits), x, y);
+  }
+
+  /**
+   * Draws the player's health in form of hearts.
+   */
+  private void drawPlayerHealth() {
+    int x = 5;
+    int y = 5;
+    int i = 0;
+
+    if (gamePan.player.invinsible == true) {
+      g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f)); // Sets heart opacity
+    }
+
+    // Draw blank hearts (max health)
+    while (i < gamePan.player.maxLife / 2) {
+      g2d.drawImage(heart_empty, x, y, null);
+      i++;
+      x += gamePan.tileSize;
+    }
+
+    // Reset
+    x = 5;
+    i = 0;
+
+    // Draw player's health
+    while (i < gamePan.player.life) {
+      g2d.drawImage(heart_half, x, y, null);
+      i++;
+      if (i < gamePan.player.life) {
+        g2d.drawImage(heart_full, x, y, null);
+      }
+      i++;
+      x += gamePan.tileSize;
+    }
+
+    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); // Reset opacity
+
+  }
+
+  /**
+   * Displays message about restarting the game after changing settings.
+   */
+  private void resetMessage() {
+    g2d.setFont(VCR_OSD_Mono_28);
+    String text = "Restart the game to implement change";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize;
+
+    g2d.drawString(text, x, y);
+  }
+
+  /**
+   * Shows message on screen.
+   * @param message
+   */
+  public void showMessage(String message) {
+    this.message = message;
+    messageOn = true;
+  }
+
+  /**
+   * Displays message about load game feature.
+   */
+  private void loadGameMessage() {
     g2d.setColor(Color.white);
     g2d.setFont(VCR_OSD_Mono_28);
     String text = "Load game feature coming soon";
@@ -553,13 +594,21 @@ public class UI {
   }
 
   /**
+   * Makes the entire screen darker.
+   */
+  private void darkenScreen() {
+    g2d.setColor(new Color(0, 0, 0, 120));
+    g2d.fillRect(0, 0, gamePan.screenWidth, gamePan.screenHeight);
+  }
+
+  /**
    * Draws a smaller window on the screen
    * @param x Top and bottom of window
    * @param y Left and right of window
    * @param width Window width
    * @param height Window height
    */
-  public void drawLilWindow(int x,int y, int width, int height) {
+  private void drawLilWindow(int x,int y, int width, int height) {
     Color c = new Color(0, 0, 0);
     g2d.setColor(c);
     g2d.fillRoundRect(x, y, width, height, 35, 35);
@@ -570,7 +619,7 @@ public class UI {
    * @param text The text to display
    * @return The x coordinate
    */
-  public int getXforCenterTxt(String text) {
+  private int getXforCenterTxt(String text) {
     int length = (int)g2d.getFontMetrics().getStringBounds(text, g2d).getWidth(); // get length of text
     int x = gamePan.screenWidth / 2 - length / 2;
     return x;
