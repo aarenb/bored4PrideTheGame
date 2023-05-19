@@ -3,6 +3,9 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
+/**
+ * Represents a heart object.
+ */
 public class OBJ_Heart extends Entity{
   
   public OBJ_Heart(GamePanel gamePan) {

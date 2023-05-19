@@ -1,10 +1,12 @@
 package object;
 
 import java.awt.Rectangle;
-
 import entity.Entity;
 import main.GamePanel;
 
+/**
+ * Represents a mod sword object.
+ */
 public class OBJ_ModSword extends Entity {
 
   public OBJ_ModSword(GamePanel gamePan) {
