@@ -2,7 +2,6 @@ package entity;
 
 import java.awt.Rectangle;
 import java.util.Random;
-
 import main.GamePanel;
 import object.OBJ_Bit;
 
@@ -25,7 +24,7 @@ public class FollowBot extends Entity {
   }
 
   /**
-   * Load follow bot images
+   * Loads follow bot images.
    */
   public void getImage() {
     up1 = setup("/resources/followbot/followbot_up1", gamePan.tileSize, gamePan.tileSize);
@@ -39,7 +38,7 @@ public class FollowBot extends Entity {
   }
 
   /**
-   * Make follow bot change direction randomly
+   * Makes follow bot change direction randomly.
    */
   public void setAction() {
     antiSpinCounter++;
@@ -62,6 +61,9 @@ public class FollowBot extends Entity {
     }
   }
 
+  /**
+   * Makes follow bot move towards player after being hit.
+   */
   public void damageReaction() {
     antiSpinCounter = 0;
     switch (gamePan.player.direction) {

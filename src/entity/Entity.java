@@ -169,7 +169,7 @@ public class Entity {
   /**
    * Moves entity if there is no collision.
    */
-  public void move() {
+  protected void move() {
     // If no collision entity can move
     if (!collisionOn && !gamePan.keyHand.spacePressed) {
       switch (direction) {
@@ -202,7 +202,7 @@ public class Entity {
   /**
    * Sets NPC Dialogue words for UI and moves NPC towards player if NPC can move up.
    */
-  public void speak() {
+  protected void speak() {
 
     if (up1 != null) {
       switch (gamePan.player.direction) {
@@ -265,7 +265,7 @@ public class Entity {
    * @param g2d Graphics2D to draw with.
    * @param alphaValue The alpha value to change entity to.
    */
-  public void changeAlpha(Graphics2D g2d, float alphaValue){
+  private void changeAlpha(Graphics2D g2d, float alphaValue){
     g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
   }
 
@@ -276,7 +276,7 @@ public class Entity {
  * @param height Height to scale image to.
  * @return
  */
-  public BufferedImage setup(String imagePath, int width, int height) {
+  protected BufferedImage setup(String imagePath, int width, int height) {
     UtilityTool uTool = new UtilityTool();
     BufferedImage image = null;
 
