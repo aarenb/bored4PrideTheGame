@@ -172,7 +172,7 @@ public class GamePanel extends JPanel implements Runnable{
           if (followBot[i].alive && !followBot[i].dying) {
             followBot[i].update();
           } else if (!followBot[i].alive) {
-            followBot[i].dropItem();
+            followBot[i].checkDrop();
             followBot[i] = null;
           }
         }

@@ -336,6 +336,14 @@ public class Player extends Entity{
           gamePan.playMusic(11);
           gamePan.obj[i] = null;
           break;
+        case "heart":
+          gamePan.playSE(7); // TODO: change this?
+          life += 2;
+          if (life > maxLife) {
+            life = maxLife;
+          }
+          gamePan.obj[i] = null;
+          break;
       }
     }
   }
