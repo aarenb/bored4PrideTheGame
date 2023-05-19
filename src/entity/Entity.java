@@ -6,9 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import main.GamePanel;
 import main.UtilityTool;
 
@@ -17,36 +15,33 @@ public class Entity {
   public int worldX, worldY;
   public int speed;
   public int type;// 0 = player, 1 = npc, 2 = follow bot
-  public boolean alive = true;
-  public boolean dying = false;
-  boolean hpBarOn = false;
-
-  public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-  public String direction = "down";
-
-  // For objects
-  public BufferedImage image, image2, image3;
-  public String name;
-
   public int spriteCount = 0;
   public int spriteNum = 1;
-
+  public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+  public String direction = "down";
   public Rectangle solidArea;
   public int solidAreaDefaultX, solidAreaDefaultY;
-  
   public boolean collisionOn = false;
   public int antiSpinCounter = 0; // prevents spinny moving entity
   public boolean invinsible = false; // make entity not take damage when true
   public int invinsibleCounter = 0;
-  int dyingCounter = 0;
-  int hpBarCounter = 0;
-
-  String words[] = new String[20];
-  int speakIndex = 0;
-
-  // Character status
   public int maxLife;
   public int life;
+
+  // Object stuff
+  public BufferedImage image, image2, image3;
+  public String name;
+
+  // Follow bot stuff
+  int dyingCounter = 0;
+  int hpBarCounter = 0;
+  boolean hpBarOn = false;
+  public boolean alive = true;
+  public boolean dying = false;
+
+  // NPC stuff
+  String words[] = new String[20];
+  int speakIndex = 0;
 
   public Entity(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -55,31 +50,9 @@ public class Entity {
   public void setAction() {}
   public void damageReaction() {}
 
-  public void speak() {
-
-    if (up1 != null) {
-      switch (gamePan.player.direction) {
-        case "up":
-          direction = "down";
-          break;
-        case "down":
-          direction = "up";
-          break;
-        case "left":
-          direction = "down";
-          break;
-        case "right": 
-          direction = "down";
-          break;
-        }
-    }
-
-      gamePan.ui.currentWords = words[speakIndex];
-      if (words[speakIndex +1] != null) {
-        speakIndex++;
-      }
-  }
-
+/**
+ * Updates entity.
+ */
   public void update() {
     setAction();
 
@@ -109,38 +82,10 @@ public class Entity {
     move();
   }
 
-  public void move() {
-
-    // If no collision entity can move
-    if (!collisionOn && !gamePan.keyHand.spacePressed) {
-      switch (direction) {
-      case "up":
-        worldY = worldY - speed;// move entity up
-        break;
-      case "down":
-        worldY = worldY + speed; // move entity down
-        break;
-      case "left":
-        worldX = worldX - speed;// move entity left
-        break;
-      case "right":
-        worldX = worldX + speed; // move entity right
-        break;
-      }
-    }
-
-    spriteCount++;
-    if (spriteCount > 15) {
-      if (spriteNum == 1) {
-        spriteNum = 2;
-      } else if (spriteNum == 2) {
-        spriteNum = 1;
-      }
-      spriteCount = 0;
-    }
-  }
-
-
+/**
+ * Draw entity on screen.
+ * @param g2d Graphics2D to draw with.
+ */
   public void draw(Graphics2D g2d) {
     BufferedImage image = null;
     int screenX = worldX - gamePan.player.worldX + gamePan.player.screenX;
@@ -205,13 +150,13 @@ public class Entity {
         }
 
       }
-      
+
       if (invinsible) {
         hpBarOn = true;
         hpBarCounter = 0;
         changeAlpha(g2d, 0.4f);
       }
-      
+
       if (dying) {
         dyingAnimation(g2d);
       }
@@ -221,6 +166,71 @@ public class Entity {
     }
   }
 
+  /**
+   * Moves entity if there is no collision.
+   */
+  public void move() {
+    // If no collision entity can move
+    if (!collisionOn && !gamePan.keyHand.spacePressed) {
+      switch (direction) {
+      case "up":
+        worldY = worldY - speed;// move entity up
+        break;
+      case "down":
+        worldY = worldY + speed; // move entity down
+        break;
+      case "left":
+        worldX = worldX - speed;// move entity left
+        break;
+      case "right":
+        worldX = worldX + speed; // move entity right
+        break;
+      }
+    }
+
+    spriteCount++;
+    if (spriteCount > 15) {
+      if (spriteNum == 1) {
+        spriteNum = 2;
+      } else if (spriteNum == 2) {
+        spriteNum = 1;
+      }
+      spriteCount = 0;
+    }
+  }
+  
+  /**
+   * Sets NPC Dialogue words for UI and moves NPC towards player if NPC can move up.
+   */
+  public void speak() {
+
+    if (up1 != null) {
+      switch (gamePan.player.direction) {
+        case "up":
+          direction = "down";
+          break;
+        case "down":
+          direction = "up";
+          break;
+        case "left":
+          direction = "down";
+          break;
+        case "right": 
+          direction = "down";
+          break;
+        }
+    }
+
+      gamePan.ui.currentWords = words[speakIndex];
+      if (words[speakIndex +1] != null) {
+        speakIndex++;
+      }
+  }
+
+  /**
+   * Displays follow bot dying animation.
+   * @param g2d Graphics2D to draw with.
+   */
   public void dyingAnimation(Graphics2D g2d) {
     dyingCounter++;
     int i = 5;
@@ -250,11 +260,22 @@ public class Entity {
     }
   }
 
+  /**
+   * Changes opacity of entity.
+   * @param g2d Graphics2D to draw with.
+   * @param alphaValue The alpha value to change entity to.
+   */
   public void changeAlpha(Graphics2D g2d, float alphaValue){
     g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
   }
 
-
+/**
+ * Sets up images for entity.
+ * @param imagePath Image path for image to load.
+ * @param width Width to scale image to.
+ * @param height Height to scale image to.
+ * @return
+ */
   public BufferedImage setup(String imagePath, int width, int height) {
     UtilityTool uTool = new UtilityTool();
     BufferedImage image = null;
