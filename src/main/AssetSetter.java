@@ -7,6 +7,9 @@ import entity.NPC_Wongy;
 import object.OBJ_Bit;
 import object.OBJ_ModSword;
 
+/**
+ * Represents an asset setter.
+ */
 public class AssetSetter {
   GamePanel gamePan;
 
