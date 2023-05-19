@@ -1,7 +1,6 @@
 package entity;
 
 import java.awt.Rectangle;
-
 import main.GamePanel;
 
 public class NPC_Grass extends Entity {
@@ -28,7 +27,7 @@ public class NPC_Grass extends Entity {
   }
 
   /**
-   * Sets the NPC dialogue
+   * Sets the NPC dialogue.
    */
   public void setWords() {
     words[0] = "GAHHHH!!! These sussy follow bots are \nEVERYWHERE! Please please go away you sussy \nbots!!!";

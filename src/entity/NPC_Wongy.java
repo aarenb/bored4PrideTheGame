@@ -1,7 +1,6 @@
 package entity;
 
 import java.awt.Rectangle;
-
 import main.GamePanel;
 
 public class NPC_Wongy extends Entity {
@@ -30,7 +29,7 @@ public class NPC_Wongy extends Entity {
   }
 
   /**
-   * Sets the NPC dialogue
+   * Sets the NPC dialogue.
    */
   public void setWords() {
     words[0] = "*oh no oh no...*\nOh hi there! Finally someone to help! I'm Wongy. \nGrass sent you, right?";
@@ -40,6 +39,9 @@ public class NPC_Wongy extends Entity {
     words[4] = "What are you waiting for? \nGet to banning, and please hurry!!!";
   }
 
+  /**
+   * Makes Wongy pace up and down.
+   */
   public void setAction() {
 
     antiSpinCounter++;
