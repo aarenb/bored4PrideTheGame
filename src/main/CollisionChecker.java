@@ -2,6 +2,9 @@ package main;
 
 import entity.Entity;
 
+/**
+ * Represents a collision checker.
+ */
 public class CollisionChecker {
   GamePanel gamePan;
 
@@ -9,6 +12,11 @@ public class CollisionChecker {
     this.gamePan = gamePan;
   }
 
+  /**
+   * Checks collision with tiles.
+   *
+   * @param entity The entity to check collision with tiles for.
+   */
   public void checkTile(Entity entity) {
     // Get coords of the "solid" part of entity
     int entityLeftWorldX = entity.worldX + entity.solidArea.x;
@@ -71,9 +79,10 @@ public class CollisionChecker {
 
   /**
    * Checks NPC or monster collision.
+   *
    * @param entity The player
    * @param target NPCs/Monsters
-   * @return
+   * @return Index of NPC collision is happening with (999 if no collision)
    */
   public int checkEntity(Entity entity, Entity[] target) {
     int index = 999;
@@ -118,6 +127,13 @@ public class CollisionChecker {
     return index;
   }
 
+  /**
+   * Checks object collision.
+   *
+   * @param entity The entity to check collision with object for.
+   * @param player True if entity is player, otherwise false.
+   * @return Index of object with collision (999 if no collision)
+   */
   public int checkObject(Entity entity, boolean player) {
     int index = 999;
 
@@ -163,8 +179,10 @@ public class CollisionChecker {
   }
 
   /**
-   * Checks if entity is colliding with player
+   * Checks if entity is colliding with player.
+   *
    * @param entity NPC / monster to check
+   * @return True if entity is colliding with player, otherwise false.
    */
   public boolean checkPlayer(Entity entity) {
     boolean touchPlayer = false;
