@@ -3,6 +3,9 @@ package entity;
 import java.awt.Rectangle;
 import main.GamePanel;
 
+/**
+ * Represents a Wongy NPC.
+ */
 public class NPC_Wongy extends Entity {
   public NPC_Wongy(GamePanel gamePan) {
     super(gamePan);

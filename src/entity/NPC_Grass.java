@@ -3,6 +3,9 @@ package entity;
 import java.awt.Rectangle;
 import main.GamePanel;
 
+/**
+ * Represents a Grass NPC.
+ */
 public class NPC_Grass extends Entity {
   public NPC_Grass(GamePanel gamePan) {
     super(gamePan);

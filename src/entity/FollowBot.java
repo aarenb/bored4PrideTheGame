@@ -5,6 +5,9 @@ import java.util.Random;
 import main.GamePanel;
 import object.OBJ_Bit;
 
+/**
+ * Represents a follow bot.
+ */
 public class FollowBot extends Entity {
 
   public FollowBot(GamePanel gamePan) {

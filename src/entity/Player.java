@@ -3,18 +3,18 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-
 import main.GamePanel;
 import main.KeyHandler;
 
+/**
+ * Represents a player.
+ */
 public class Player extends Entity{
   KeyHandler keyHand;
 
   public final int screenX;
   public final int screenY;
-
   public Rectangle attackArea = new Rectangle(0, 0, 36, 26);
-
   BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
   boolean attacking = false;
   boolean hasSword = false;
@@ -36,6 +36,9 @@ public class Player extends Entity{
     getPlayerAttackImage();
   }
 
+  /**
+   * Sets the default player values.
+   */
   public void setDefaultValues() {
     worldX = gamePan.tileSize * 24;
     worldY = gamePan.tileSize * 44;
@@ -52,7 +55,7 @@ public class Player extends Entity{
   /**
    * Load player images.
    */
-  public void getPlayerImage() {
+  private void getPlayerImage() {
     up1 = setup("/resources/player/player_up1", gamePan.tileSize, gamePan.tileSize);
     up2 = setup("/resources/player/player_up2", gamePan.tileSize, gamePan.tileSize);
     down1 = setup("/resources/player/player_down1", gamePan.tileSize, gamePan.tileSize);
@@ -66,7 +69,7 @@ public class Player extends Entity{
   /**
    * Load player attack images.
    */
-  public void getPlayerAttackImage() {
+  private void getPlayerAttackImage() {
     attackUp1 = setup("/resources/player/player_attack_up1", gamePan.tileSize, gamePan.tileSize * 2);
     attackUp2 = setup("/resources/player/player_attack_up2", gamePan.tileSize, gamePan.tileSize * 2);
     attackDown1 = setup("/resources/player/player_attack_down1", gamePan.tileSize, gamePan.tileSize * 2);
@@ -77,6 +80,9 @@ public class Player extends Entity{
     attackRight2 = setup("/resources/player/player_attack_right2", gamePan.tileSize * 2, gamePan.tileSize);
   }
 
+  /**
+   * Updates player.
+   */
   public void update() {
 
     if (attacking) {
@@ -119,58 +125,9 @@ public class Player extends Entity{
     }
   }
 
-  public void attacking() {
-    spriteCount++;
-
-    // Attack animation
-    if (spriteCount <= 5) {
-      spriteNum = 1;
-    }
-    if (spriteCount > 5 && spriteCount <= 25) {
-      spriteNum = 2;
-
-      // Save current data
-      int currentWorldX = worldX;
-      int currentWorldY = worldY;
-      int solidAreaWidth = solidArea.width;
-      int solidAreaHeight = solidArea.height;
-
-      switch (direction) {
-        case "up":
-          worldY -= attackArea.height;
-          break;
-        case "down":
-          worldY += attackArea.height;
-          break;
-        case "left":
-          worldX -= attackArea.width; 
-          break;
-        case "right":
-          worldX += attackArea.width;
-          break;
-      }
-      solidArea.width = attackArea.width;
-      solidArea.height = attackArea.height;
-
-      // Check if sword collides with follow bot
-      int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot);
-      damageFollowBot(followBotIndex);
-
-      // Reset data back to what it was
-      worldX = currentWorldX;
-      worldY = currentWorldY;
-      solidArea.width = solidAreaWidth;
-      solidArea.height = solidAreaHeight;
-
-    }
-    if (spriteCount > 25) {
-      spriteNum = 1;
-      spriteCount = 0;
-      attacking = false;
-    }
-
-  }
-
+  /**
+   * Draws player.
+   */
   public void draw(Graphics2D g2d) {
     BufferedImage image = null;
     int tempScreenX = screenX;
@@ -252,7 +209,67 @@ public class Player extends Entity{
     g2d.drawImage(image, tempScreenX, tempScreenY, null);
   }
 
-  public void damageFollowBot(int i) {
+  /**
+   * Makes player do attack animation, and checks if player hits a follow bot.
+   */
+  private void attacking() {
+    spriteCount++;
+
+    // Attack animation
+    if (spriteCount <= 5) {
+      spriteNum = 1;
+    }
+    if (spriteCount > 5 && spriteCount <= 25) {
+      spriteNum = 2;
+
+      // Save current data
+      int currentWorldX = worldX;
+      int currentWorldY = worldY;
+      int solidAreaWidth = solidArea.width;
+      int solidAreaHeight = solidArea.height;
+
+      switch (direction) {
+        case "up":
+          worldY -= attackArea.height;
+          break;
+        case "down":
+          worldY += attackArea.height;
+          break;
+        case "left":
+          worldX -= attackArea.width; 
+          break;
+        case "right":
+          worldX += attackArea.width;
+          break;
+      }
+      solidArea.width = attackArea.width;
+      solidArea.height = attackArea.height;
+
+      // Check if sword collides with follow bot
+      int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot);
+      damageFollowBot(followBotIndex);
+
+      // Reset data back to what it was
+      worldX = currentWorldX;
+      worldY = currentWorldY;
+      solidArea.width = solidAreaWidth;
+      solidArea.height = solidAreaHeight;
+
+    }
+    if (spriteCount > 25) {
+      spriteNum = 1;
+      spriteCount = 0;
+      attacking = false;
+    }
+
+  }
+
+  /**
+   * Does damage to a follow bot.
+   *
+   * @param i Index of follow bot player is touching (or 999 if not touching any).
+   */
+  private void damageFollowBot(int i) {
     if (i != 999) {
       if (!gamePan.followBot[i].invinsible) {
         gamePan.playSE(8);
@@ -268,7 +285,12 @@ public class Player extends Entity{
     }
   }
 
-  public void interactNPC(int i) {
+  /**
+   * Interacts with an NPC (or attacks if not touching npc).
+   *
+   * @param i Index of NPC player is touching (or 999 if not touching any).
+   */
+  private void interactNPC(int i) {
 
     if (gamePan.keyHand.spacePressed) {
       if (i != 999) { // if player is touching npc
@@ -285,7 +307,12 @@ public class Player extends Entity{
     }
   }
 
-  public void interactObject(int i) {
+  /**
+   * Interacts with an object.
+   *
+   * @param i Index of object player is touching (or 999 if not touching any).
+   */
+  private void interactObject(int i) {
     if (i != 999) { // If player is touching object
 
       String objName = gamePan.obj[i].name;
@@ -308,9 +335,10 @@ public class Player extends Entity{
 
   /**
    * Makes player take damage if touching follow bot.
+   *
    * @param i The index of follow bot player is touching (or 999 if not touching any)
    */
-  public void interactFollowBot(int i) {
+  private void interactFollowBot(int i) {
     if (i != 999) { // if player is touching follow bot
       if (!invinsible) {
         gamePan.playSE(5);

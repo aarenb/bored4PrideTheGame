@@ -3,6 +3,9 @@ package entity;
 import java.awt.Rectangle;
 import main.GamePanel;
 
+/**
+ * Represents an Alex NPC.
+ */
 public class NPC_Alex extends Entity {
   public NPC_Alex(GamePanel gamePan) {
     super(gamePan);

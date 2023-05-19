@@ -10,6 +10,9 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.UtilityTool;
 
+/**
+ * Represents an entity.
+ */
 public class Entity {
   GamePanel gamePan;
   public int worldX, worldY;
@@ -229,6 +232,7 @@ public class Entity {
 
   /**
    * Displays follow bot dying animation.
+   *
    * @param g2d Graphics2D to draw with.
    */
   public void dyingAnimation(Graphics2D g2d) {
@@ -262,6 +266,7 @@ public class Entity {
 
   /**
    * Changes opacity of entity.
+   *
    * @param g2d Graphics2D to draw with.
    * @param alphaValue The alpha value to change entity to.
    */
