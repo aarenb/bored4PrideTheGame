@@ -342,6 +342,8 @@ public class Player extends Entity{
           if (life > maxLife) {
             life = maxLife;
           }
+          gamePan.obj[i] = null;
+          break;
       }
     }
   }

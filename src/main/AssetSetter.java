@@ -5,6 +5,7 @@ import entity.NPC_Alex;
 import entity.NPC_Grass;
 import entity.NPC_Wongy;
 import object.OBJ_Bit;
+import object.OBJ_Heart;
 import object.OBJ_ModSword;
 import object.OBJ_SussyBit;
 

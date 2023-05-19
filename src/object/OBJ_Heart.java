@@ -1,5 +1,7 @@
 package object;
 
+import java.awt.Rectangle;
+
 import entity.Entity;
 import main.GamePanel;
 
@@ -12,6 +14,10 @@ public class OBJ_Heart extends Entity{
     super(gamePan);
 
     name = "heart";
+
+    solidArea = new Rectangle(0, 0, 48, 48);
+    solidAreaDefaultX = solidArea.x;
+    solidAreaDefaultY = solidArea.y;
 
     image = setup("/resources/objects/heart_full", gamePan.tileSize, gamePan.tileSize);
     image2 = setup("/resources/objects/heart_half", gamePan.tileSize, gamePan.tileSize);
