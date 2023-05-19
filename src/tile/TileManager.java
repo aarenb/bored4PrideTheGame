@@ -6,12 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
-
 import main.GamePanel;
 import main.UtilityTool;
 
+/**
+ * Represents a tile manager.
+ */
 public class TileManager {
   GamePanel gamePan;
   public Tile[] tile;
@@ -47,7 +48,7 @@ public class TileManager {
   }
 
   /**
-   * Load tile images.
+   * Loads tile images.
    */
   public void getTileImage() {
     for (int i = 0; i < fileNames.size(); i++) {
@@ -67,6 +68,12 @@ public class TileManager {
     }
   }
 
+  /**
+   * Sets up tile.
+   * @param index Index of new tile.
+   * @param imageName Name of tile image.
+   * @param collision If collision is true or false.
+   */
   public void setup(int index, String imageName, boolean collision) {
     UtilityTool uTool = new UtilityTool();
 
@@ -113,6 +120,11 @@ public class TileManager {
     }
   }
 
+  /**
+   * Draws tiles.
+   *
+   * @param g2d Graphics2D to draw with
+   */
   public void draw(Graphics2D g2d) {
     int worldCol = 0;
     int worldRow = 0;
