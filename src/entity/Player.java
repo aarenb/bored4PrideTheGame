@@ -119,8 +119,9 @@ public class Player extends Entity{
       }
     }
 
-    if (life <= 0) { // If the player has no health
+    if (life <= 0) { // If the player has no health = is dead
       gamePan.gameState = gamePan.gameOverState;
+      gamePan.stopMusic();
       gamePan.playSE(6);
     }
   }
@@ -329,6 +330,12 @@ public class Player extends Entity{
           gamePan.playSE(3);
           gamePan.obj[i] = null;
           bits++;
+          break;
+        case "sussy bit":
+          gamePan.stopMusic();
+          gamePan.playMusic(11);
+          gamePan.obj[i] = null;
+          break;
       }
     }
   }

@@ -128,6 +128,8 @@ public class GamePanel extends JPanel implements Runnable{
     assSetter.setObject();
     assSetter.setNPC();
     assSetter.setFollowBot();
+    stopMusic();
+    playMusic(1);
   }
 
   @Override

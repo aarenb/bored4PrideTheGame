@@ -6,6 +6,7 @@ import entity.NPC_Grass;
 import entity.NPC_Wongy;
 import object.OBJ_Bit;
 import object.OBJ_ModSword;
+import object.OBJ_SussyBit;
 
 /**
  * Represents an asset setter.
@@ -89,5 +90,8 @@ public class AssetSetter {
     gamePan.obj[1] = new OBJ_Bit(gamePan);
     gamePan.obj[1].worldX = gamePan.tileSize * 23;
     gamePan.obj[1].worldY = gamePan.tileSize * 37;
+    gamePan.obj[2] = new OBJ_SussyBit(gamePan);
+    gamePan.obj[2].worldX = gamePan.tileSize * 4;
+    gamePan.obj[2].worldY = gamePan.tileSize * 25;
   }
 }
