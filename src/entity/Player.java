@@ -277,7 +277,6 @@ public class Player extends Entity{
         knockBack(gamePan.followBot[i]);
         gamePan.followBot[i].life -= 1;
         gamePan.followBot[i].invinsible = true;
-        gamePan.followBot[i].damageReaction();
 
         if (gamePan.followBot[i].life <= 0) {
           gamePan.playSE(9);
@@ -370,8 +369,7 @@ public class Player extends Entity{
    * @param entity The entity to recieve knockback.
    */
   private void knockBack(Entity entity) {
-    entity.direction = direction;
-    entity.speed += 10;
+    entity.speed += 5;
     entity.knockBack = true;
   }
 }

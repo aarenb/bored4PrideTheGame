@@ -67,26 +67,6 @@ public class FollowBot extends Entity {
   }
 
   /**
-   * Makes follow bot move towards player after being hit.
-   */
-  public void damageReaction() {
-    antiSpinCounter = 0;
-    switch (gamePan.player.direction) {
-      case "up":
-        direction = "down";
-        break;
-      case "down":
-        direction = "up";
-        break;
-      case "left":
-        direction = "right";
-        break;
-      case "right":
-        direction = "left";
-    }
-  }
-
-  /**
    * Drops an item on the ground where follow bot is.
    */
   private void dropItem(Entity obj) {

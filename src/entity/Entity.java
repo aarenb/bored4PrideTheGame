@@ -60,22 +60,44 @@ public class Entity {
  * Updates entity.
  */
   public void update() {
-    setAction();
+    if (knockBack) { //
+      direction = gamePan.player.direction;
+      checkCollision();
+      if (collisionOn) {
+        knockBackCounter = 0;
+        knockBack = false;
+        speed = defaultSpeed;
+      } else if (!collisionOn) {
+        move();
+        knockBackCounter++;
+        if (knockBackCounter == 5) {
+          knockBackCounter = 0;
+          knockBack = false;
+          speed = defaultSpeed;
 
-    // Check collision
-    collisionOn = false;
-    gamePan.colChecker.checkTile(this);
-    gamePan.colChecker.checkEntity(this, gamePan.npc);
-    gamePan.colChecker.checkEntity(this, gamePan.followBot);
-    gamePan.colChecker.checkObject(this, false);
-    boolean touchPlayer = gamePan.colChecker.checkPlayer(this);
-
-    if (this.type == 2 && touchPlayer) { // If follow bot touches player
-      if (!gamePan.player.invinsible) { // If player isn't invinsible, it takes damage
-        gamePan.player.life -= 1;
-        gamePan.player.invinsible = true;
+          // Make entity go towards player
+          antiSpinCounter = 0;
+          switch (gamePan.player.direction) {
+          case "up":
+            direction = "down";
+            break;
+          case "down":
+            direction = "up";
+            break;
+          case "left":
+            direction = "right";
+            break;
+          case "right":
+            direction = "left";
+          }
+        }
       }
+    } else {
+      checkCollision();
+      move();
     }
+
+    setAction();
 
     if (invinsible) {
       invinsibleCounter++;
@@ -84,8 +106,6 @@ public class Entity {
         invinsibleCounter = 0;
       }
     }
-  
-    move();
   }
 
 /**
@@ -169,6 +189,25 @@ public class Entity {
 
       g2d.drawImage(image, screenX, screenY, null);
       changeAlpha(g2d, 1f); // Reset opacity
+    }
+  }
+
+  /**
+   * Checks collision.
+   */
+  private void checkCollision() {
+    collisionOn = false;
+    gamePan.colChecker.checkTile(this);
+    gamePan.colChecker.checkEntity(this, gamePan.npc);
+    gamePan.colChecker.checkEntity(this, gamePan.followBot);
+    gamePan.colChecker.checkObject(this, false);
+    boolean touchPlayer = gamePan.colChecker.checkPlayer(this);
+
+    if (this.type == 2 && touchPlayer) { // If follow bot touches player
+      if (!gamePan.player.invinsible) { // If player isn't invinsible, it takes damage
+        gamePan.player.life -= 1;
+        gamePan.player.invinsible = true;
+      }
     }
   }
 
