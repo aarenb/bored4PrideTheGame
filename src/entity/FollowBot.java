@@ -16,7 +16,8 @@ public class FollowBot extends Entity {
 
     type = 2;
     direction = "down";
-    speed = 1;
+    defaultSpeed = 1;
+    speed = defaultSpeed;
     maxLife = 5;
     life = maxLife;
 
@@ -62,26 +63,6 @@ public class FollowBot extends Entity {
       }
 
       antiSpinCounter = 0;
-    }
-  }
-
-  /**
-   * Makes follow bot move towards player after being hit.
-   */
-  public void damageReaction() {
-    antiSpinCounter = 0;
-    switch (gamePan.player.direction) {
-      case "up":
-        direction = "down";
-        break;
-      case "down":
-        direction = "up";
-        break;
-      case "left":
-        direction = "right";
-        break;
-      case "right":
-        direction = "left";
     }
   }
 

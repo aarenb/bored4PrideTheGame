@@ -274,9 +274,9 @@ public class Player extends Entity{
     if (i != 999) {
       if (!gamePan.followBot[i].invinsible) {
         gamePan.playSE(8);
+        knockBack(gamePan.followBot[i]);
         gamePan.followBot[i].life -= 1;
         gamePan.followBot[i].invinsible = true;
-        gamePan.followBot[i].damageReaction();
 
         if (gamePan.followBot[i].life <= 0) {
           gamePan.playSE(9);
@@ -361,6 +361,16 @@ public class Player extends Entity{
         invinsible = true;
       }
     }
+  }
+
+  /**
+   * Add knockback to an entity.
+   *
+   * @param entity The entity to recieve knockback.
+   */
+  private void knockBack(Entity entity) {
+    entity.speed += 5;
+    entity.knockBack = true;
   }
 }
 
