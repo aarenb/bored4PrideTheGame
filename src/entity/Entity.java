@@ -17,6 +17,7 @@ public class Entity {
   GamePanel gamePan;
   public int worldX, worldY;
   public int speed;
+  public int defaultSpeed;
   public int type;// 0 = player, 1 = npc, 2 = follow bot
   public int spriteCount = 0;
   public int spriteNum = 1;
@@ -38,9 +39,11 @@ public class Entity {
   // Follow bot stuff
   int dyingCounter = 0;
   int hpBarCounter = 0;
+  int knockBackCounter = 0;
   boolean hpBarOn = false;
   public boolean alive = true;
   public boolean dying = false;
+  public boolean knockBack = false;
 
   // NPC stuff
   String words[] = new String[20];
