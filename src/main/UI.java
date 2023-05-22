@@ -263,7 +263,7 @@ public class UI {
     g2d.setColor(Color.white);
     x = gamePan.screenWidth - gamePan.tileSize * 3 + - 20;
     y = gamePan.screenHeight - 17;
-    text = "Alpha 1.1";
+    text = "Alpha 1.2";
     g2d.drawString(text, x, y);
   }
 
