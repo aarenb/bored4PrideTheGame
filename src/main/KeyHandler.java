@@ -162,7 +162,7 @@ public class KeyHandler implements KeyListener{
     } else if (gamePan.gameState == gamePan.dialogueState) {
       // If user press space bar
       if (code == KeyEvent.VK_SPACE) {
-        if (gamePan.npc[npcIndex].words[gamePan.npc[npcIndex].speakIndex] == null) {
+        if (gamePan.npc[npcIndex].words[gamePan.npc[npcIndex].speakIndex] == null) { // if there are no more npc dialogue left
           gamePan.gameState = gamePan.playState;
           gamePan.npc[npcIndex].speakIndex = 0;
         } else {
