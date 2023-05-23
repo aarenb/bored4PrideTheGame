@@ -9,9 +9,14 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
   GamePanel gamePan;
   public boolean upPressed, downPressed, leftPressed, rightPressed, spacePressed;
+  private int npcIndex;
 
   public KeyHandler(GamePanel gamePan) {
     this.gamePan = gamePan;
+  }
+
+  public void setNPCIndex(int i) {
+    npcIndex = i;
   }
 
   @Override
@@ -157,7 +162,7 @@ public class KeyHandler implements KeyListener{
     } else if (gamePan.gameState == gamePan.dialogueState) {
       // If user press space bar
       if (code == KeyEvent.VK_SPACE) {
-        spacePressed = true;
+        gamePan.gameState = gamePan.playState;
       }
       // TITLE SCREEN:
     } else if (gamePan.gameState == gamePan.titleState) { 
