@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
   GamePanel gamePan;
   public boolean upPressed, downPressed, leftPressed, rightPressed, spacePressed;
-  private int npcIndex;
+  private int npcIndex = 0;
 
   public KeyHandler(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -162,7 +162,12 @@ public class KeyHandler implements KeyListener{
     } else if (gamePan.gameState == gamePan.dialogueState) {
       // If user press space bar
       if (code == KeyEvent.VK_SPACE) {
-        gamePan.gameState = gamePan.playState;
+        if (gamePan.npc[npcIndex].words[gamePan.npc[npcIndex].speakIndex] == null) {
+          gamePan.gameState = gamePan.playState;
+          gamePan.npc[npcIndex].speakIndex = 0;
+        } else {
+          gamePan.npc[npcIndex].speak();
+        }
       }
       // TITLE SCREEN:
     } else if (gamePan.gameState == gamePan.titleState) { 

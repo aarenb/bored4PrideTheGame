@@ -298,6 +298,7 @@ public class Player extends Entity{
         gamePan.playSE(10);
         gamePan.gameState = gamePan.dialogueState;
         gamePan.npc[i].speak();
+        gamePan.keyHand.setNPCIndex(i);
       } else {
         // If enter key is pressed but player isn't touching npc
           if (hasSword) {
