@@ -291,7 +291,7 @@ public class Player extends Entity{
    *
    * @param i Index of NPC player is touching (or 999 if not touching any).
    */
-  private void interactNPC(int i) {
+  public void interactNPC(int i) {
 
     if (gamePan.keyHand.spacePressed) {
       if (i != 999) { // if player is touching npc

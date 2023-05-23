@@ -157,7 +157,7 @@ public class KeyHandler implements KeyListener{
     } else if (gamePan.gameState == gamePan.dialogueState) {
       // If user press space bar
       if (code == KeyEvent.VK_SPACE) {
-        gamePan.gameState = gamePan.playState;
+        spacePressed = true;
       }
       // TITLE SCREEN:
     } else if (gamePan.gameState == gamePan.titleState) { 
