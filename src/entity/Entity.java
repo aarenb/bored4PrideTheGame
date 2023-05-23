@@ -46,8 +46,8 @@ public class Entity {
   public boolean knockBack = false;
 
   // NPC stuff
-  String words[] = new String[20];
-  int speakIndex = 0;
+  public String words[] = new String[20];
+  public int speakIndex = 0;
 
   public Entity(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -247,7 +247,7 @@ public class Entity {
   /**
    * Sets NPC Dialogue words for UI and moves NPC towards player if NPC can move up.
    */
-  protected void speak() {
+  public void speak() {
 
     if (up1 != null) {
       switch (gamePan.player.direction) {
@@ -267,9 +267,7 @@ public class Entity {
     }
 
       gamePan.ui.currentWords = words[speakIndex];
-      if (words[speakIndex +1] != null) {
-        speakIndex++;
-      }
+      speakIndex++;
   }
 
   /**
