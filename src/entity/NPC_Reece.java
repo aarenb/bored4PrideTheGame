@@ -34,7 +34,8 @@ public class NPC_Reece extends Entity {
    * Sets the NPC dialogue.
    */
   public void setWords() {
-    words[0] = "Hi there, my name is Reece. Are you in need of a minecraft server? 404 hosting got lots of options for you!";
-    words[1] = "Oh, you're here to fix the follow bot problem. Thank god! But please do let me know if you need a minecraft server too...";
+    words[0] = "Hi there, my name is Reece. Are you in need of a \nminecraft server? 404 hosting got lots of \noptions for you!";
+    words[1] = "Oh, you're here to fix the follow bot problem. \nThank god! The 100 player survival games is \nstarting soon, and they're ruining it!!";
+    words[2] = "Anyways if you do need a minecraft server you \nknow where to find me... *wink*";
   }
 }
