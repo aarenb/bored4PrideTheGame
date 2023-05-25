@@ -338,7 +338,7 @@ public class Player extends Entity{
           gamePan.obj[i] = null;
           break;
         case "heart":
-          gamePan.playSE(7); // TODO: change this?
+          gamePan.playSE(7);
           life += 2;
           if (life > maxLife) {
             life = maxLife;

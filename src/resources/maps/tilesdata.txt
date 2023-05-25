@@ -128,3 +128,7 @@ x_jackbox_sign2.png
 true
 x_sussyknife.png
 false
+y_minecraft_diamond.png
+true
+y_minecraft_dirt.png
+true
