@@ -3,6 +3,7 @@ package main;
 import entity.FollowBot;
 import entity.NPC_Alex;
 import entity.NPC_Grass;
+import entity.NPC_Reece;
 import entity.NPC_Wongy;
 import object.OBJ_Bit;
 import object.OBJ_ModSword;
@@ -33,6 +34,10 @@ public class AssetSetter {
     gamePan.npc[2] = new NPC_Alex(gamePan);
     gamePan.npc[2].worldX = gamePan.tileSize * 44;
     gamePan.npc[2].worldY = gamePan.tileSize * 7;
+
+    gamePan.npc[3] = new NPC_Reece(gamePan);
+    gamePan.npc[3].worldX = gamePan.tileSize * 44;
+    gamePan.npc[3].worldY = gamePan.tileSize * 19;
   }
 
   /**
