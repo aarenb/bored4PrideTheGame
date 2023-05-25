@@ -78,6 +78,18 @@ public class AssetSetter {
     gamePan.followBot[9] = new FollowBot(gamePan);
     gamePan.followBot[9].worldX = gamePan.tileSize * 34;
     gamePan.followBot[9].worldY = gamePan.tileSize * 3;
+
+    gamePan.followBot[10] = new FollowBot(gamePan);
+    gamePan.followBot[10].worldX = gamePan.tileSize * 40;
+    gamePan.followBot[10].worldY = gamePan.tileSize * 17;
+
+    gamePan.followBot[11] = new FollowBot(gamePan);
+    gamePan.followBot[11].worldX = gamePan.tileSize * 42;
+    gamePan.followBot[11].worldY = gamePan.tileSize * 24;
+
+    gamePan.followBot[12] = new FollowBot(gamePan);
+    gamePan.followBot[12].worldX = gamePan.tileSize * 36;
+    gamePan.followBot[12].worldY = gamePan.tileSize * 18;
   }
 
   /**
