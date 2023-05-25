@@ -132,3 +132,7 @@ y_minecraft_diamond.png
 true
 y_minecraft_dirt.png
 true
+y_minecraft_golden_apple.png
+true
+y_minecraft_tourch.png
+true
