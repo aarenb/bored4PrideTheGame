@@ -12,9 +12,16 @@ public class DataStorage implements Serializable {
   int bits;
   boolean hasSword;
   boolean hasSussyBit;
+  // TODO: player direction?
 
   // Objects on the map
   String mapObjectNames[];
   int mapObjectWorldX[];
   int mapObjectWorldY[];
+
+  // Follow bots stats
+  int followBotsLife[];
+  int followBotsWorldX[];
+  int followBotsWorldY[];
+  String followBotsDirection[];
 }

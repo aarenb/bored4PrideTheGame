@@ -53,6 +53,22 @@ public class SaveLoad {
         }
       }
 
+      // Save follow bots
+      storage.followBotsLife = new int[gamePan.followBot.length];
+      storage.followBotsWorldX = new int[gamePan.followBot.length];
+      storage.followBotsWorldY = new int[gamePan.followBot.length];
+      storage.followBotsDirection = new String[gamePan.followBot.length];
+      for (int i = 0; i < gamePan.followBot.length; i++) {
+        if (gamePan.followBot[i] == null) {
+          storage.followBotsLife[i] = 0;
+        } else {
+          storage.followBotsLife[i] = gamePan.followBot[i].life;
+          storage.followBotsWorldX[i] = gamePan.followBot[i].worldX;
+          storage.followBotsWorldY[i] = gamePan.followBot[i].worldY;
+          storage.followBotsDirection[i] = gamePan.followBot[i].direction;
+        }
+      }
+
       // Write data to file
       output.writeObject(storage);
 
