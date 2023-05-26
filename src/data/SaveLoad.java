@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import entity.Entity;
+import entity.FollowBot;
 import main.GamePanel;
 import object.OBJ_Bit;
 import object.OBJ_Heart;
@@ -101,6 +102,19 @@ public class SaveLoad {
           gamePan.obj[i] = getObject(storage.mapObjectNames[i]);
           gamePan.obj[i].worldX = storage.mapObjectWorldX[i];
           gamePan.obj[i].worldY = storage.mapObjectWorldY[i];
+        }
+      }
+
+      // Load follow bots
+      for (int i = 0; i < gamePan.followBot.length; i++) {
+        if (storage.followBotsLife[i] == 0) {
+          gamePan.followBot[i] = null;
+        } else {
+          gamePan.followBot[i] = new FollowBot(gamePan);
+          gamePan.followBot[i].life = storage.followBotsLife[i];
+          gamePan.followBot[i].worldX = storage.followBotsWorldX[i];
+          gamePan.followBot[i].worldY = storage.followBotsWorldY[i];
+          gamePan.followBot[i].direction = storage.followBotsDirection[i];
         }
       }
     } catch (Exception e) {
