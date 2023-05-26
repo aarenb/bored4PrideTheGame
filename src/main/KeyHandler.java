@@ -205,7 +205,11 @@ public class KeyHandler implements KeyListener{
           gamePan.playMusic(1);
         } else if (gamePan.ui.commandNum == 1) {
           // Load game
-          gamePan.ui.loadGameMessageOn = true;
+          gamePan.saveLoad.load();
+          gamePan.gameState = gamePan.playState;
+          gamePan.stopMusic();
+          gamePan.playMusic(1);
+          gamePan.ui.commandNum = 0;
         } else if (gamePan.ui.commandNum == 2) {
           // Controls
           gamePan.gameState = gamePan.controlsState;
