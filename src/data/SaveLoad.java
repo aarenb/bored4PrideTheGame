@@ -37,6 +37,7 @@ public class SaveLoad {
       storage.playerWorldY = gamePan.player.worldY;
       storage.bits = gamePan.player.bits;
       storage.hasSword = gamePan.player.hasSword;
+      storage.hasSussyBit = gamePan.player.hasSussyBit;
 
       // Save objects on the map
       storage.mapObjectNames = new String[gamePan.obj.length];
@@ -74,6 +75,7 @@ public class SaveLoad {
       gamePan.player.worldY = storage.playerWorldY;
       gamePan.player.bits = storage.bits;
       gamePan.player.hasSword = storage.hasSword;
+      gamePan.player.hasSussyBit = storage.hasSussyBit;
 
       // Load objects on the map
       for (int i = 0; i < gamePan.obj.length; i++) {

@@ -209,7 +209,11 @@ public class KeyHandler implements KeyListener{
           gamePan.saveLoad.load();
           gamePan.gameState = gamePan.playState;
           gamePan.stopMusic();
-          gamePan.playMusic(1);
+          if (gamePan.player.hasSussyBit) {
+            gamePan.playMusic(11);
+          } else {
+            gamePan.playMusic(1);
+          }
           gamePan.ui.commandNum = 0;
         } else if (gamePan.ui.commandNum == 2) {
           // Controls

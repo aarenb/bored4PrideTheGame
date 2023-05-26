@@ -11,6 +11,7 @@ public class DataStorage implements Serializable {
   int playerWorldX, playerWorldY;
   int bits;
   boolean hasSword;
+  boolean hasSussyBit;
 
   // Objects on the map
   String mapObjectNames[];
