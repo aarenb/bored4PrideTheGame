@@ -9,7 +9,7 @@ import main.KeyHandler;
 /**
  * Represents a player.
  */
-public class Player extends Entity{
+public class Player extends Entity {
   KeyHandler keyHand;
 
   public final int screenX;
