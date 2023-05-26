@@ -17,7 +17,7 @@ public class Player extends Entity {
   public Rectangle attackArea = new Rectangle(0, 0, 36, 26);
   BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
   boolean attacking = false;
-  boolean hasSword = false;
+  public boolean hasSword = false;
   public int bits = 0;
 
   public Player(GamePanel gamePan, KeyHandler keyHand) {
