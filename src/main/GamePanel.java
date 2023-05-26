@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JPanel;
+import data.SaveLoad;
 import entity.Entity;
 import entity.FollowBot;
 import entity.Player;
@@ -51,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable{
   Config config = new Config(this);
   Sound music = new Sound();
   Sound SE = new Sound();
+  SaveLoad saveLoad = new SaveLoad(this);
 
   Thread gameThread;// keeps the game running
 
