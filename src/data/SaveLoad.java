@@ -5,7 +5,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Bit;
+import object.OBJ_Heart;
+import object.OBJ_ModSword;
+import object.OBJ_SussyBit;
 
 /**
  * Represents a save load object.
@@ -34,6 +40,8 @@ public class SaveLoad {
 
       // Save objects on the map
       storage.mapObjectNames = new String[gamePan.obj.length];
+      storage.mapObjectWorldX = new int[gamePan.obj.length];
+      storage.mapObjectWorldY = new int[gamePan.obj.length];
       for (int i = 0; i < gamePan.obj.length; i++) {
         if (gamePan.obj[i] == null) {
           storage.mapObjectNames[i] = "NA";
@@ -67,8 +75,39 @@ public class SaveLoad {
       gamePan.player.bits = storage.bits;
       gamePan.player.hasSword = storage.hasSword;
 
+      // Load objects on the map
+      for (int i = 0; i < gamePan.obj.length; i++) {
+        if (storage.mapObjectNames[i].equals("NA")) {
+          gamePan.obj[i] = null;
+        } else {
+          gamePan.obj[i] = getObject(storage.mapObjectNames[i]);
+          gamePan.obj[i].worldX = storage.mapObjectWorldX[i];
+          gamePan.obj[i].worldY = storage.mapObjectWorldY[i];
+        }
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public Entity getObject(String itemName) {
+    Entity obj = null;
+
+    switch (itemName) {
+      case "heart":
+        obj = new OBJ_Heart(gamePan);
+        break;
+      case "bit":
+        obj = new OBJ_Bit(gamePan);
+        break;
+      case "sussy bit":
+        obj = new OBJ_SussyBit(gamePan);
+        break;
+      case "mod sword":
+        obj = new OBJ_ModSword(gamePan);
+        break;
+    }
+
+    return obj;
   }
 }
