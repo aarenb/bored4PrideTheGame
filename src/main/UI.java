@@ -340,11 +340,19 @@ public class UI {
       g2d.drawString(">", x - 30, y + 3);
     }
 
-    text = "Title screen";
+    text = "Save & quit";
     x = getXforCenterTxt(text);
     y += gamePan.tileSize;
     g2d.drawString(text, x, y);
     if (commandNum == 1) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
+
+    text = "Quit";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize;
+    g2d.drawString(text, x, y);
+    if (commandNum == 2) {
       g2d.drawString(">", x - 30, y + 3);
     }
   }
