@@ -7,12 +7,12 @@ import java.io.Serializable;
  */
 public class DataStorage implements Serializable {
   // Player stats
-  int life;
+  int playerLife;
   int playerWorldX, playerWorldY;
   int bits;
   boolean hasSword;
   boolean hasSussyBit;
-  // TODO: player direction?
+  String playerDirection;
 
   // Objects on the map
   String mapObjectNames[];

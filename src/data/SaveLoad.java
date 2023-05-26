@@ -33,12 +33,13 @@ public class SaveLoad {
       DataStorage storage = new DataStorage();
 
       // Save player stats
-      storage.life = gamePan.player.life;
+      storage.playerLife = gamePan.player.life;
       storage.playerWorldX = gamePan.player.worldX;
       storage.playerWorldY = gamePan.player.worldY;
       storage.bits = gamePan.player.bits;
       storage.hasSword = gamePan.player.hasSword;
       storage.hasSussyBit = gamePan.player.hasSussyBit;
+      storage.playerDirection = gamePan.player.direction;
 
       // Save objects on the map
       storage.mapObjectNames = new String[gamePan.obj.length];
@@ -87,12 +88,13 @@ public class SaveLoad {
       DataStorage storage = (DataStorage)input.readObject();
 
       // Load player stats
-      gamePan.player.life = storage.life;
+      gamePan.player.life = storage.playerLife;
       gamePan.player.worldX = storage.playerWorldX;
       gamePan.player.worldY = storage.playerWorldY;
       gamePan.player.bits = storage.bits;
       gamePan.player.hasSword = storage.hasSword;
       gamePan.player.hasSussyBit = storage.hasSussyBit;
+      gamePan.player.direction = storage.playerDirection;
 
       // Load objects on the map
       for (int i = 0; i < gamePan.obj.length; i++) {
