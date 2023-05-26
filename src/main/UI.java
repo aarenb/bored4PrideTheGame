@@ -34,7 +34,6 @@ public class UI {
   int messageCount = 0;
   public boolean messageOn = false;
   public boolean resetMessageOn = false;
-  public boolean loadGameMessageOn = false;
 
   public UI(GamePanel gamePan) {
     this.gamePan = gamePan;
@@ -92,21 +91,15 @@ public class UI {
     // TITLE SCREEN:
     if (gamePan.gameState == gamePan.titleState) {
       drawTitleScreen();
-
-      if (loadGameMessageOn) {
-        loadGameMessage();
-      }
     }
 
     // CONTROLS SCREEN:
     if (gamePan.gameState == gamePan.controlsState) {
-      loadGameMessageOn = false;
       drawControlsScreen();
     }
 
     // GAME:
     if (gamePan.gameState == gamePan.playState) {
-      loadGameMessageOn = false;
       drawPlayerHealth();
       drawBitCounter();
 
@@ -340,11 +333,19 @@ public class UI {
       g2d.drawString(">", x - 30, y + 3);
     }
 
-    text = "Title screen";
+    text = "Save & quit";
     x = getXforCenterTxt(text);
     y += gamePan.tileSize;
     g2d.drawString(text, x, y);
     if (commandNum == 1) {
+      g2d.drawString(">", x - 30, y + 3);
+    }
+
+    text = "Quit";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize;
+    g2d.drawString(text, x, y);
+    if (commandNum == 2) {
       g2d.drawString(">", x - 30, y + 3);
     }
   }
@@ -576,19 +577,6 @@ public class UI {
   public void showMessage(String message) {
     this.message = message;
     messageOn = true;
-  }
-
-  /**
-   * Displays message about load game feature.
-   */
-  private void loadGameMessage() {
-    g2d.setColor(Color.white);
-    g2d.setFont(VCR_OSD_Mono_28);
-    String text = "Load game feature coming soon";
-    int x = getXforCenterTxt(text);
-    int y = gamePan.tileSize;
-
-    g2d.drawString(text, x, y);
   }
 
   /**

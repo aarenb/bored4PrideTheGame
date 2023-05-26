@@ -71,7 +71,7 @@ public class KeyHandler implements KeyListener{
         gamePan.playSE(2);
         gamePan.ui.commandNum--;
         if (gamePan.ui.commandNum < 0) {
-          gamePan.ui.commandNum = 1;
+          gamePan.ui.commandNum = 2;
         }
       }
 
@@ -79,7 +79,7 @@ public class KeyHandler implements KeyListener{
       if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
         gamePan.playSE(2);
         gamePan.ui.commandNum++;
-        if (gamePan.ui.commandNum > 1) {
+        if (gamePan.ui.commandNum > 2) {
           gamePan.ui.commandNum = 0;
         }
       }
@@ -89,7 +89,13 @@ public class KeyHandler implements KeyListener{
         if (gamePan.ui.commandNum == 0) {
           gamePan.gameState = gamePan.optionsState;
         } else if (gamePan.ui.commandNum == 1) {
+          gamePan.saveLoad.save();
           gamePan.ui.commandNum = 0;
+          gamePan.gameState = gamePan.titleState;
+          gamePan.stopMusic();
+          gamePan.playMusic(0);
+        } else if (gamePan.ui.commandNum == 2) {
+          gamePan.ui.commandNum = 0; // TODO: get rid of doubled code??
           gamePan.gameState = gamePan.titleState;
           gamePan.stopMusic();
           gamePan.playMusic(0);
@@ -199,7 +205,16 @@ public class KeyHandler implements KeyListener{
           gamePan.playMusic(1);
         } else if (gamePan.ui.commandNum == 1) {
           // Load game
-          gamePan.ui.loadGameMessageOn = true;
+          gamePan.restart();
+          gamePan.saveLoad.load();
+          gamePan.gameState = gamePan.playState;
+          gamePan.stopMusic();
+          if (gamePan.player.hasSussyBit) {
+            gamePan.playMusic(11);
+          } else {
+            gamePan.playMusic(1);
+          }
+          gamePan.ui.commandNum = 0;
         } else if (gamePan.ui.commandNum == 2) {
           // Controls
           gamePan.gameState = gamePan.controlsState;
