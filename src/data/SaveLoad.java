@@ -27,10 +27,22 @@ public class SaveLoad {
 
       // Save player stats
       storage.life = gamePan.player.life;
-      storage.worldX = gamePan.player.worldX;
-      storage.worldY = gamePan.player.worldY;
+      storage.playerWorldX = gamePan.player.worldX;
+      storage.playerWorldY = gamePan.player.worldY;
       storage.bits = gamePan.player.bits;
       storage.hasSword = gamePan.player.hasSword;
+
+      // Save objects on the map
+      storage.mapObjectNames = new String[gamePan.obj.length];
+      for (int i = 0; i < gamePan.obj.length; i++) {
+        if (gamePan.obj[i] == null) {
+          storage.mapObjectNames[i] = "NA";
+        } else {
+          storage.mapObjectNames[i] = gamePan.obj[i].name;
+          storage.mapObjectWorldX[i] = gamePan.obj[i].worldX;
+          storage.mapObjectWorldY[i] = gamePan.obj[i].worldY;
+        }
+      }
 
       // Write data to file
       output.writeObject(storage);
@@ -50,8 +62,8 @@ public class SaveLoad {
 
       // Load player stats
       gamePan.player.life = storage.life;
-      gamePan.player.worldX = storage.worldX;
-      gamePan.player.worldY = storage.worldY;
+      gamePan.player.worldX = storage.playerWorldX;
+      gamePan.player.worldY = storage.playerWorldY;
       gamePan.player.bits = storage.bits;
       gamePan.player.hasSword = storage.hasSword;
 
