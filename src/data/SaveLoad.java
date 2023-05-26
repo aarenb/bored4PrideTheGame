@@ -124,10 +124,16 @@ public class SaveLoad {
     }
   }
 
-  public Entity getObject(String itemName) {
+  /**
+   * Creates an object based on the object name.
+   *
+   * @param objName The object name.
+   * @return The created object.
+   */
+  public Entity getObject(String objName) {
     Entity obj = null;
 
-    switch (itemName) {
+    switch (objName) {
       case "heart":
         obj = new OBJ_Heart(gamePan);
         break;
