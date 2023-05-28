@@ -10,7 +10,7 @@ import java.io.IOException;
  * Represents the configuration. 
  */
 public class Config {
-  GamePanel gamePan;
+  private GamePanel gamePan;
 
   public Config(GamePanel gamePan) {
     this.gamePan = gamePan;

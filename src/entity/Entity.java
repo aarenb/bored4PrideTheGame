@@ -14,7 +14,7 @@ import main.UtilityTool;
  * Represents an entity.
  */
 public class Entity {
-  GamePanel gamePan;
+  protected GamePanel gamePan;
   public int worldX, worldY;
   public int speed;
   public int defaultSpeed;

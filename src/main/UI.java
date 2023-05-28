@@ -14,7 +14,7 @@ import object.OBJ_Bit;
 import object.OBJ_Heart;
 
 public class UI { 
-  GamePanel gamePan;
+  private GamePanel gamePan;
   Graphics2D g2d;
   BufferedImage heart_full, heart_half, heart_empty;
   BufferedImage backgroundImg1, backgroundImg2;

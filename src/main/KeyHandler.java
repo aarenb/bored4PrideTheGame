@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
  * Represents a key handler.
  */
 public class KeyHandler implements KeyListener{
-  GamePanel gamePan;
+  private GamePanel gamePan;
   public boolean upPressed, downPressed, leftPressed, rightPressed, spacePressed;
   private int npcIndex = 0;
 
