@@ -8,7 +8,8 @@ import java.io.Serializable;
 public class DataStorage implements Serializable {
   // Player stats
   int playerLife;
-  int playerWorldX, playerWorldY;
+  int playerWorldX;
+  int playerWorldY;
   int bits;
   boolean hasSword;
   boolean hasSussyBit;
