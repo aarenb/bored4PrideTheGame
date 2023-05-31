@@ -8,7 +8,7 @@ import entity.Entity;
 public class CollisionChecker {
   GamePanel gamePan;
 
-  public CollisionChecker (GamePanel gamePan) {
+  public CollisionChecker(GamePanel gamePan) {
     this.gamePan = gamePan;
   }
 
@@ -25,15 +25,16 @@ public class CollisionChecker {
     int entityBottomWorldY = entity.worldY + entity.solidArea.y + entity.solidArea.height;
 
     // Get columns and rows where entity is
-    int entityLeftColumn = entityLeftWorldX/gamePan.tileSize;
-    int entityRightColumn = entityRightWorldX/gamePan.tileSize;
-    int entityTopRow = entityTopWorldY/gamePan.tileSize;
-    int entityBottomRow = entityBottomWorldY/gamePan.tileSize;
+    int entityLeftColumn = entityLeftWorldX / gamePan.tileSize;
+    int entityRightColumn = entityRightWorldX / gamePan.tileSize;
+    int entityTopRow = entityTopWorldY / gamePan.tileSize;
+    int entityBottomRow = entityBottomWorldY / gamePan.tileSize;
 
-    int tileNum1, tileNum2;
+    int tileNum1;
+    int tileNum2;
 
     // Check the tiles in the direction the entity is currently moving, predicting where it will go:
-    switch(entity.direction) {
+    switch (entity.direction) {
       case "up":
         entityTopRow = (entityTopWorldY - entity.speed) / gamePan.tileSize;
         tileNum1 = gamePan.tileManager.mapTileNum[entityLeftColumn][entityTopRow]; // left upper corner
@@ -49,7 +50,7 @@ public class CollisionChecker {
         tileNum1 = gamePan.tileManager.mapTileNum[entityLeftColumn][entityBottomRow]; // left bottom corner
         tileNum2 = gamePan.tileManager.mapTileNum[entityRightColumn][entityBottomRow]; // right bottom corner
 
-         // If any of the tiles entity is about to hit has collision, set entity collision to true
+        // If any of the tiles entity is about to hit has collision, set entity collision to true
         if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
@@ -59,7 +60,7 @@ public class CollisionChecker {
         tileNum1 = gamePan.tileManager.mapTileNum[entityLeftColumn][entityTopRow]; // left upper corner
         tileNum2 = gamePan.tileManager.mapTileNum[entityLeftColumn][entityBottomRow]; // left bottom corner
 
-         // If any of the tiles entity is about to hit has collision, set entity collision to true
+        // If any of the tiles entity is about to hit has collision, set entity collision to true
         if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
@@ -69,10 +70,12 @@ public class CollisionChecker {
         tileNum1 = gamePan.tileManager.mapTileNum[entityRightColumn][entityTopRow]; // right upper corner
         tileNum2 = gamePan.tileManager.mapTileNum[entityRightColumn][entityBottomRow]; // right bottom corner
 
-         // If any of the tiles entity is about to hit has collision, set entity collision to true
+        // If any of the tiles entity is about to hit has collision, set entity collision to true
         if (gamePan.tileManager.tile[tileNum1].collision || gamePan.tileManager.tile[tileNum2].collision) {
           entity.collisionOn = true;
         }
+        break;
+      default:
         break;
     }
   }
@@ -109,6 +112,8 @@ public class CollisionChecker {
             break;
           case "right":
             entity.solidArea.x += entity.speed;
+            break;
+          default:
             break;
         }
         if (entity.solidArea.intersects(target[i].solidArea)) { // If they collide
@@ -160,6 +165,8 @@ public class CollisionChecker {
           case "right":
             entity.solidArea.x += entity.speed;
             break;
+          default:
+            break;
         }
 
         if (entity.solidArea.intersects(gamePan.obj[i].solidArea)) { // If they collide
@@ -173,8 +180,8 @@ public class CollisionChecker {
         entity.solidArea.y = entity.solidAreaDefaultY;
         gamePan.obj[i].solidArea.x = gamePan.obj[i].solidAreaDefaultX;
         gamePan.obj[i].solidArea.y = gamePan.obj[i].solidAreaDefaultY;
-        }
       }
+    }
     return index;
   }
 
@@ -207,6 +214,8 @@ public class CollisionChecker {
         break;
       case "right":
         entity.solidArea.x += entity.speed;
+        break;
+      default:
         break;
     }
     if (entity.solidArea.intersects(gamePan.player.solidArea)) { // If they collide
