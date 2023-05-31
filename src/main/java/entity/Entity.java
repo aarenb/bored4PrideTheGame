@@ -15,16 +15,25 @@ import main.UtilityTool;
  */
 public class Entity {
   protected GamePanel gamePan;
-  public int worldX, worldY;
+  public int worldX;
+  public int worldY;
   public int speed;
   public int defaultSpeed;
-  public int type;// 0 = player, 1 = npc, 2 = follow bot
+  public int type; // 0 = player, 1 = npc, 2 = follow bot
   public int spriteCount = 0;
   public int spriteNum = 1;
-  public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+  public BufferedImage up1;
+  public BufferedImage up2;
+  public BufferedImage down1; 
+  public BufferedImage down2;
+  public BufferedImage left1;
+  public BufferedImage left2;
+  public BufferedImage right1;
+  public BufferedImage right2;
   public String direction = "down";
   public Rectangle solidArea;
-  public int solidAreaDefaultX, solidAreaDefaultY;
+  public int solidAreaDefaultX;
+  public int solidAreaDefaultY;
   public boolean collisionOn = false;
   public int antiSpinCounter = 0; // prevents spinny moving entity
   public boolean invinsible = false; // make entity not take damage when true
@@ -33,7 +42,9 @@ public class Entity {
   public int life;
 
   // Object stuff
-  public BufferedImage image, image2, image3;
+  public BufferedImage image;
+  public BufferedImage image2;
+  public BufferedImage image3;
   public String name;
 
   // Follow bot stuff
@@ -46,7 +57,7 @@ public class Entity {
   public boolean knockBack = false;
 
   // NPC stuff
-  public String words[] = new String[20];
+  public String[] words = new String[20];
   public int speakIndex = 0;
 
   public Entity(GamePanel gamePan) {
@@ -54,11 +65,12 @@ public class Entity {
   }
 
   public void setAction() {}
+
   public void damageReaction() {}
 
-/**
- * Updates entity.
- */
+  /**
+   * Updates entity.
+   */
   public void update() {
     if (knockBack) { //
       direction = gamePan.player.direction;
@@ -78,17 +90,20 @@ public class Entity {
           // Make entity go towards player
           antiSpinCounter = 0;
           switch (gamePan.player.direction) {
-          case "up":
-            direction = "down";
-            break;
-          case "down":
-            direction = "up";
-            break;
-          case "left":
-            direction = "right";
-            break;
-          case "right":
-            direction = "left";
+            case "up":
+              direction = "down";
+              break;
+            case "down":
+              direction = "up";
+              break;
+            case "left":
+              direction = "right";
+              break;
+            case "right":
+              direction = "left";
+              break;
+            default:
+              break;
           }
         }
       }
@@ -108,19 +123,20 @@ public class Entity {
     }
   }
 
-/**
- * Draw entity on screen.
- * @param g2d Graphics2D to draw with.
- */
+  /**
+   * Draw entity on screen.
+   *
+   * @param g2d Graphics2D to draw with.
+   */
   public void draw(Graphics2D g2d) {
     BufferedImage image = null;
     int screenX = worldX - gamePan.player.worldX + gamePan.player.screenX;
     int screenY = worldY - gamePan.player.worldY + gamePan.player.screenY;
 
-    if (worldX + gamePan.tileSize > gamePan.player.worldX - gamePan.player.screenX &&
-    worldX - gamePan.tileSize < gamePan.player.worldX + gamePan.player.screenX && 
-    worldY + gamePan.tileSize > gamePan.player.worldY - gamePan.player.screenY && 
-    worldY - gamePan.tileSize < gamePan.player.worldY + gamePan.player.screenY) {
+    if (worldX + gamePan.tileSize > gamePan.player.worldX - gamePan.player.screenX
+        && worldX - gamePan.tileSize < gamePan.player.worldX + gamePan.player.screenX 
+        && worldY + gamePan.tileSize > gamePan.player.worldY - gamePan.player.screenY 
+        && worldY - gamePan.tileSize < gamePan.player.worldY + gamePan.player.screenY) {
   
       switch (direction) {
         case "up":
@@ -155,11 +171,13 @@ public class Entity {
             image = right2;
           }
           break;
+        default:
+          break;
       }
 
       // Follow bot health bar
       if (type == 2 && hpBarOn) {
-        double oneScale = (double)gamePan.tileSize / maxLife; // Length of 1 hp in health bar
+        double oneScale = (double) gamePan.tileSize / maxLife; // Length of 1 hp in health bar
         double hpBarScale = oneScale * life; // Current length of health bar
 
         // Outline:
@@ -167,7 +185,7 @@ public class Entity {
         g2d.fillRect(screenX - 1, screenY - 19, gamePan.tileSize + 2, 9);
         // Main part:
         g2d.setColor(new Color(255, 0, 30));
-        g2d.fillRect(screenX, screenY - 18, (int)hpBarScale, 7);
+        g2d.fillRect(screenX, screenY - 18, (int) hpBarScale, 7);
 
         hpBarCounter++;
         if (hpBarCounter > 600) {
@@ -218,18 +236,20 @@ public class Entity {
     // If no collision entity can move
     if (!collisionOn && !gamePan.keyHand.spacePressed) {
       switch (direction) {
-      case "up":
-        worldY = worldY - speed;// move entity up
-        break;
-      case "down":
-        worldY = worldY + speed; // move entity down
-        break;
-      case "left":
-        worldX = worldX - speed;// move entity left
-        break;
-      case "right":
-        worldX = worldX + speed; // move entity right
-        break;
+        case "up":
+          worldY = worldY - speed; // move entity up
+          break;
+        case "down":
+          worldY = worldY + speed; // move entity down
+          break;
+        case "left":
+          worldX = worldX - speed; // move entity left
+          break;
+        case "right":
+          worldX = worldX + speed; // move entity right
+          break;
+        default:
+          break;
       }
     }
 
@@ -263,11 +283,13 @@ public class Entity {
         case "right": 
           direction = "down";
           break;
-        }
+        default:
+          break;
+      }
     }
 
-      gamePan.ui.currentWords = words[speakIndex];
-      speakIndex++;
+    gamePan.ui.currentWords = words[speakIndex];
+    speakIndex++;
   }
 
   /**
@@ -310,24 +332,25 @@ public class Entity {
    * @param g2d Graphics2D to draw with.
    * @param alphaValue The alpha value to change entity to.
    */
-  private void changeAlpha(Graphics2D g2d, float alphaValue){
+  private void changeAlpha(Graphics2D g2d, float alphaValue) {
     g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
   }
 
-/**
- * Sets up images for entity.
- * @param imagePath Image path for image to load.
- * @param width Width to scale image to.
- * @param height Height to scale image to.
- * @return
- */
+  /**
+   * Sets up images for entity.
+   *
+   * @param imagePath Image path for image to load.
+   * @param width Width to scale image to.
+   * @param height Height to scale image to.
+   * @return The image.
+   */
   protected BufferedImage setup(String imagePath, int width, int height) {
-    UtilityTool uTool = new UtilityTool();
+    UtilityTool utool = new UtilityTool();
     BufferedImage image = null;
 
     try {
       image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-      image = uTool.scaleImage(image, width, height);
+      image = utool.scaleImage(image, width, height);
     } catch (IOException e) {
       e.printStackTrace();
     }
