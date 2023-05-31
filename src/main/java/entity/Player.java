@@ -15,18 +15,31 @@ public class Player extends Entity {
   public final int screenX;
   public final int screenY;
   public Rectangle attackArea = new Rectangle(0, 0, 36, 26);
-  BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+  BufferedImage attackUp1;
+  BufferedImage attackUp2;
+  BufferedImage attackDown1;
+  BufferedImage attackDown2;
+  BufferedImage attackLeft1;
+  BufferedImage attackLeft2;
+  BufferedImage attackRight1;
+  BufferedImage attackRight2;
   boolean attacking = false;
   public boolean hasSword = false;
   public boolean hasSussyBit = false;
   public int bits = 0;
 
+  /**
+   * Creates a player.
+   *
+   * @param gamePan Game's GamePanel object.
+   * @param keyHand Game's KeyHandler object.
+   */
   public Player(GamePanel gamePan, KeyHandler keyHand) {
     super(gamePan);
     this.keyHand = keyHand;
 
-    screenX = gamePan.screenWidth/2;
-    screenY = gamePan.screenHeight/2;
+    screenX = gamePan.screenWidth / 2;
+    screenY = gamePan.screenHeight / 2;
 
     solidArea = new Rectangle(2, 16, 44, 32); // sets player collision area
     solidAreaDefaultX = solidArea.x;
@@ -88,7 +101,8 @@ public class Player extends Entity {
 
     if (attacking) {
       attacking();
-    } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed || keyHand.rightPressed || keyHand.spacePressed) {
+    } else if (keyHand.upPressed || keyHand.downPressed || keyHand.leftPressed 
+        || keyHand.rightPressed || keyHand.spacePressed) {
       if (keyHand.upPressed) {
         direction = "up";
       } else if (keyHand.downPressed) {
@@ -102,7 +116,7 @@ public class Player extends Entity {
       collisionOn = false;
       gamePan.colChecker.checkTile(this); // check tile collision
       int npcIndex = gamePan.colChecker.checkEntity(this, gamePan.npc); // check npc collision
-      interactNPC(npcIndex);
+      interactNpc(npcIndex);
       int followBotIndex = gamePan.colChecker.checkEntity(this, gamePan.followBot); // check follow bot collision
       interactFollowBot(followBotIndex);
       int objIndex = gamePan.colChecker.checkObject(this, true); // Check object collision
@@ -206,6 +220,8 @@ public class Player extends Entity {
           }
         }
         break;
+      default:
+        break;
     }
 
     g2d.drawImage(image, tempScreenX, tempScreenY, null);
@@ -225,10 +241,10 @@ public class Player extends Entity {
       spriteNum = 2;
 
       // Save current data
-      int currentWorldX = worldX;
-      int currentWorldY = worldY;
-      int solidAreaWidth = solidArea.width;
-      int solidAreaHeight = solidArea.height;
+      final int currentWorldX = worldX;
+      final int currentWorldY = worldY;
+      final int solidAreaWidth = solidArea.width;
+      final int solidAreaHeight = solidArea.height;
 
       switch (direction) {
         case "up":
@@ -242,6 +258,8 @@ public class Player extends Entity {
           break;
         case "right":
           worldX += attackArea.width;
+          break;
+        default:
           break;
       }
       solidArea.width = attackArea.width;
@@ -292,7 +310,7 @@ public class Player extends Entity {
    *
    * @param i Index of NPC player is touching (or 999 if not touching any).
    */
-  public void interactNPC(int i) {
+  public void interactNpc(int i) {
 
     if (gamePan.keyHand.spacePressed) {
       if (i != 999) { // if player is touching npc
@@ -302,10 +320,10 @@ public class Player extends Entity {
         gamePan.keyHand.setNPCIndex(i);
       } else {
         // If enter key is pressed but player isn't touching npc
-          if (hasSword) {
-            attacking = true;
-            gamePan.playSE(4);
-          }
+        if (hasSword) {
+          attacking = true;
+          gamePan.playSE(4);
+        }
       }
     }
   }
@@ -322,7 +340,7 @@ public class Player extends Entity {
       
       gamePan.ui.showMessage(("You picked up a " + objName + "!"));
 
-      switch(objName) {
+      switch (objName) {
         case "mod sword": 
           gamePan.playSE(7);
           gamePan.obj[i] = null;
@@ -346,6 +364,8 @@ public class Player extends Entity {
             life = maxLife;
           }
           gamePan.obj[i] = null;
+          break;
+        default:
           break;
       }
     }

@@ -4,7 +4,7 @@ import entity.FollowBot;
 import entity.NpcAlex;
 import entity.NpcGrass;
 import entity.NpcReece;
-import entity.NPC_Wongy;
+import entity.NpcWongy;
 import object.OBJ_Bit;
 import object.OBJ_ModSword;
 import object.OBJ_SussyBit;
@@ -23,7 +23,7 @@ public class AssetSetter {
  * Places NPCs on the game map.
  */
   public void setNPC() {
-    gamePan.npc[0] = new NPC_Wongy(gamePan);
+    gamePan.npc[0] = new NpcWongy(gamePan);
     gamePan.npc[0].worldX = gamePan.tileSize * 18;
     gamePan.npc[0].worldY = gamePan.tileSize * 32;
 
