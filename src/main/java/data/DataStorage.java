@@ -16,13 +16,13 @@ public class DataStorage implements Serializable {
   String playerDirection;
 
   // Objects on the map
-  String mapObjectNames[];
-  int mapObjectWorldX[];
-  int mapObjectWorldY[];
+  String[] mapObjectNames;
+  int[] mapObjectWorldX;
+  int[] mapObjectWorldY;
 
   // Follow bots stats
-  int followBotsLife[];
-  int followBotsWorldX[];
-  int followBotsWorldY[];
-  String followBotsDirection[];
+  int[] followBotsLife;
+  int[] followBotsWorldX;
+  int[] followBotsWorldY;
+  String[] followBotsDirection;
 }
