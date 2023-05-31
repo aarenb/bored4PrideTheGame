@@ -1,15 +1,19 @@
 package object;
 
-import java.awt.Rectangle;
-
 import entity.Entity;
+import java.awt.Rectangle;
 import main.GamePanel;
 
 /**
  * Represents a bit object.
  */
-public class OBJ_Bit extends Entity{
-  public OBJ_Bit(GamePanel gamePan) {
+public class Bit extends Entity {
+  /**
+   * Creates a bit.
+   *
+   * @param gamePan Game's GamePanel object.
+   */
+  public Bit(GamePanel gamePan) {
     super(gamePan);
     name = "bit";
 

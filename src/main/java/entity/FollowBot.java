@@ -3,8 +3,8 @@ package entity;
 import java.awt.Rectangle;
 import java.util.Random;
 import main.GamePanel;
-import object.OBJ_Bit;
-import object.OBJ_Heart;
+import object.Bit;
+import object.Heart;
 
 /**
  * Represents a follow bot.
@@ -92,9 +92,9 @@ public class FollowBot extends Entity {
     int i = new Random().nextInt(100) + 1; // Pick random number
 
     if (i < 75) {
-      dropItem(new OBJ_Bit(gamePan));
+      dropItem(new Bit(gamePan));
     } else if (i > 75) {
-      dropItem(new OBJ_Heart(gamePan));
+      dropItem(new Heart(gamePan));
     }
   }
 }

@@ -1,14 +1,19 @@
 package object;
 
-import java.awt.Rectangle;
 import entity.Entity;
+import java.awt.Rectangle;
 import main.GamePanel;
 
 /**
  * Represents a sussy bit object.
  */
-public class OBJ_SussyBit extends Entity {
-  public OBJ_SussyBit(GamePanel gamePan) {
+public class SussyBit extends Entity {
+  /**
+   * Creates a sussy bit.
+   *
+   * @param gamePan Game's GamePanel object.
+   */
+  public SussyBit(GamePanel gamePan) {
     super(gamePan);
     name = "sussy bit";
 

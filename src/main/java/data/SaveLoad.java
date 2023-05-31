@@ -8,10 +8,10 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import main.GamePanel;
-import object.OBJ_Bit;
-import object.OBJ_Heart;
-import object.OBJ_ModSword;
-import object.OBJ_SussyBit;
+import object.Bit;
+import object.Heart;
+import object.ModSword;
+import object.SussyBit;
 
 /**
  * Represents a save load object.
@@ -134,16 +134,16 @@ public class SaveLoad {
 
     switch (objName) {
       case "heart":
-        obj = new OBJ_Heart(gamePan);
+        obj = new Heart(gamePan);
         break;
       case "bit":
-        obj = new OBJ_Bit(gamePan);
+        obj = new Bit(gamePan);
         break;
       case "sussy bit":
-        obj = new OBJ_SussyBit(gamePan);
+        obj = new SussyBit(gamePan);
         break;
       case "mod sword":
-        obj = new OBJ_ModSword(gamePan);
+        obj = new ModSword(gamePan);
         break;
       default:
         break;

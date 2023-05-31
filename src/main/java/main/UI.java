@@ -10,8 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
-import object.OBJ_Bit;
-import object.OBJ_Heart;
+import object.Bit;
+import object.Heart;
 
 /**
  * The game UI.
@@ -60,13 +60,13 @@ public class Ui { // TODO: why is this error here???
     }
 
     // Get heart images
-    OBJ_Heart heart = new OBJ_Heart(gamePan);
+    Heart heart = new Heart(gamePan);
     heartFull = heart.image;
     heartHalf = heart.image2;
     heartEmpty = heart.image3;
 
     // Get bit image
-    OBJ_Bit bit = new OBJ_Bit(gamePan);
+    Bit bit = new Bit(gamePan);
     bitImg = bit.down1;
 
     // Set size of fonts

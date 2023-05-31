@@ -5,9 +5,9 @@ import entity.NpcAlex;
 import entity.NpcGrass;
 import entity.NpcReece;
 import entity.NpcWongy;
-import object.OBJ_Bit;
-import object.OBJ_ModSword;
-import object.OBJ_SussyBit;
+import object.Bit;
+import object.ModSword;
+import object.SussyBit;
 
 /**
  * Represents an asset setter.
@@ -101,13 +101,13 @@ public class AssetSetter {
    * Places objects on the game map.
    */
   public void setObject() {
-    gamePan.obj[0] = new OBJ_ModSword(gamePan);
+    gamePan.obj[0] = new ModSword(gamePan);
     gamePan.obj[0].worldX = gamePan.tileSize * 29;
     gamePan.obj[0].worldY = gamePan.tileSize * 26;
-    gamePan.obj[1] = new OBJ_Bit(gamePan);
+    gamePan.obj[1] = new Bit(gamePan);
     gamePan.obj[1].worldX = gamePan.tileSize * 23;
     gamePan.obj[1].worldY = gamePan.tileSize * 37;
-    gamePan.obj[2] = new OBJ_SussyBit(gamePan);
+    gamePan.obj[2] = new SussyBit(gamePan);
     gamePan.obj[2].worldX = gamePan.tileSize * 4;
     gamePan.obj[2].worldY = gamePan.tileSize * 25;
   }

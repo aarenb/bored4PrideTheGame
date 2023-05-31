@@ -1,16 +1,19 @@
 package object;
 
-import java.awt.Rectangle;
-
 import entity.Entity;
+import java.awt.Rectangle;
 import main.GamePanel;
 
 /**
  * Represents a heart object.
  */
-public class OBJ_Heart extends Entity{
-  
-  public OBJ_Heart(GamePanel gamePan) {
+public class Heart extends Entity {
+  /**
+   * Creates a heart.
+   *
+   * @param gamePan Game's GamePanel object.
+   */
+  public Heart(GamePanel gamePan) {
     super(gamePan);
 
     name = "heart";
