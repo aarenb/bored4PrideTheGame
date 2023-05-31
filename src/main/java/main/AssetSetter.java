@@ -1,7 +1,7 @@
 package main;
 
 import entity.FollowBot;
-import entity.NPC_Alex;
+import entity.NpcAlex;
 import entity.NPC_Grass;
 import entity.NPC_Reece;
 import entity.NPC_Wongy;
@@ -31,7 +31,7 @@ public class AssetSetter {
     gamePan.npc[1].worldX = gamePan.tileSize * 7;
     gamePan.npc[1].worldY = gamePan.tileSize * 11;
 
-    gamePan.npc[2] = new NPC_Alex(gamePan);
+    gamePan.npc[2] = new NpcAlex(gamePan);
     gamePan.npc[2].worldX = gamePan.tileSize * 44;
     gamePan.npc[2].worldY = gamePan.tileSize * 7;
 
