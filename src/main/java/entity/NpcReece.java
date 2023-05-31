@@ -1,14 +1,18 @@
 package entity;
 
 import java.awt.Rectangle;
-
 import main.GamePanel;
 
 /**
  * Represents a Reece NPC.
  */
-public class NPC_Reece extends Entity {
-  public NPC_Reece(GamePanel gamePan) {
+public class NpcReece extends Entity {
+  /**
+   * Creates a Reece NPC.
+   *
+   * @param gamePan Game's GamePanel object.
+   */
+  public NpcReece(GamePanel gamePan) {
     super(gamePan);
 
     direction = "down";
@@ -34,8 +38,10 @@ public class NPC_Reece extends Entity {
    * Sets the NPC dialogue.
    */
   public void setWords() {
-    words[0] = "Hi there, my name is Reece. Are you in need of a \nminecraft server? 404 hosting got lots of \noptions for you!";
-    words[1] = "Oh, you're here to fix the follow bot problem. \nThank god! The 100 player survival games is \nstarting soon, and they're ruining it!!";
+    words[0] = "Hi there, my name is Reece. Are you in need of a \nminecraft server? 404 hosting got lots of" 
+      + "\noptions for you!";
+    words[1] = "Oh, you're here to fix the follow bot problem. \nThank god! The 100 player survival games is"  
+      + "\nstarting soon, and they're ruining it!!";
     words[2] = "Anyways if you do need a minecraft server you \nknow where to find me... *wink*";
   }
 }
