@@ -6,8 +6,13 @@ import main.GamePanel;
 /**
  * Represents a Grass NPC.
  */
-public class NPC_Grass extends Entity {
-  public NPC_Grass(GamePanel gamePan) {
+public class NpcGrass extends Entity {
+  /**
+   * Creates a Grass NPC.
+   *
+   * @param gamePan Game's GamePanel object.
+   */
+  public NpcGrass(GamePanel gamePan) {
     super(gamePan);
 
     direction = "down";
@@ -34,7 +39,8 @@ public class NPC_Grass extends Entity {
    */
   public void setWords() {
     words[0] = "GAHHHH!!! These sussy follow bots are \nEVERYWHERE! Please please go away you sussy \nbots!!!";
-    words[1] = "Oh we spoke on the phone right? I'm Grass! I was \nmid setting up the among us event when these \nbots just came out of nowhere!";
+    words[1] = "Oh we spoke on the phone right? I'm Grass! I was \nmid setting up the among us event when these" 
+      + "\nbots just came out of nowhere!";
     words[2] = "Now ban them all, and please hurry!! \n*oh god so sussy..*";
   }
   
