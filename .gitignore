@@ -1,4 +1,4 @@
-src/resources/sound/teehee.wav
+src/main/resources/sound/teehee.wav
 
 # Ignore Gradle project-specific cache directory
 .gradle
