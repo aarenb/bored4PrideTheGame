@@ -6,16 +6,20 @@ import java.awt.event.KeyListener;
 /**
  * Represents a key handler.
  */
-public class KeyHandler implements KeyListener{
+public class KeyHandler implements KeyListener {
   private GamePanel gamePan;
-  public boolean upPressed, downPressed, leftPressed, rightPressed, spacePressed;
+  public boolean upPressed;
+  public boolean downPressed;
+  public boolean leftPressed;
+  public boolean rightPressed; 
+  public boolean spacePressed;
   private int npcIndex = 0;
 
   public KeyHandler(GamePanel gamePan) {
     this.gamePan = gamePan;
   }
 
-  public void setNPCIndex(int i) {
+  public void setNpcIndex(int i) {
     npcIndex = i;
   }
 
@@ -31,7 +35,7 @@ public class KeyHandler implements KeyListener{
     // PLAY STATE:
     if (gamePan.gameState == gamePan.playState) {
       // if user press W key / up arrow
-      if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP ) {
+      if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
         upPressed = true;
       }
 
@@ -154,21 +158,22 @@ public class KeyHandler implements KeyListener{
 
       // if user press D key / right arrow
       if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
-          if (gamePan.ui.commandNum == 1 && gamePan.music.volumeScale < 5) {
-            gamePan.playSe(2);
-            gamePan.music.volumeScale++;
-            gamePan.music.checkVolume();
-          }
-          if (gamePan.ui.commandNum == 2 && gamePan.se.volumeScale < 5) {
-            gamePan.se.volumeScale++;
-            gamePan.playSe(2);
-          }
+        if (gamePan.ui.commandNum == 1 && gamePan.music.volumeScale < 5) {
+          gamePan.playSe(2);
+          gamePan.music.volumeScale++;
+          gamePan.music.checkVolume();
+        }
+        if (gamePan.ui.commandNum == 2 && gamePan.se.volumeScale < 5) {
+          gamePan.se.volumeScale++;
+          gamePan.playSe(2);
+        }
       }
       // DIALOGUE:
     } else if (gamePan.gameState == gamePan.dialogueState) {
       // If user press space bar
       if (code == KeyEvent.VK_SPACE) {
-        if (gamePan.npc[npcIndex].words[gamePan.npc[npcIndex].speakIndex] == null) { // if there are no more npc dialogue left
+        if (gamePan.npc[npcIndex].words[gamePan.npc[npcIndex].speakIndex] == null) { 
+          // if there are no more npc dialogue left
           gamePan.gameState = gamePan.playState;
           gamePan.npc[npcIndex].speakIndex = 0;
         } else {
