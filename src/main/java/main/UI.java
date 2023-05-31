@@ -13,20 +13,26 @@ import javax.imageio.ImageIO;
 import object.OBJ_Bit;
 import object.OBJ_Heart;
 
-public class UI { 
+/**
+ * The game UI.
+ */
+public class Ui { // TODO: why is this error here???
   private GamePanel gamePan;
   Graphics2D g2d;
-  BufferedImage heart_full, heart_half, heart_empty;
-  BufferedImage backgroundImg1, backgroundImg2;
+  BufferedImage heartFull;
+  BufferedImage heartHalf;
+  BufferedImage heartEmpty;
+  BufferedImage backgroundImg1;
+  BufferedImage backgroundImg2;
   BufferedImage bitImg;
 
-  Font VCR_OSD_Mono;
-  Font VCR_OSD_Mono_80;
-  Font VCR_OSD_Mono_58;
-  Font VCR_OSD_Mono_40;
-  Font VCR_OSD_Mono_28;
-  Font Pixeltype;
-  Font Pixeltype_36;
+  Font mono;
+  Font mono80;
+  Font mono58;
+  Font mono40;
+  Font mono28;
+  Font pixeltype;
+  Font pixeltype36;
 
   public String currentWords = "";
   public int commandNum = 0;
@@ -35,15 +41,18 @@ public class UI {
   public boolean messageOn = false;
   public boolean resetMessageOn = false;
 
-  public UI(GamePanel gamePan) {
+  /**
+   * Creates a new UI object.
+   */
+  public Ui(GamePanel gamePan) {
     this.gamePan = gamePan;
 
     // Import font
     InputStream input1 = getClass().getResourceAsStream("/font/VCR_OSD_MONO_1.001.ttf");
     InputStream input2 = getClass().getResourceAsStream("/font/Pixeltype.ttf");
     try {
-      VCR_OSD_Mono = Font.createFont(Font.TRUETYPE_FONT, input1);
-      Pixeltype = Font.createFont(Font.TRUETYPE_FONT, input2);
+      mono = Font.createFont(Font.TRUETYPE_FONT, input1);
+      pixeltype = Font.createFont(Font.TRUETYPE_FONT, input2);
     } catch (FontFormatException e) {
       e.printStackTrace();
     } catch (IOException e) {
@@ -52,20 +61,20 @@ public class UI {
 
     // Get heart images
     OBJ_Heart heart = new OBJ_Heart(gamePan);
-    heart_full = heart.image;
-    heart_half = heart.image2;
-    heart_empty = heart.image3;
+    heartFull = heart.image;
+    heartHalf = heart.image2;
+    heartEmpty = heart.image3;
 
     // Get bit image
     OBJ_Bit bit = new OBJ_Bit(gamePan);
     bitImg = bit.down1;
 
     // Set size of fonts
-    VCR_OSD_Mono_80 = VCR_OSD_Mono.deriveFont(80f);
-    VCR_OSD_Mono_58 = VCR_OSD_Mono.deriveFont(58f);
-    VCR_OSD_Mono_40 = VCR_OSD_Mono.deriveFont(40f);
-    VCR_OSD_Mono_28 = VCR_OSD_Mono.deriveFont(28f);
-    Pixeltype_36 = Pixeltype.deriveFont(36f);
+    mono80 = mono.deriveFont(80f);
+    mono58 = mono.deriveFont(58f);
+    mono40 = mono.deriveFont(40f);
+    mono28 = mono.deriveFont(28f);
+    pixeltype36 = pixeltype.deriveFont(36f);
 
     loadImage();
   }
@@ -82,10 +91,15 @@ public class UI {
     }
   }
 
+  /**
+   * Draws the UI onto the window.
+   *
+   * @param g2d The Graphics2D to draw with.
+   */
   public void draw(Graphics2D g2d) {
     this.g2d = g2d;
 
-    g2d.setFont(VCR_OSD_Mono_80);
+    g2d.setFont(mono80);
     g2d.setColor(Color.white);
 
     // TITLE SCREEN:
@@ -103,17 +117,15 @@ public class UI {
       drawPlayerHealth();
       drawBitCounter();
 
-      /**
-       * If showMessage has been called, display the message for a short while.
-       */
+      // If showMessage has been called, display the message for a short while.
       if (messageOn) {
-        g2d.setFont(VCR_OSD_Mono_28);
+        g2d.setFont(mono28);
         int x = getXforCenterTxt(message);
         int y = gamePan.tileSize * 2;
         g2d.drawString(message, x, y);
         messageCount++;
 
-        if (messageCount > 100){
+        if (messageCount > 100) {
           messageOn = false;
           messageCount = 0;
         }
@@ -163,7 +175,7 @@ public class UI {
     g2d.drawImage(backgroundImg1, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
 
     // Display title
-    g2d.setFont(VCR_OSD_Mono_58);
+    g2d.setFont(mono58);
     String text = "Bored4Pride: The Game";
     int x = getXforCenterTxt(text);
     int y = gamePan.tileSize * 3;
@@ -175,7 +187,7 @@ public class UI {
     g2d.drawString(text, x, y);
 
     // Menu
-    g2d.setFont(VCR_OSD_Mono_40);
+    g2d.setFont(mono40);
     g2d.setColor(Color.black);
 
     text = "NEW GAME";
@@ -252,7 +264,7 @@ public class UI {
     }
 
     // Game version
-    g2d.setFont(VCR_OSD_Mono_28);
+    g2d.setFont(mono28);
     g2d.setColor(Color.white);
     x = gamePan.screenWidth - gamePan.tileSize * 3 + - 20;
     y = gamePan.screenHeight - 17;
@@ -268,7 +280,7 @@ public class UI {
     g2d.drawImage(backgroundImg2, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
 
     // Display title
-    g2d.setFont(VCR_OSD_Mono_58);
+    g2d.setFont(mono58);
     String text = "Controls";
     int x = getXforCenterTxt(text);
     int y = gamePan.tileSize * 3;
@@ -280,7 +292,7 @@ public class UI {
     g2d.drawString(text, x, y);
 
     // Controls
-    g2d.setFont(VCR_OSD_Mono_40);
+    g2d.setFont(mono40);
     text = "Walk = W/A/S/D or arrow keys";
     x = getXforCenterTxt(text);
     y += gamePan.tileSize * 2;
@@ -301,7 +313,7 @@ public class UI {
     y += 60;
     g2d.drawString(text, x, y);
 
-    g2d.setFont(VCR_OSD_Mono_28);
+    g2d.setFont(mono28);
     text = "[ESC] - Back";
     x = 10;
     y = 30;
@@ -316,7 +328,7 @@ public class UI {
   private void drawPauseMenu() {
     darkenScreen();
 
-    g2d.setFont(VCR_OSD_Mono_58);
+    g2d.setFont(mono58);
     g2d.setColor(Color.white);
     String text = "PAUSED";
     int x = getXforCenterTxt(text);
@@ -324,7 +336,7 @@ public class UI {
     g2d.drawString(text, x, y);
 
     // Menu
-    g2d.setFont(VCR_OSD_Mono_28);
+    g2d.setFont(mono28);
     text = "Settings";
     x = getXforCenterTxt(text);
     y += 60;
@@ -356,7 +368,7 @@ public class UI {
   private void drawOptionsMenu() {
     darkenScreen();
 
-    g2d.setFont(VCR_OSD_Mono_28);
+    g2d.setFont(mono28);
     g2d.setColor(Color.white);
     String text = "Full screen";
     int x = getXforCenterTxt(text);
@@ -420,8 +432,8 @@ public class UI {
    */
   private void drawDialogueScreen() {
     // Draw the window
-    int x = gamePan.tileSize*4;
-    int y = gamePan.tileSize/2;
+    int x = gamePan.tileSize * 4;
+    int y = gamePan.tileSize / 2;
     int width = gamePan.screenWidth - (gamePan.tileSize * 8);
     int height = gamePan.tileSize * 4;
     drawLilWindow(x, y, width, height);
@@ -429,7 +441,7 @@ public class UI {
     // Draw words
     x += 30;
     y += gamePan.tileSize;
-    g2d.setFont(Pixeltype_36);
+    g2d.setFont(pixeltype36);
     g2d.setColor(Color.white);
 
     for (String line : currentWords.split("\n")) {
@@ -451,7 +463,7 @@ public class UI {
     g2d.drawString(text, x, y);
 
     // Menu
-    g2d.setFont(VCR_OSD_Mono_40);
+    g2d.setFont(mono40);
     text = "TRY AGAIN";
     x = getXforCenterTxt(text);
     y += gamePan.tileSize * 2;
@@ -483,14 +495,14 @@ public class UI {
     g2d.drawString(text, x, y);
 
     // Amount of bits collected
-    g2d.setFont(VCR_OSD_Mono_28);
+    g2d.setFont(mono28);
     x = gamePan.screenWidth / 2;
     y += 60;
     g2d.drawImage(bitImg, x - gamePan.tileSize, y - 35, null);
     g2d.drawString(String.valueOf(gamePan.player.bits), x, y);
 
     // Menu
-    g2d.setFont(VCR_OSD_Mono_40);
+    g2d.setFont(mono40);
     text = "RESTART GAME";
     x = getXforCenterTxt(text);
     y += 60;
@@ -512,7 +524,7 @@ public class UI {
    * Draws the bit counter in upper right corner.
    */
   private void drawBitCounter() {
-    g2d.setFont(VCR_OSD_Mono_28);
+    g2d.setFont(mono28);
     int x = gamePan.screenWidth - gamePan.tileSize;
     int y = gamePan.tileSize;
 
@@ -534,7 +546,7 @@ public class UI {
 
     // Draw blank hearts (max health)
     while (i < gamePan.player.maxLife / 2) {
-      g2d.drawImage(heart_empty, x, y, null);
+      g2d.drawImage(heartEmpty, x, y, null);
       i++;
       x += gamePan.tileSize;
     }
@@ -545,10 +557,10 @@ public class UI {
 
     // Draw player's health
     while (i < gamePan.player.life) {
-      g2d.drawImage(heart_half, x, y, null);
+      g2d.drawImage(heartHalf, x, y, null);
       i++;
       if (i < gamePan.player.life) {
-        g2d.drawImage(heart_full, x, y, null);
+        g2d.drawImage(heartFull, x, y, null);
       }
       i++;
       x += gamePan.tileSize;
@@ -562,7 +574,7 @@ public class UI {
    * Displays message about restarting the game after changing settings.
    */
   private void resetMessage() {
-    g2d.setFont(VCR_OSD_Mono_28);
+    g2d.setFont(mono28);
     String text = "Restart the game to implement change";
     int x = getXforCenterTxt(text);
     int y = gamePan.tileSize;
@@ -572,7 +584,8 @@ public class UI {
 
   /**
    * Shows message on screen.
-   * @param message
+   *
+   * @param message The message to display.
    */
   public void showMessage(String message) {
     this.message = message;
@@ -588,13 +601,14 @@ public class UI {
   }
 
   /**
-   * Draws a smaller window on the screen
+   * Draws a smaller window on the screen.
+   *
    * @param x Top and bottom of window
    * @param y Left and right of window
    * @param width Window width
    * @param height Window height
    */
-  private void drawLilWindow(int x,int y, int width, int height) {
+  private void drawLilWindow(int x, int y, int width, int height) {
     Color c = new Color(0, 0, 0);
     g2d.setColor(c);
     g2d.fillRoundRect(x, y, width, height, 35, 35);
@@ -602,11 +616,12 @@ public class UI {
 
   /**
    * Gets the x coord to display text at center.
+   *
    * @param text The text to display
    * @return The x coordinate
    */
   private int getXforCenterTxt(String text) {
-    int length = (int)g2d.getFontMetrics().getStringBounds(text, g2d).getWidth(); // get length of text
+    int length = (int) g2d.getFontMetrics().getStringBounds(text, g2d).getWidth(); // get length of text
     int x = gamePan.screenWidth / 2 - length / 2;
     return x;
   }
