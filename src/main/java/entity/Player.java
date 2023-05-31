@@ -137,7 +137,7 @@ public class Player extends Entity {
     if (life <= 0) { // If the player has no health = is dead
       gamePan.gameState = gamePan.gameOverState;
       gamePan.stopMusic();
-      gamePan.playSE(6);
+      gamePan.playSe(6);
     }
   }
 
@@ -292,13 +292,13 @@ public class Player extends Entity {
   private void damageFollowBot(int i) {
     if (i != 999) {
       if (!gamePan.followBot[i].invinsible) {
-        gamePan.playSE(8);
+        gamePan.playSe(8);
         knockBack(gamePan.followBot[i]);
         gamePan.followBot[i].life -= 1;
         gamePan.followBot[i].invinsible = true;
 
         if (gamePan.followBot[i].life <= 0) {
-          gamePan.playSE(9);
+          gamePan.playSe(9);
           gamePan.followBot[i].dying = true;
         }
       }
@@ -314,7 +314,7 @@ public class Player extends Entity {
 
     if (gamePan.keyHand.spacePressed) {
       if (i != 999) { // if player is touching npc
-        gamePan.playSE(10);
+        gamePan.playSe(10);
         gamePan.gameState = gamePan.dialogueState;
         gamePan.npc[i].speak();
         gamePan.keyHand.setNPCIndex(i);
@@ -322,7 +322,7 @@ public class Player extends Entity {
         // If enter key is pressed but player isn't touching npc
         if (hasSword) {
           attacking = true;
-          gamePan.playSE(4);
+          gamePan.playSe(4);
         }
       }
     }
@@ -342,12 +342,12 @@ public class Player extends Entity {
 
       switch (objName) {
         case "mod sword": 
-          gamePan.playSE(7);
+          gamePan.playSe(7);
           gamePan.obj[i] = null;
           hasSword = true;
           break;
         case "bit":
-          gamePan.playSE(3);
+          gamePan.playSe(3);
           gamePan.obj[i] = null;
           bits++;
           break;
@@ -358,7 +358,7 @@ public class Player extends Entity {
           gamePan.obj[i] = null;
           break;
         case "heart":
-          gamePan.playSE(7);
+          gamePan.playSe(7);
           life += 2;
           if (life > maxLife) {
             life = maxLife;
@@ -379,7 +379,7 @@ public class Player extends Entity {
   public void interactFollowBot(int i) {
     if (i != 999) { // if player is touching follow bot
       if (!invinsible) {
-        gamePan.playSE(5);
+        gamePan.playSe(5);
         life -= 1;
         invinsible = true;
       }

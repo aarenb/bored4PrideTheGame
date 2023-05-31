@@ -1,5 +1,9 @@
 package main;
 
+import data.SaveLoad;
+import entity.Entity;
+import entity.FollowBot;
+import entity.Player;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -11,10 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JPanel;
-import data.SaveLoad;
-import entity.Entity;
-import entity.FollowBot;
-import entity.Player;
 import tile.TileManager;
 
 /**
@@ -28,9 +28,9 @@ public class GamePanel extends JPanel implements Runnable {
   public final int tileSize = ogTileSize * scale;
   public final int maxScreenColumn = 20;
   public final int maxScreenRow = 12;
-  public final int screenWidth = tileSize * maxScreenColumn;// 960px
-  public final int screenHeight = tileSize * maxScreenRow;// 576px
-  int FPS = 60;
+  public final int screenWidth = tileSize * maxScreenColumn; // 960px
+  public final int screenHeight = tileSize * maxScreenRow; // 576px
+  int fps = 60;
 
   // Full screen
   int screenWidth2 = screenWidth;
@@ -51,15 +51,15 @@ public class GamePanel extends JPanel implements Runnable {
   public UI ui = new UI(this);
   public Config config = new Config(this);
   Sound music = new Sound();
-  Sound SE = new Sound();
+  Sound se = new Sound();
   SaveLoad saveLoad = new SaveLoad(this);
 
-  Thread gameThread;// keeps the game running
+  Thread gameThread; // keeps the game running
 
   // Entities
-  public Entity obj[] = new Entity[10];
-  public Entity npc[] = new Entity[10];
-  public FollowBot followBot[] = new FollowBot[20];
+  public Entity[] obj = new Entity[10];
+  public Entity[] npc = new Entity[10];
+  public FollowBot[] followBot = new FollowBot[20];
   ArrayList<Entity> allEntities = new ArrayList<>();
 
   // Game state
@@ -73,12 +73,15 @@ public class GamePanel extends JPanel implements Runnable {
   public final int optionsState = 6;
   public final int winState = 7;
 
+  /**
+   * Creates a GamePanel.
+   */
   public GamePanel() {
     this.setPreferredSize(new Dimension(screenWidth, screenHeight));
     this.setBackground(Color.black);
-    this.setDoubleBuffered(true);// improves game's rendering performance
+    this.setDoubleBuffered(true); // improves game's rendering performance
     this.addKeyListener(keyHand);
-    this.setFocusable(true);// can be set "focused" to get key input
+    this.setFocusable(true); // can be set "focused" to get key input
   }
 
   /**
@@ -91,7 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
     gameState = titleState;
 
     tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
-    g2d = (Graphics2D)tempScreen.getGraphics();
+    g2d = (Graphics2D) tempScreen.getGraphics();
 
     if (fullScreenOn) {
       setFullScreen();
@@ -137,7 +140,7 @@ public class GamePanel extends JPanel implements Runnable {
   @Override
   public void run() {
 
-    double drawInterval = 1000000000/FPS;
+    double drawInterval = 1000000000 / fps;
     double delta = 0;
     long lastTime = System.nanoTime();
     long currentTime;
@@ -161,15 +164,15 @@ public class GamePanel extends JPanel implements Runnable {
   /**
    * Updates game.
    */
-  public void update () {
+  public void update() {
     if (gameState == playState) {
       player.update();
-      for(int i = 0; i < npc.length; i++) {
+      for (int i = 0; i < npc.length; i++) {
         if (npc[i] != null) {
           npc[i].update();
         }
       }
-      for(int i = 0; i < followBot.length; i++) {
+      for (int i = 0; i < followBot.length; i++) {
         if (followBot[i] != null) {
           if (followBot[i].alive && !followBot[i].dying) {
             followBot[i].update();
@@ -184,8 +187,8 @@ public class GamePanel extends JPanel implements Runnable {
     // Checks if all follow bots are dead
     Boolean empty = true;
 
-    for (FollowBot bot : followBot){
-      if (bot != null){
+    for (FollowBot bot : followBot) {
+      if (bot != null) {
         empty = false;
       }
     }
@@ -203,62 +206,62 @@ public class GamePanel extends JPanel implements Runnable {
       ui.draw(g2d);
     } else {
 
-    // Set background color (for outside map)
-    g2d.setColor(new Color(32, 132, 52));
-    g2d.fillRect(0, 0, screenWidth, screenHeight);
+      // Set background color (for outside map)
+      g2d.setColor(new Color(32, 132, 52));
+      g2d.fillRect(0, 0, screenWidth, screenHeight);
 
-    // Tiles
-    tileManager.draw(g2d);
+      // Tiles
+      tileManager.draw(g2d);
 
-    // Add player
-    allEntities.add(player);
-    
-    // Add NPCs
-    for (int i = 0; i < npc.length; i++) {
-      if (npc[i] != null) {
-        allEntities.add(npc[i]);
+      // Add player
+      allEntities.add(player);
+      
+      // Add NPCs
+      for (int i = 0; i < npc.length; i++) {
+        if (npc[i] != null) {
+          allEntities.add(npc[i]);
+        }
       }
-    }
 
-    // Add objects
-    for (int i = 0; i < obj.length; i++) {
-      if (obj[i] != null) {
-        allEntities.add(obj[i]);
+      // Add objects
+      for (int i = 0; i < obj.length; i++) {
+        if (obj[i] != null) {
+          allEntities.add(obj[i]);
+        }
       }
-    }
 
-    // Add follow bots
-    for (int i = 0; i < followBot.length; i++) {
-      if (followBot[i] != null) {
-        allEntities.add(followBot[i]);
+      // Add follow bots
+      for (int i = 0; i < followBot.length; i++) {
+        if (followBot[i] != null) {
+          allEntities.add(followBot[i]);
+        }
       }
-    }
 
-    // Sort entities based on worldY
-    Collections.sort(allEntities, new Comparator<Entity>() {
-      @Override
-      public int compare(Entity e1, Entity e2) {
-        return Integer.compare(e1.worldY, e2.worldY);
+      // Sort entities based on worldY
+      Collections.sort(allEntities, new Comparator<Entity>() {
+        @Override
+        public int compare(Entity e1, Entity e2) {
+          return Integer.compare(e1.worldY, e2.worldY);
+        }
+      });
+
+      // Draw entities
+      for (int i = 0; i < allEntities.size(); i++) {
+        allEntities.get(i).draw(g2d);
       }
-    });
 
-    // Draw entities
-    for (int i = 0; i < allEntities.size(); i++) {
-      allEntities.get(i).draw(g2d);
-    }
+      // Empty entities list
+      allEntities.clear();
 
-    // Empty entities list
-    allEntities.clear();
-
-    // UI
-    ui.draw(g2d);
+      // UI
+      ui.draw(g2d);
     }
   }
 
   /**
    * Draws temp screen to the actual screen.
    */
-  public void drawToScreen(){
+  public void drawToScreen() {
     Graphics g = getGraphics();
     g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
     g.dispose();
@@ -266,6 +269,7 @@ public class GamePanel extends JPanel implements Runnable {
 
   /**
    * Starts playing music.
+   *
    * @param i Index of sound file.
    */
   public void playMusic(int i) {
@@ -283,10 +287,11 @@ public class GamePanel extends JPanel implements Runnable {
 
   /**
    * Plays sound effect.
+   *
    * @param i Index of sound file.
    */
-  public void playSE(int i) {
-    SE.setFile(i);
-    SE.play();
+  public void playSe(int i) {
+    se.setFile(i);
+    se.play();
   }
 }

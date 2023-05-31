@@ -409,7 +409,7 @@ public class UI {
     // Sound effect volume bar
     y += gamePan.tileSize;
     g2d.drawRect(x, y, 120, 24);
-    volumeWidth = 24 * gamePan.SE.volumeScale;
+    volumeWidth = 24 * gamePan.se.volumeScale;
     g2d.fillRect(x, y, volumeWidth, 24);
 
     gamePan.config.saveConfig();

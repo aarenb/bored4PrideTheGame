@@ -36,7 +36,7 @@ public class Config {
       writer.newLine();
 
       // Sound effects volume
-      writer.write(String.valueOf(gamePan.SE.volumeScale));
+      writer.write(String.valueOf(gamePan.se.volumeScale));
 
       writer.close();
     } catch (IOException e) {
@@ -67,7 +67,7 @@ public class Config {
 
       // Sound effects volume
       s = reader.readLine();
-      gamePan.SE.volumeScale = Integer.parseInt(s);
+      gamePan.se.volumeScale = Integer.parseInt(s);
 
       reader.close();
     } catch (IOException e) {

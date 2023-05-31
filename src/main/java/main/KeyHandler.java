@@ -68,7 +68,7 @@ public class KeyHandler implements KeyListener{
 
       // If user presses W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
-        gamePan.playSE(2);
+        gamePan.playSe(2);
         gamePan.ui.commandNum--;
         if (gamePan.ui.commandNum < 0) {
           gamePan.ui.commandNum = 2;
@@ -77,7 +77,7 @@ public class KeyHandler implements KeyListener{
 
       // If user presses S key / down arrow
       if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-        gamePan.playSE(2);
+        gamePan.playSe(2);
         gamePan.ui.commandNum++;
         if (gamePan.ui.commandNum > 2) {
           gamePan.ui.commandNum = 0;
@@ -105,7 +105,7 @@ public class KeyHandler implements KeyListener{
     } else if (gamePan.gameState == gamePan.optionsState) {
       // If user presses W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
-        gamePan.playSE(2);
+        gamePan.playSe(2);
         gamePan.ui.commandNum--;
         if (gamePan.ui.commandNum < 0) {
           gamePan.ui.commandNum = 3;
@@ -114,7 +114,7 @@ public class KeyHandler implements KeyListener{
 
       // If user presses S key / down arrow
       if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-        gamePan.playSE(2);
+        gamePan.playSe(2);
         gamePan.ui.commandNum++;
         if (gamePan.ui.commandNum > 3) {
           gamePan.ui.commandNum = 0;
@@ -125,7 +125,7 @@ public class KeyHandler implements KeyListener{
       if (code == KeyEvent.VK_SPACE) {
         if (gamePan.ui.commandNum == 0) {
           // Full screen:
-          gamePan.playSE(2);
+          gamePan.playSe(2);
           if (!gamePan.fullScreenOn) {
             gamePan.fullScreenOn = true;
           } else if (gamePan.fullScreenOn) {
@@ -142,26 +142,26 @@ public class KeyHandler implements KeyListener{
       // if user press A key / left arrow
       if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
         if (gamePan.ui.commandNum == 1 && gamePan.music.volumeScale > 0) {
-          gamePan.playSE(2);
+          gamePan.playSe(2);
           gamePan.music.volumeScale--;
           gamePan.music.checkVolume();
         }
-        if (gamePan.ui.commandNum == 2 && gamePan.SE.volumeScale > 0) {
-          gamePan.SE.volumeScale--;
-          gamePan.playSE(2);
+        if (gamePan.ui.commandNum == 2 && gamePan.se.volumeScale > 0) {
+          gamePan.se.volumeScale--;
+          gamePan.playSe(2);
         }
       }
 
       // if user press D key / right arrow
       if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
           if (gamePan.ui.commandNum == 1 && gamePan.music.volumeScale < 5) {
-            gamePan.playSE(2);
+            gamePan.playSe(2);
             gamePan.music.volumeScale++;
             gamePan.music.checkVolume();
           }
-          if (gamePan.ui.commandNum == 2 && gamePan.SE.volumeScale < 5) {
-            gamePan.SE.volumeScale++;
-            gamePan.playSE(2);
+          if (gamePan.ui.commandNum == 2 && gamePan.se.volumeScale < 5) {
+            gamePan.se.volumeScale++;
+            gamePan.playSe(2);
           }
       }
       // DIALOGUE:
@@ -179,7 +179,7 @@ public class KeyHandler implements KeyListener{
     } else if (gamePan.gameState == gamePan.titleState) { 
       // If user presses W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
-        gamePan.playSE(2);
+        gamePan.playSe(2);
         gamePan.ui.commandNum--;
         if (gamePan.ui.commandNum < 0) {
           gamePan.ui.commandNum = 3;
@@ -188,7 +188,7 @@ public class KeyHandler implements KeyListener{
 
       // If user presses S key / down arrow
       if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-        gamePan.playSE(2);
+        gamePan.playSe(2);
         gamePan.ui.commandNum++;
         if (gamePan.ui.commandNum > 3) {
           gamePan.ui.commandNum = 0;
@@ -232,7 +232,7 @@ public class KeyHandler implements KeyListener{
     } else if (gamePan.gameState == gamePan.gameOverState || gamePan.gameState == gamePan.winState) {
       // If user presses W key / up arrow
       if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
-        gamePan.playSE(2);
+        gamePan.playSe(2);
         gamePan.ui.commandNum--;
         if (gamePan.ui.commandNum < 0) {
           gamePan.ui.commandNum = 1;
@@ -241,7 +241,7 @@ public class KeyHandler implements KeyListener{
 
       // If user presses S key / down arrow
       if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-        gamePan.playSE(2);
+        gamePan.playSe(2);
         gamePan.ui.commandNum++;
         if (gamePan.ui.commandNum > 1) {
           gamePan.ui.commandNum = 0;
