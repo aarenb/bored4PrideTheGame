@@ -11,6 +11,11 @@ import object.OBJ_Heart;
  */
 public class FollowBot extends Entity {
 
+  /**
+   * Creates a follow bot.
+   *
+   * @param gamePan Game's GamePanel object.
+   */
   public FollowBot(GamePanel gamePan) {
     super(gamePan);
 
@@ -48,11 +53,11 @@ public class FollowBot extends Entity {
   public void setAction() {
     antiSpinCounter++;
     
-    if(antiSpinCounter == 110) {
+    if (antiSpinCounter == 110) {
       Random random = new Random();
-      int i = random.nextInt(100)+1; // pick number 1-100
+      int i = random.nextInt(100) + 1; // pick number 1-100
 
-      if (i <= 25){
+      if (i <= 25) {
         direction = "up";
       } else if (i > 25 && i <= 50) {
         direction = "down";
@@ -80,6 +85,9 @@ public class FollowBot extends Entity {
     }
   }
 
+  /**
+   * Randomize which item to drop, and then drop said item.
+   */
   public void checkDrop() {
     int i = new Random().nextInt(100) + 1; // Pick random number
 
