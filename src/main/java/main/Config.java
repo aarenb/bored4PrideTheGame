@@ -19,7 +19,7 @@ public class Config {
   /**
    * Saves game settings to config file.
    */
-  public void saveConfig(){
+  public void saveConfig() {
     try {
       BufferedWriter writer = new BufferedWriter(new FileWriter("config.txt"));
 
@@ -47,7 +47,7 @@ public class Config {
   /**
    * Loads game settings from config file.
    *
-   * @throws IOException
+   * @throws IOException Unexpected exception.
    */
   public void loadConfig() {
     try {
