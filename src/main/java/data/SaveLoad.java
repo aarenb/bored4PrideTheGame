@@ -1,13 +1,12 @@
 package data;
 
+import entity.Entity;
+import entity.FollowBot;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import entity.Entity;
-import entity.FollowBot;
 import main.GamePanel;
 import object.OBJ_Bit;
 import object.OBJ_Heart;
@@ -29,7 +28,7 @@ public class SaveLoad {
    */
   public void save() {
     try {
-      ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+      final ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
       DataStorage storage = new DataStorage();
 
       // Save player stats
@@ -85,7 +84,7 @@ public class SaveLoad {
   public void load() {
     try {
       ObjectInputStream input = new ObjectInputStream(new FileInputStream(new File("save.dat")));
-      DataStorage storage = (DataStorage)input.readObject();
+      DataStorage storage = (DataStorage) input.readObject(); 
 
       // Load player stats
       gamePan.player.life = storage.playerLife;
@@ -145,6 +144,8 @@ public class SaveLoad {
         break;
       case "mod sword":
         obj = new OBJ_ModSword(gamePan);
+        break;
+      default:
         break;
     }
 
