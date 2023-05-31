@@ -86,7 +86,7 @@ public class GamePanel extends JPanel implements Runnable {
    */
   public void setupGame() {
     assSetter.setObject();
-    assSetter.setNPC();
+    assSetter.setNpc();
     assSetter.setFollowBot();
     gameState = titleState;
 
@@ -128,7 +128,7 @@ public class GamePanel extends JPanel implements Runnable {
   public void restart() {
     player.setDefaultValues();
     assSetter.setObject();
-    assSetter.setNPC();
+    assSetter.setNpc();
     assSetter.setFollowBot();
     stopMusic();
     playMusic(1);

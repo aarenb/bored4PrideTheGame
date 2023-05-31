@@ -19,10 +19,10 @@ public class AssetSetter {
     this.gamePan = gamePan;
   }
 
-/**
- * Places NPCs on the game map.
- */
-  public void setNPC() {
+  /**
+   * Places NPCs on the game map.
+   */
+  public void setNpc() {
     gamePan.npc[0] = new NpcWongy(gamePan);
     gamePan.npc[0].worldX = gamePan.tileSize * 18;
     gamePan.npc[0].worldY = gamePan.tileSize * 32;
