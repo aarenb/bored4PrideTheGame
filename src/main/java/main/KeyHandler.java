@@ -88,8 +88,8 @@ public class KeyHandler implements KeyListener {
         }
       }
 
-      // If user presses space bar
-      if (code == KeyEvent.VK_SPACE) {
+      // If user presses enter
+      if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
           // Options:
           gamePan.gameState = gamePan.optionsState;
@@ -130,8 +130,8 @@ public class KeyHandler implements KeyListener {
         }
       }
 
-      // If user press space bar
-      if (code == KeyEvent.VK_SPACE) {
+      // If user presses enter 
+      if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
           // Full screen:
           gamePan.playSe(2);
@@ -205,8 +205,8 @@ public class KeyHandler implements KeyListener {
         }
       }
 
-      // If user press space bar
-      if (code == KeyEvent.VK_SPACE) {
+      // If user presses enter
+      if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
           // New game
           gamePan.restart();
@@ -258,8 +258,8 @@ public class KeyHandler implements KeyListener {
         }
       }
 
-      // If user press space bar
-      if (code == KeyEvent.VK_SPACE) {
+      // If user presses enter
+      if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
           gamePan.restart();
           gamePan.gameState = gamePan.playState;

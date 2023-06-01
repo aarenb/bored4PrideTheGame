@@ -1,7 +1,6 @@
 package object;
 
 import entity.Entity;
-import java.awt.Rectangle;
 import main.GamePanel;
 
 /**
@@ -16,7 +15,7 @@ public class SussyBit extends Entity {
   public SussyBit(GamePanel gamePan) {
     super(gamePan);
     name = "sussy bit";
-    
+
     down1 = setup("/objects/sussy_bit", gamePan.tileSize, gamePan.tileSize);
   }
 }
