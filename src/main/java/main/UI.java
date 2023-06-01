@@ -298,12 +298,12 @@ public class Ui { // TODO: why is this checkstyle error here???
     y += gamePan.tileSize * 2;
     g2d.drawString(text, x, y);
 
-    text = "Talk to NPC = space";
+    text = "Talk to NPC = enter";
     x = getXforCenterTxt(text);
     y += 60;
     g2d.drawString(text, x, y);
 
-    text = "Attack = space";
+    text = "Attack = enter";
     x = getXforCenterTxt(text);
     y += 60;
     g2d.drawString(text, x, y);
