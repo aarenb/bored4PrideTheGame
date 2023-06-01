@@ -16,7 +16,7 @@ import object.Heart;
 /**
  * The game UI.
  */
-public class Ui { // TODO: why is this error here???
+public class Ui { // TODO: why is this checkstyle error here???
   private GamePanel gamePan;
   Graphics2D g2d;
   BufferedImage heartFull;

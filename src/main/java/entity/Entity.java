@@ -79,6 +79,7 @@ public class Entity {
         knockBackCounter = 0;
         knockBack = false;
         speed = defaultSpeed;
+        turnToPlayer();
       } else if (!collisionOn) {
         move();
         knockBackCounter++;
@@ -86,25 +87,7 @@ public class Entity {
           knockBackCounter = 0;
           knockBack = false;
           speed = defaultSpeed;
-
-          // Make entity go towards player
-          antiSpinCounter = 0;
-          switch (gamePan.player.direction) {
-            case "up":
-              direction = "down";
-              break;
-            case "down":
-              direction = "up";
-              break;
-            case "left":
-              direction = "right";
-              break;
-            case "right":
-              direction = "left";
-              break;
-            default:
-              break;
-          }
+          turnToPlayer();
         }
       }
     } else {
@@ -334,6 +317,29 @@ public class Entity {
    */
   private void changeAlpha(Graphics2D g2d, float alphaValue) {
     g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
+  }
+
+  /**
+   * Makes the entity turn towards the player.
+   */
+  private void turnToPlayer() {
+    antiSpinCounter = 0;
+    switch (gamePan.player.direction) {
+      case "up":
+        direction = "down";
+        break;
+      case "down":
+        direction = "up";
+        break;
+      case "left":
+        direction = "right";
+        break;
+      case "right":
+        direction = "left";
+        break;
+      default:
+        break;
+    }
   }
 
   /**
