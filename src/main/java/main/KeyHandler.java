@@ -91,16 +91,21 @@ public class KeyHandler implements KeyListener {
       // If user presses space bar
       if (code == KeyEvent.VK_SPACE) {
         if (gamePan.ui.commandNum == 0) {
+          // Options:
           gamePan.gameState = gamePan.optionsState;
         } else if (gamePan.ui.commandNum == 1) {
+          // Save & quit:
           gamePan.saveLoad.save();
           gamePan.ui.commandNum = 0;
           gamePan.gameState = gamePan.titleState;
+          gamePan.ui.messageOn = false;
           gamePan.stopMusic();
           gamePan.playMusic(0);
         } else if (gamePan.ui.commandNum == 2) {
+          // Quit:
           gamePan.ui.commandNum = 0; // TODO: get rid of doubled code??
           gamePan.gameState = gamePan.titleState;
+          gamePan.ui.messageOn = false;
           gamePan.stopMusic();
           gamePan.playMusic(0);
         }
