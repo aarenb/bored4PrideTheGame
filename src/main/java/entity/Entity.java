@@ -17,7 +17,7 @@ public class Entity {
   protected GamePanel gamePan;
   public int worldX;
   public int worldY;
-  public int speed;
+  public int speed = 0;
   public int defaultSpeed;
   public int type; // 0 = player, 1 = npc, 2 = follow bot
   public int spriteCount = 0;
@@ -31,9 +31,9 @@ public class Entity {
   public BufferedImage right1;
   public BufferedImage right2;
   public String direction = "down";
-  public Rectangle solidArea;
-  public int solidAreaDefaultX;
-  public int solidAreaDefaultY;
+  public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+  public int solidAreaDefaultX = solidArea.x;
+  public int solidAreaDefaultY = solidArea.y;
   public boolean collisionOn = false;
   public int antiSpinCounter = 0; // prevents spinny moving entity
   public boolean invinsible = false; // make entity not take damage when true

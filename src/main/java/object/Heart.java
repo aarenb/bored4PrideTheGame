@@ -15,12 +15,7 @@ public class Heart extends Entity {
    */
   public Heart(GamePanel gamePan) {
     super(gamePan);
-
     name = "heart";
-
-    solidArea = new Rectangle(0, 0, 48, 48);
-    solidAreaDefaultX = solidArea.x;
-    solidAreaDefaultY = solidArea.y;
 
     image = setup("/objects/heart_full", gamePan.tileSize, gamePan.tileSize);
     image2 = setup("/objects/heart_half", gamePan.tileSize, gamePan.tileSize);

@@ -16,11 +16,7 @@ public class SussyBit extends Entity {
   public SussyBit(GamePanel gamePan) {
     super(gamePan);
     name = "sussy bit";
-
-    solidArea = new Rectangle(0, 0, 48, 48);
-    solidAreaDefaultX = solidArea.x;
-    solidAreaDefaultY = solidArea.y;
-
+    
     down1 = setup("/objects/sussy_bit", gamePan.tileSize, gamePan.tileSize);
   }
 }

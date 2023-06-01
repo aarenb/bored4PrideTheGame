@@ -1,6 +1,5 @@
 package entity;
 
-import java.awt.Rectangle;
 import main.GamePanel;
 
 /**
@@ -14,13 +13,6 @@ public class NpcAlex extends Entity {
    */
   public NpcAlex(GamePanel gamePan) {
     super(gamePan);
-
-    direction = "down";
-    speed = 0;
-
-    solidArea = new Rectangle(8, 16, 32, 32);
-    solidAreaDefaultX = solidArea.x;
-    solidAreaDefaultY = solidArea.y;
 
     getImage();
     setWords();

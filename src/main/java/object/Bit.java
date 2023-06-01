@@ -17,10 +17,6 @@ public class Bit extends Entity {
     super(gamePan);
     name = "bit";
 
-    solidArea = new Rectangle(0, 0, 48, 48);
-    solidAreaDefaultX = solidArea.x;
-    solidAreaDefaultY = solidArea.y;
-
     down1 = setup("/objects/bit", gamePan.tileSize, gamePan.tileSize);
   }
 }
