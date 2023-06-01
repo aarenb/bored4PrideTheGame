@@ -26,7 +26,7 @@ public class FollowBot extends Entity {
     maxLife = 5;
     life = maxLife;
 
-    solidArea = new Rectangle(0, 0, 48, 48); // TODO: change???
+    solidArea = new Rectangle(0, 0, 48, 48);
     solidAreaDefaultX = solidArea.x;
     solidAreaDefaultY = solidArea.y;
 
