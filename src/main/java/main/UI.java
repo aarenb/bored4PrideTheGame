@@ -268,7 +268,7 @@ public class Ui { // TODO: why is this checkstyle error here???
     g2d.setColor(Color.white);
     x = gamePan.screenWidth - gamePan.tileSize * 3 + - 20;
     y = gamePan.screenHeight - 17;
-    text = "Alpha 1.5";
+    text = "Alpha 1.6";
     g2d.drawString(text, x, y);
   }
 
