@@ -209,10 +209,7 @@ public class KeyHandler implements KeyListener {
       if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
           // New game
-          gamePan.restart();
-          gamePan.gameState = gamePan.playState;
-          gamePan.stopMusic();
-          gamePan.playMusic(1);
+          gamePan.gameState = gamePan.pickDifficultyState;
         } else if (gamePan.ui.commandNum == 1) {
           // Load game
           gamePan.restart();
@@ -231,6 +228,51 @@ public class KeyHandler implements KeyListener {
         } else if (gamePan.ui.commandNum == 3) {
           // Quit
           System.exit(0);
+        }
+      }
+      // PICK DIFFICULTY:
+    } else if (gamePan.gameState == gamePan.pickDifficultyState) {
+      // If user presses W key / up arrow
+      if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+        gamePan.playSe(2);
+        gamePan.ui.commandNum--;
+        if (gamePan.ui.commandNum < 0) {
+          gamePan.ui.commandNum = 2;
+        }
+      }
+
+      // If user presses S key / down arrow
+      if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+        gamePan.playSe(2);
+        gamePan.ui.commandNum++;
+        if (gamePan.ui.commandNum > 2) {
+          gamePan.ui.commandNum = 0;
+        }
+      }
+
+      // If user presses enter
+      if (code == KeyEvent.VK_ENTER) {
+        if (gamePan.ui.commandNum == 0) {
+          // EASY
+          gamePan.restart();
+          gamePan.gameState = gamePan.playState;
+          gamePan.stopMusic();
+          gamePan.playMusic(1);
+          gamePan.ui.commandNum = 0;
+        } else if (gamePan.ui.commandNum == 1) {
+          // MEDIUM
+          gamePan.restart();
+          gamePan.gameState = gamePan.playState;
+          gamePan.stopMusic();
+          gamePan.playMusic(1);
+          gamePan.ui.commandNum = 0;
+        } else if (gamePan.ui.commandNum == 2) {
+          // HARD
+          gamePan.restart();
+          gamePan.gameState = gamePan.playState;
+          gamePan.stopMusic();
+          gamePan.playMusic(1);
+          gamePan.ui.commandNum = 0;
         }
       }
       // CONTROLS SCREEN:
