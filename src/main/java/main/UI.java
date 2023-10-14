@@ -107,6 +107,11 @@ public class Ui { // TODO: why is this checkstyle error here???
       drawTitleScreen();
     }
 
+    // PICK DIFICULTY
+    if (gamePan.gameState == gamePan.pickDifficultyState) {
+      drawPickDifficultyScreen();
+    }
+
     // CONTROLS SCREEN:
     if (gamePan.gameState == gamePan.controlsState) {
       drawControlsScreen();
@@ -270,6 +275,82 @@ public class Ui { // TODO: why is this checkstyle error here???
     y = gamePan.screenHeight - 17;
     text = "Beta 1.0";
     g2d.drawString(text, x, y);
+  }
+
+  private void drawPickDifficultyScreen() {
+    // Background image
+    g2d.drawImage(backgroundImg1, 0, 0, gamePan.screenWidth, gamePan.screenHeight, null);
+
+    // Display title
+    g2d.setFont(mono58);
+    String text = "Pick your difficulty:";
+    int x = getXforCenterTxt(text);
+    int y = gamePan.tileSize * 3;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 5, y + 5);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+
+    // Menu
+    g2d.setFont(mono40);
+    g2d.setColor(Color.black);
+
+    text = "EASY";
+    x = getXforCenterTxt(text);
+    y += gamePan.tileSize * 3;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+    if (commandNum == 0) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
+    text = "MEDIUM";
+    x = getXforCenterTxt(text);
+    y += 55;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+    if (commandNum == 1) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
+    text = "HARD";
+    x = getXforCenterTxt(text);
+    y += 55;
+    // Shadow:
+    g2d.setColor(Color.white);
+    g2d.drawString(text, x + 3, y + 3);
+    // Main text:
+    g2d.setColor(Color.black);
+    g2d.drawString(text, x, y);
+    if (commandNum == 2) {
+      // Shadow:
+      g2d.setColor(Color.white);
+      g2d.drawString(">", x - gamePan.tileSize + 3, y + 3);
+      // Main:
+      g2d.setColor(Color.black);
+      g2d.drawString(">", x - gamePan.tileSize, y);
+    }
+
   }
 
   /**

@@ -205,6 +205,8 @@ public class GamePanel extends JPanel implements Runnable {
     // Title screen
     if (gameState == titleState) {
       ui.draw(g2d);
+    } else if (gameState == pickDifficultyState) {
+      ui.draw(g2d);
     } else {
 
       // Set background color (for outside map)
