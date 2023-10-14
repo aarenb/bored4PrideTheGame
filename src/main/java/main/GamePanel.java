@@ -74,6 +74,12 @@ public class GamePanel extends JPanel implements Runnable {
   public final int winState = 7;
   public final int pickDifficultyState = 8;
 
+  // Difficulty
+  public int difficulty;
+  public final int easy = 0;
+  public final int medium = 1;
+  public final int hard = 2;
+
   /**
    * Creates a GamePanel.
    */

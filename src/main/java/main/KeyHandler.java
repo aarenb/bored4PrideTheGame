@@ -254,13 +254,15 @@ public class KeyHandler implements KeyListener {
       if (code == KeyEvent.VK_ENTER) {
         if (gamePan.ui.commandNum == 0) {
           // EASY
-          gamePan.restart();
+          gamePan.difficulty = gamePan.easy;
+          gamePan.restart(); // TODO: Break this out?
           gamePan.gameState = gamePan.playState;
           gamePan.stopMusic();
           gamePan.playMusic(1);
           gamePan.ui.commandNum = 0;
         } else if (gamePan.ui.commandNum == 1) {
           // MEDIUM
+          gamePan.difficulty = gamePan.medium;
           gamePan.restart();
           gamePan.gameState = gamePan.playState;
           gamePan.stopMusic();
@@ -268,6 +270,7 @@ public class KeyHandler implements KeyListener {
           gamePan.ui.commandNum = 0;
         } else if (gamePan.ui.commandNum == 2) {
           // HARD
+          gamePan.difficulty = gamePan.hard;
           gamePan.restart();
           gamePan.gameState = gamePan.playState;
           gamePan.stopMusic();
