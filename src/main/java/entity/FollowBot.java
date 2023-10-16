@@ -20,8 +20,14 @@ public class FollowBot extends Entity {
 
     type = 2;
     direction = "down";
-    defaultSpeed = 1;
+
+    if (gamePan.difficulty != gamePan.hard) {
+      defaultSpeed = 1;
+    } else {
+      defaultSpeed = 2;
+    }
     speed = defaultSpeed;
+
     if (gamePan.difficulty == gamePan.easy) {
       maxLife = 2;
     } else if (gamePan.difficulty == gamePan.medium) {
