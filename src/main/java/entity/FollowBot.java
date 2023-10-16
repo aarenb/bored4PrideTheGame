@@ -22,7 +22,13 @@ public class FollowBot extends Entity {
     direction = "down";
     defaultSpeed = 1;
     speed = defaultSpeed;
-    maxLife = 5;
+    if (gamePan.difficulty == gamePan.easy) {
+      maxLife = 2;
+    } else if (gamePan.difficulty == gamePan.medium) {
+      maxLife = 4;
+    } else if (gamePan.difficulty == gamePan.hard) {
+      maxLife = 6;
+    }
     life = maxLife;
 
     getImage();

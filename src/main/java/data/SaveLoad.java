@@ -124,6 +124,7 @@ public class SaveLoad {
 
       // Load game difficulty
       gamePan.difficulty = storage.difficulty;
+
     } catch (Exception e) {
       e.printStackTrace();
     }
