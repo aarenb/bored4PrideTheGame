@@ -70,6 +70,9 @@ public class SaveLoad {
         }
       }
 
+      // Save game difficulty
+      storage.difficulty = gamePan.difficulty;
+
       // Write data to file
       output.writeObject(storage);
 
@@ -118,6 +121,9 @@ public class SaveLoad {
           gamePan.followBot[i].direction = storage.followBotsDirection[i];
         }
       }
+
+      // Load game difficulty
+      gamePan.difficulty = storage.difficulty;
     } catch (Exception e) {
       e.printStackTrace();
     }

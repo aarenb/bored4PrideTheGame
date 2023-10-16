@@ -25,4 +25,7 @@ public class DataStorage implements Serializable {
   int[] followBotsWorldX;
   int[] followBotsWorldY;
   String[] followBotsDirection;
+
+  // Game difficulty
+  int difficulty;
 }
